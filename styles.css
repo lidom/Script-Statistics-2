@@ -17,4 +17,7 @@
   font-size: .008em;
 }
 
+pre.code-wrapper {
+  pointer-events: none;
+}
 
