@@ -197,7 +197,7 @@ window.Quarto = {
   <ul>
 <li><a href="#example-marketing-campaign" id="toc-example-marketing-campaign" class="nav-link active" data-scroll-target="#example-marketing-campaign"><span class="header-section-number">1.1</span> Example: Marketing Campaign</a></li>
   <li><a href="#short-repetition-two-sided-t-test" id="toc-short-repetition-two-sided-t-test" class="nav-link" data-scroll-target="#short-repetition-two-sided-t-test"><span class="header-section-number">1.2</span> Short Repetition: Two-Sided <span class="math inline">\(t\)</span>-Test</a></li>
-  <li><a href="#the-mathrmp-value" id="toc-the-mathrmp-value" class="nav-link" data-scroll-target="#the-mathrmp-value"><span class="header-section-number">1.3</span> The <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
+  <li><a href="#the-two-sided-mathrmp-value" id="toc-the-two-sided-mathrmp-value" class="nav-link" data-scroll-target="#the-two-sided-mathrmp-value"><span class="header-section-number">1.3</span> The Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
   <li><a href="#mathrmp-values-challenges-for-hypothesis-testing" id="toc-mathrmp-values-challenges-for-hypothesis-testing" class="nav-link" data-scroll-target="#mathrmp-values-challenges-for-hypothesis-testing"><span class="header-section-number">1.4</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></nav>
@@ -345,11 +345,12 @@ Figure&nbsp;1.1: Sales differences (sales after minus before the marketing campa
 </center>
 <p></p>
 <p><span class="math inline">\(t\)</span>-test statistic: <span class="math display">\[
-\mathrm{T} = \frac{\sqrt{n}(\bar{X} - 0)}{s}\overset{H_0}{\sim} t_{n-1},
-\]</span> where <span class="math display">\[\begin{align*}
-\bar{X}&amp;=\frac{1}{n}\sum_{i=1}^n X_i\\
-s      &amp;= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}
-\end{align*}\]</span></p>
+\mathrm{T} = \frac{\bar{X} - 0}{S/\sqrt{n}}\overset{H_0}{\sim} t_{n-1},
+\]</span> where</p>
+<ul>
+<li><span class="math inline">\(\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\)</span></li>
+<li><span class="math inline">\(S= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}\)</span></li>
+</ul>
 <p>denote the empirical mean and the empirical standard deviation.</p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
@@ -370,11 +371,11 @@ s      &amp;= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}
 <p><strong>Observed (<em>obs</em>) realization (marketing campaign):</strong></p>
 <p></p>
 <p><span class="math display">\[
-\mathrm{T}_{\mathrm{obs}} = \frac{\sqrt{n}(\bar{X}_{\mathrm{obs}} - 0)}{s_{\mathrm{obs}}} = 0.84
+\mathrm{T}_{\mathrm{obs}} = \frac{\bar{X}_{\mathrm{obs}} - 0}{S_{\mathrm{obs}}/\sqrt{5}} = 0.84
 \]</span></p>
 <ul>
 <li><span class="math inline">\(\bar{X}_{\mathrm{obs}}=\frac{1}{5}\sum_{i=1}^5 X_{i,obs} = 0.30\)</span></li>
-<li><span class="math inline">\(s_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,obs}-\bar{X}_{\mathrm{obs}})} = 0.80\)</span></li>
+<li><span class="math inline">\(S_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,obs}-\bar{X}_{\mathrm{obs}})} = 0.80\)</span></li>
 </ul>
 <section id="critical-values-phantommathrmp" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="critical-values-phantommathrmp"><strong>Critical Values <span class="math inline">\(\phantom{\mathrm{p}}\)</span></strong></h4>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -399,8 +400,8 @@ s      &amp;= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}
 </div>
 </div>
 </div>
-</section></section><section id="the-mathrmp-value" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="the-mathrmp-value">
-<span class="header-section-number">1.3</span> The <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
+</section></section><section id="the-two-sided-mathrmp-value" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="the-two-sided-mathrmp-value">
+<span class="header-section-number">1.3</span> The Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -453,8 +454,6 @@ Thus for two-sided test statistics, we have
 \end{align*}
 :::
 -->
-<div class="columns">
-<div class="column" style="width:50%;">
 <p><strong>Two-sided <span class="math inline">\(t\)</span>-test:</strong> <!-- 
 Since $\mathrm{T}\overset{H_0}{\sim} t_{n-1}$, we have that [$|\mathrm{T}|\overset{H_0}{\sim} \text{Half-}t_{n-1}$]{style="background-color: yellow"} 
 --> <span class="math display">\[\begin{align*}
@@ -463,14 +462,11 @@ Since $\mathrm{T}\overset{H_0}{\sim} t_{n-1}$, we have that [$|\mathrm{T}|\overs
 &amp; = 1 - \mathrm{P}\big(\highlight{|\mathrm{T}|}\leq |\mathrm{T}_{\mathrm{obs}}|\;\big|\highlight{H_0\;\text{is true}}\big)\\[1ex]
 &amp; = 1 - \highlight{\mathrm{F}_{\,\text{Half-}t,n-1}}\big(|\mathrm{T}_{\mathrm{obs}}|\big),
 \end{align*}\]</span> where <span class="math inline">\(\mathrm{F}_{\,\text{Half-}t,n-1}\)</span> denotes the cdf of the Half-<span class="math inline">\(t\)</span> distribution with <span class="math inline">\(\operatorname{df}=n-1\)</span></p>
-</div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
 </figure>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -481,15 +477,6 @@ Since $\mathrm{T}\overset{H_0}{\sim} t_{n-1}$, we have that [$|\mathrm{T}|\overs
 <span><span class="co">## 1 minus the distribution function of the Half-t</span></span>
 <span><span class="va">p_obs</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/pkg/extraDistr/man/HalfT.html">pht</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span>, nu <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="notes">
-<ul>
-<li>There’s a one-to-one mapping between <span class="math inline">\(|\mathrm{T}_{obs}|\)</span> and <span class="math inline">\(p_{\mathrm{obs}}\)</span>.</li>
-<li>
-<span class="math inline">\(p_{\mathrm{obs}}\)</span> effectively measures how extrem the value of <span class="math inline">\(|\mathrm{T}_{obs}|\)</span> is, given that <span class="math inline">\(H_0\)</span> is true.</li>
-</ul>
-</div>
-<div class="columns">
-<div class="column" style="width:50%;">
 <p>Marketing campaign data:</p>
 <ul>
 <li><span class="math inline">\(|\mathrm{T}_\mathrm{obs}|=0.84\)</span></li>
@@ -498,14 +485,11 @@ Since $\mathrm{T}\overset{H_0}{\sim} t_{n-1}$, we have that [$|\mathrm{T}|\overs
 <span class="math inline">\((1-\alpha/2)\)</span>-quantile of <span class="math inline">\(t_{4}\colon\)</span> <span class="math inline">\(\mathrm{q}_{1-\alpha/2}=2.78\)</span>
 </li>
 </ul>
-</div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
 </figure>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -547,8 +531,6 @@ p_obs <- 1 - pht(q = abs(T_obs), nu = df)
 </div>
 </div>
 <p><span style="background-color: yellow">Equivalent test decisions</span> at the significance level <span class="math inline">\(0&lt;\alpha&lt;1\)</span>:</p>
-<div class="columns">
-<div class="column" style="width:45%;">
 <ul>
 <li>
 <strong>Critical values:</strong> Reject <span class="math inline">\(H_0\colon \mu =0\)</span> if <span style="background-color: yellow"><span class="math inline">\(\displaystyle|\mathrm{T}_{\mathrm{obs}}| &gt; q_{1-\alpha/2}\)</span></span>, where <span class="math inline">\(q_{1-\alpha/2}\)</span> denotes the <span class="math inline">\((1-\alpha/2)\)</span>-quantile of the <span class="math inline">\(t_{\operatorname{df}}\)</span> distribution.</li>
@@ -559,14 +541,11 @@ p_obs <- 1 - pht(q = abs(T_obs), nu = df)
 <strong><span class="math inline">\(\mathrm{p}\)</span>-Values:</strong> Reject <span class="math inline">\(H_0\colon \mu =0\)</span> if <span style="background-color: yellow"><span class="math inline">\(\displaystyle\mathrm{p}_{\mathrm{obs}} &lt; \alpha\)</span></span>
 </li>
 </ul>
-</div><div class="column" style="width:55%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
 </figure>
-</div>
-</div>
 </div>
 </div>
 </div>

@@ -143,13 +143,12 @@ $\displaystyle H_0\colon \mu = 0\quad$ versus $\displaystyle \quad H_1\colon \mu
 
 $t$-test statistic:
 $$
-\mathrm{T} = \frac{\sqrt{n}(\bar{X} - 0)}{s}\overset{H_0}{\sim} t_{n-1},
+\mathrm{T} = \frac{\bar{X} - 0}{S/\sqrt{n}}\overset{H_0}{\sim} t_{n-1},
 $$
 where 
-\begin{align*}
-\bar{X}&=\frac{1}{n}\sum_{i=1}^n X_i\\
-s      &= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}
-\end{align*}
+
+* $\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i$
+* $S= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}$
 
 denote the empirical mean and the empirical standard deviation.
 
@@ -172,11 +171,11 @@ $X\sim\mathcal{N}(\mu, \sigma^2)$
 </br>
 
 $$
-\mathrm{T}_{\mathrm{obs}} = \frac{\sqrt{n}(\bar{X}_{\mathrm{obs}} - 0)}{s_{\mathrm{obs}}} = `r format(T_obs, nsmall=2)`
+\mathrm{T}_{\mathrm{obs}} = \frac{\bar{X}_{\mathrm{obs}} - 0}{S_{\mathrm{obs}}/\sqrt{5}} = `r format(T_obs, nsmall=2)`
 $$ 
 
 * $\bar{X}_{\mathrm{obs}}=\frac{1}{5}\sum_{i=1}^5 X_{i,obs} = `r format(X_bar,nsmall=2)`$ 
-* $s_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,obs}-\bar{X}_{\mathrm{obs}})} = `r format(s,nsmall=2)`$ 
+* $S_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,obs}-\bar{X}_{\mathrm{obs}})} = `r format(s,nsmall=2)`$ 
 
 
 
@@ -234,7 +233,7 @@ legend("topright", pch=c(22), cex=2.1,
 
  
 
-## The $\mathrm{p}$-Value
+## The Two-Sided $\mathrm{p}$-Value
 
 ::: {.callout-note appearance="minimal"}
 **$\mathrm{p}$-Value:** The $\mathrm{p}$-value is the probability of observing a test statistic $\mathrm{T}$ as extreme as the observed value $\mathrm{T}_{\mathrm{obs}}$ or more extreme than $\mathrm{T}_{\mathrm{obs}}$ (in the direction(s) of the alternative hypothesis), given the null hypothesis ($H_0$) is true.
@@ -362,9 +361,6 @@ Thus for two-sided test statistics, we have
 :::
 -->
 
-:::: {.columns}
-
-::: {.column width="50%"}
 **Two-sided $t$-test:** 
 <!-- 
 Since $\mathrm{T}\overset{H_0}{\sim} t_{n-1}$, we have that [$|\mathrm{T}|\overset{H_0}{\sim} \text{Half-}t_{n-1}$]{style="background-color: yellow"} 
@@ -377,8 +373,7 @@ Since $\mathrm{T}\overset{H_0}{\sim} t_{n-1}$, we have that [$|\mathrm{T}|\overs
 \end{align*}
 where 
 $\mathrm{F}_{\,\text{Half-}t,n-1}$ denotes the cdf of the Half-$t$ distribution with $\operatorname{df}=n-1$
-:::
-::: {.column width="50%"}
+
 
 ```{r}
 #| echo: false
@@ -413,8 +408,7 @@ legend("top", lty = 1, lwd=2,
        legend=expression(1-F["Half-t,n-1"]), 
        bty="n", cex = 1.5)
 ```
-:::
-::::
+
 
 ```{r}
 #| echo: true
@@ -425,24 +419,16 @@ df <- 5-1
 p_obs <- 1 - pht(q = abs(T_obs), nu = df)
 ```
 
-::: {.notes}
-* There's a one-to-one mapping between $|\mathrm{T}_{obs}|$ and $p_{\mathrm{obs}}$. 
-* $p_{\mathrm{obs}}$ effectively measures how extrem the value of $|\mathrm{T}_{obs}|$ is, given that $H_0$ is true.
-:::
 
 
 
 
-:::: {.columns}
-
-::: {.column width="50%"}
 Marketing campaign data:
 
 * $|\mathrm{T}_\mathrm{obs}|=`r T_obs`$
 * $\alpha = 0.05$
 * $(1-\alpha/2)$-quantile of $t_{4}\colon$</br> $\mathrm{q}_{1-\alpha/2}=`r round(qt(p = 1-alpha/2, df=df),2)`$ 
-:::
-::: {.column width="50%"}
+
 ```{r}
 #| echo: false
 #| fig-width: 7
@@ -482,8 +468,7 @@ legend("top", lty = 1, lwd=2,
        legend=expression(1-F["Half-t,n-1"]), 
        bty="n", cex = 1.5)
 ```
-:::
-::::
+
 <!-- 
 ```{r}
 #| echo: true
@@ -510,9 +495,7 @@ We fail to reject $H_0\colon\mu = 0$. That is, we have no statistical evidence t
 [Equivalent test decisions]{style="background-color: yellow"} at the significance level $0<\alpha<1$: 
 
 
-:::: {.columns}
 
-::: {.column width="45%"}
 * **Critical values:**</br> 
 Reject $H_0\colon \mu =0$ if [$\displaystyle|\mathrm{T}_{\mathrm{obs}}| > q_{1-\alpha/2}$]{style="background-color: yellow"}, 
    where $q_{1-\alpha/2}$ denotes the $(1-\alpha/2)$-quantile of the $t_{\operatorname{df}}$ distribution. 
@@ -521,8 +504,7 @@ Reject $H_0\colon \mu =0$ if [$\displaystyle|\mathrm{T}_{\mathrm{obs}}| > q_{1-\
 
 * **$\mathrm{p}$-Values:**</br>
 Reject $H_0\colon \mu =0$ if [$\displaystyle\mathrm{p}_{\mathrm{obs}} < \alpha$]{style="background-color: yellow"} 
-:::
-::: {.column width="55%"}
+
 ```{r}
 #| echo: false
 #| fig-width: 7
@@ -565,8 +547,6 @@ legend("topright", lty = 1, lwd=2,
        legend=expression(1-F["Half-t,n-1"]), 
        bty="n", cex = 1.5)
 ```
-:::
-::::
 
 
 
