@@ -33,3 +33,4 @@ timetable %>% kbl() %>%  kable_styling()
 * [Statistik: Der Weg zur Datenanalyse](https://link.springer.com/book/10.1007/978-3-662-67526-7) 
 * [Probability and Statistics for Economists](https://press.princeton.edu/books/hardcover/9780691235943/probability-and-statistics-for-economists?srsltid=AfmBOopn6HIW0Y1Edtu1W8VdiDmPN6PfNiCwHmyTBjQEHqM5i3W4ysVK)
 
+

@@ -33,3 +33,5 @@ format:
       opts_chunk:
         fig.align: center
         fig-align: center
+  pdf: 
+    pdf-engine: lualatex

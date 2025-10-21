@@ -20,61 +20,21 @@
     ]
   },
   {
-    "objectID": "Ch_pValues.html#link-to-this-lecture",
-    "href": "Ch_pValues.html#link-to-this-lecture",
-    "title": "\n1  \\(p\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "",
-    "text": "https://www.dliebl.com/Script-Statistics-2/",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>$p$-Values: Challenges for Hypothesis Testing</span>"
-    ]
-  },
-  {
-    "objectID": "Ch_pValues.html#lecture-goals",
-    "href": "Ch_pValues.html#lecture-goals",
-    "title": "\n1  \\(p\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "",
-    "text": "How do \\(\\mathrm{p}\\)-values work?\n\nToday: two-sided \\(t\\)-test\n\n\n\n\n\n\n\nWhy are \\(\\mathrm{p}\\)-values a challenge for hypothesis testing?\n\n\n\n\nWhat alternatives are there?\n\n\n\\[\n\\require{color}\n%% Colorbox within equation-environments:\n\\newcommand{\\highlight}[2][yellow]{\\mathchoice%\n  {\\colorbox{#1}{$\\displaystyle#2$}}%\n  {\\colorbox{#1}{$\\displaystyle#2$}}%\n  {\\colorbox{#1}{$\\displaystyle#2$}}%\n  }%\n\\]\n\n\nAlternatives: * Today only an outline * Next lecture we go into the details of the alternatives",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>$p$-Values: Challenges for Hypothesis Testing</span>"
-    ]
-  },
-  {
-    "objectID": "Ch_pValues.html#example-marketing-campaign",
-    "href": "Ch_pValues.html#example-marketing-campaign",
-    "title": "\n1  \\(p\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "\n1.2 Example: Marketing Campaign",
-    "text": "1.2 Example: Marketing Campaign\n\nMarketing campaign in \\(n=5\\) stores (paired sample):\n\n\n\nStore\nSales Before\nSales After\nDifference\n\n\n\n\\(1\\)\n\\(4.86\\)\n\\(5.50\\)\n\\(X_{1,obs}=0.64\\)\n\n\n\\(2\\)\n\\(4.96\\)\n\\(4.24\\)\n\\(X_{2,obs}=-0.72\\)\n\n\n\\(3\\)\n\\(6.01\\)\n\\(5.78\\)\n\\(X_{3,obs}=-0.23\\)\n\n\n\\(4\\)\n\\(4.84\\)\n\\(5.75\\)\n\\(X_{4,obs}=0.91\\)\n\n\n\\(5\\)\n\\(2.84\\)\n\\(3.90\\)\n\\(X_{5,obs}=1.06\\)\n\n\n\n\nAssumption: There are no systematic differences (mean-shifts) between sales before and after the marketing campaign, other than the potential impact of the campaign itself.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>$p$-Values: Challenges for Hypothesis Testing</span>"
-    ]
-  },
-  {
-    "objectID": "Ch_pValues.html#example-marketing-campaign-1",
-    "href": "Ch_pValues.html#example-marketing-campaign-1",
-    "title": "\n1  \\(p\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "\n1.3 Example: Marketing Campaign",
-    "text": "1.3 Example: Marketing Campaign\nMarketing campaign data:\n\npar(mar = c(.5, .1, 0, .1))\nplot(x = X, y = rep(0, n), pch = 21, col = alpha(\"red\", 0.5), bg = alpha(\"red\", 0.5), cex = 3.5, axes = FALSE, ylab = \"\", xlab = \"\", xlim = c(-3,3))\naxis(1, at = -2:2, line = -10, cex.axis = 3.5, lwd = 2, family=\"serif\", mgp = c(3, 4, 0), tck=-0.05)\n\n\n\n\n\n\n\n\nResearch Question: Was the marketing campaign successful? Did it show a tendency (location-shift) toward significantly higher or lower sales?\nStatistical Reformulation: Is the mean of \\(X_1,\\dots,X_n\\) different from zero?\nTesting problem: \\(\\hspace{1cm}H_0\\colon \\mu = 0\\quad\\) versus \\(\\quad H_1\\colon \\mu \\neq 0\\)",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>$p$-Values: Challenges for Hypothesis Testing</span>"
-    ]
-  },
-  {
-    "objectID": "Ch_pValues.html#cheat-sheet-two-sided-t-test",
-    "href": "Ch_pValues.html#cheat-sheet-two-sided-t-test",
+    "objectID": "Ch_pValues.html#real-example-marketing-campaign",
+    "href": "Ch_pValues.html#real-example-marketing-campaign",
     "title": "\n1  \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "\n1.2 Cheat Sheet: Two-Sided \\(t\\)-Test",
-    "text": "1.2 Cheat Sheet: Two-Sided \\(t\\)-Test\n\n1.2.1 (See Lecture Hypothesis Tests)\nStatistical hypothesis:\n\n\\(\\displaystyle H_0\\colon \\mu = 0\\quad\\) versus \\(\\displaystyle \\quad H_1\\colon \\mu \\neq 0\\)\n\n\n\\(t\\)-test statistic: \\[\n\\mathrm{T} = \\frac{\\sqrt{n}(\\bar{X} - 0)}{s}\\overset{H_0}{\\sim} t_{n-1}\n\\]\nSetup:\n\nRandom (iid) sample: \\(X_1,\\dots,X_n\\overset{\\operatorname{iid}}{\\sim}X\\) with either\n\nsmall sample size and \\(X\\sim\\mathcal{N}(\\mu, \\sigma^2)\\) or\nlarge sample size (CLT, \\(n\\to\\infty\\)) and \\(\\mathrm{E}(X)=\\mu\\) and \\(\\mathrm{Var}(X)=\\sigma^2\\)\n\n\n\nEmpirical mean: \\(\\bar{X}=\\frac{1}{n}\\sum_{i=1}^n X_i\\)\n\nEmpirical standard deviation: \\(s = \\sqrt{\\frac{1}{n-1}\\sum_{i=1}^n(X_i-\\bar{X})}\\)\n\n\n\nObserved (obs) realization (marketing campaign):\n\n\\[\n\\mathrm{T}_{\\mathrm{obs}} = \\frac{\\sqrt{n}(\\bar{X}_{\\mathrm{obs}} - 0)}{s_{\\mathrm{obs}}} = 0.84\n\\]\n\nRealized random sample: \\(\\{X_{1,obs},X_{2,obs},X_{3,obs},X_{4,obs},X_{5,obs}\\}=\\{0.64\\), \\(-0.72\\), \\(-0.23\\), \\(0.91\\), \\(1.06\\}\\)\n\nEmpirical mean: \\(\\bar{X}_{\\mathrm{obs}}=\\frac{1}{n}\\sum_{i=1}^n X_{i,obs} = 0.30\\)\n\nEmpirical standard deviation: \\(s_{\\mathrm{obs}} = \\sqrt{\\frac{1}{n-1}\\sum_{i=1}^n(X_{i,obs}-\\bar{X}_{\\mathrm{obs}})} = 0.80\\)",
+    "section": "\n1.1 Real-Example: Marketing Campaign",
+    "text": "1.1 Real-Example: Marketing Campaign\nMarketing campaign in \\(n=5\\) stores (paired sample):\n\n\n\nStore\nSales Before\nSales After\nDifference (After \\(-\\) Before)\n\n\n\n\\(1\\)\n\\(4.86\\)\n\\(5.50\\)\n\\(X_{1,obs}=0.64\\)\n\n\n\\(2\\)\n\\(4.96\\)\n\\(4.24\\)\n\\(X_{2,obs}=-0.72\\)\n\n\n\\(3\\)\n\\(6.01\\)\n\\(5.78\\)\n\\(X_{3,obs}=-0.23\\)\n\n\n\\(4\\)\n\\(4.84\\)\n\\(5.75\\)\n\\(X_{4,obs}=0.91\\)\n\n\n\\(5\\)\n\\(2.84\\)\n\\(3.90\\)\n\\(X_{5,obs}=1.06\\)\n\n\n\n\nFigure 1.1 shows the observed sales differences \\[\n\\{X_{1,obs},X_{2,obs},X_{3,obs},X_{4,obs},X_{5,obs}\\}.\n\\]\n\n\n\n\n\n\n\nFigure 1.1: Sales differences (sales after minus before the marketing campaign).\n\n\n\n\n\nResearch Question: Was the marketing campaign successful? Did it show a tendency (location-shift) toward significantly higher or lower sales?\nStatistical Reformulation: Is the mean of \\(X_1,\\dots,X_n\\) different from zero?\nTesting problem: \\(\\hspace{1cm}H_0\\colon \\mu = 0\\quad\\) versus \\(\\quad H_1\\colon \\mu \\neq 0\\)\n\n\n\n\n\n\n\nAssumption: There are no systematic differences (mean-shifts) between sales before and after the marketing campaign, other than the potential impact of the campaign itself.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>$\\mathrm{p}$-Values: Challenges for Hypothesis Testing</span>"
     ]
   },
   {
-    "objectID": "Ch_pValues.html#critical-values-phantommathrmp",
-    "href": "Ch_pValues.html#critical-values-phantommathrmp",
+    "objectID": "Ch_pValues.html#short-repetition-two-sided-t-test",
+    "href": "Ch_pValues.html#short-repetition-two-sided-t-test",
     "title": "\n1  \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "\n1.3 Critical Values \\(\\phantom{\\mathrm{p}}\\)\n",
-    "text": "1.3 Critical Values \\(\\phantom{\\mathrm{p}}\\)\n\n\n\n\n\n\n\nCritical Values: The critical values — the \\((1-\\alpha/2)\\)- and the \\(\\alpha/2\\)-quantiles of the \\(t\\)-distribution with \\(\\operatorname{df}=n-1\\) — define the rejection regions for a given significance level \\(0&lt;\\alpha&lt;1\\).\n\n\n\nMarketing campaign data:\n\nDensity function of the \\(t_{\\operatorname{df}}\\) distribution with \\(\\operatorname{df}=4\\)\n\n\nalpha  &lt;- 0.05\ndf     &lt;- 5-1\nq_1    &lt;- qt(p = alpha/2,   df=df)\nq_2    &lt;- qt(p = 1-alpha/2, df=df)\n\nxx1    &lt;- seq(-5, q_1, len=25)\nyy1    &lt;- dt(x = xx1, df = df)\n##\nxx2    &lt;- seq(q_2,  5, len=25)\nyy2    &lt;- dt(x = xx2, df = df)\n\npar(mar = c(4.5, .1, .1, .1))\ncurve(expr = dt(x = x, df = df),\n      xlab = \"\", ylab = \"\", main = \"\",\n      lwd = 2, col = 1, xlim = c(-5, 5),\n      ylim = c(0, .4), xaxs=\"i\",yaxs=\"i\", axes = FALSE)\n\npolygon(x = c(xx1,rev(xx1)), y=c(yy1, rep(0,length(yy1))), border = NA, col = alpha(\"red\", 0.25))\npolygon(x = c(xx2,rev(xx2)), y=c(yy2, rep(0,length(yy2))), border = NA, col = alpha(\"red\", 0.25))\naxis(1, cex.axis = 2, family = \"serif\")\naxis(1, at = T_obs, col = \"blue\", labels = FALSE, tck=-0.11)\naxis(1, at = q_1,   col = \"red\",  labels = FALSE, tck=-0.11)\nlines(x = c(q_1,q_1), y = c(0, dt(x = q_1, df = df)), col=\"red\")\naxis(1, at = q_2,   col = \"red\",  labels = FALSE, tck=-0.11)\nlines(x = c(q_2,q_2), y = c(0, dt(x = q_2, df = df)), col=\"red\")\n#mtext(side = 1, text = c(expression(q[alpha/2]), bquote(T[obs]==.(T_obs)), expression(q[1-alpha/2])), at = c(q_1,T_obs,q_2), line = 3.5, cex = 2, family = \"serif\")\nmtext(side = 1, text = c(expression(q[alpha/2]), expression(T[obs]), expression(q[1-alpha/2])), at = c(q_1,T_obs,q_2), line = 3.5, cex = 2, family = \"serif\")\nlegend(\"topright\", pch=c(22), cex=2.1, \n       col = alpha(\"red\", 0.25), \n       legend=expression(alpha==0.05), \n       bty=\"n\", pt.bg = alpha(\"red\", 0.25))",
+    "section": "\n1.2 Short Repetition: Two-Sided \\(t\\)-Test",
+    "text": "1.2 Short Repetition: Two-Sided \\(t\\)-Test\n\n\n\n\n\n\nMore Details: See our lecture on hypothesis testing for more details.\n\n\n\nStatistical hypothesis:\n\n\\(\\displaystyle H_0\\colon \\mu = 0\\quad\\) versus \\(\\displaystyle \\quad H_1\\colon \\mu \\neq 0\\)\n\n\n\\(t\\)-test statistic: \\[\n\\mathrm{T} = \\frac{\\sqrt{n}(\\bar{X} - 0)}{s}\\overset{H_0}{\\sim} t_{n-1},\n\\] where \\[\\begin{align*}\n\\bar{X}&=\\frac{1}{n}\\sum_{i=1}^n X_i\\\\\ns      &= \\sqrt{\\frac{1}{n-1}\\sum_{i=1}^n(X_i-\\bar{X})}\n\\end{align*}\\]\ndenote the empirical mean and the empirical standard deviation.\n\n\n\n\n\n\nAssumptions:\n\nRandom (iid) sample: \\(X_1,\\dots,X_n\\overset{\\operatorname{iid}}{\\sim}X\\)\nFor small sample sizes: \\(X\\sim\\mathcal{N}(\\mu, \\sigma^2)\\)\nFor large sample sizes: \\(\\mathrm{E}(X)=\\mu\\) and \\(\\mathrm{Var}(X)=\\sigma^2\\)\n\n\n\n\n\nObserved (obs) realization (marketing campaign):\n\n\\[\n\\mathrm{T}_{\\mathrm{obs}} = \\frac{\\sqrt{n}(\\bar{X}_{\\mathrm{obs}} - 0)}{s_{\\mathrm{obs}}} = 0.84\n\\]\n\n\\(\\bar{X}_{\\mathrm{obs}}=\\frac{1}{5}\\sum_{i=1}^5 X_{i,obs} = 0.30\\)\n\\(s_{\\mathrm{obs}} = \\sqrt{\\frac{1}{5-1}\\sum_{i=1}^5(X_{i,obs}-\\bar{X}_{\\mathrm{obs}})} = 0.80\\)\n\nCritical Values \\(\\phantom{\\mathrm{p}}\\)\n\n\n\n\n\n\nCritical Values: The critical values — the \\((1-\\alpha/2)\\)- and the \\(\\alpha/2\\)-quantiles of the \\(t\\)-distribution with \\(\\operatorname{df}=n-1\\) — define the rejection regions for a given significance level \\(0&lt;\\alpha&lt;1\\).\n\n\n\nMarketing campaign data:\n\nDensity function of the \\(t_{\\operatorname{df}}\\) distribution with \\(\\operatorname{df}=4\\)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>$\\mathrm{p}$-Values: Challenges for Hypothesis Testing</span>"
     ]
@@ -83,8 +43,8 @@
     "objectID": "Ch_pValues.html#two-sided-mathrmp-value",
     "href": "Ch_pValues.html#two-sided-mathrmp-value",
     "title": "\n1  \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "\n1.3 Two-Sided \\(\\mathrm{p}\\)-Value",
-    "text": "1.3 Two-Sided \\(\\mathrm{p}\\)-Value\n\n\n\n\n\n\n\\(\\mathrm{p}\\)-Value: The \\(\\mathrm{p}\\)-value is the probability of observing a test statistic \\(\\mathrm{T}\\) as extreme as \\(\\mathrm{T}_{\\mathrm{obs}}\\) or more extreme (in the direction(s) of the alternative hypothesis) than \\(\\mathrm{T}_{\\mathrm{obs}}\\), given the null hypothesis (\\(H_0\\)) is true.\n\n\nTwo-Sided \\(\\mathrm{p}\\)-Value: \\[\\displaystyle\\mathrm{p}_{\\mathrm{obs}} = \\mathrm{P}\\big(\\,|\\mathrm{T}|\\,\\geq |\\mathrm{T}_{\\mathrm{obs}}|\\;\\big|\\;H_0\\;\\text{is true}\\big)\\]\n\n\n\n\n\nMarketing campaign data:\n\nDensity function of the \\(t_{\\operatorname{df}}\\) distribution with \\(\\operatorname{df}=4\\)",
+    "section": "\n1.4 Two-Sided \\(\\mathrm{p}\\)-Value",
+    "text": "1.4 Two-Sided \\(\\mathrm{p}\\)-Value\n\n\n\nTwo-sided \\(t\\)-test:  \\[\\begin{align*}\n\\mathrm{p}_{\\mathrm{obs}}\n& = \\mathrm{P}\\big(\\,|\\mathrm{T}|\\,\\geq |\\mathrm{T}_{\\mathrm{obs}}|\\;\\big|\\;H_0\\;\\text{is true}\\big)\\\\[1ex]\n& = 1 - \\mathrm{P}\\big(\\highlight{|\\mathrm{T}|}\\leq |\\mathrm{T}_{\\mathrm{obs}}|\\;\\big|\\highlight{H_0\\;\\text{is true}}\\big)\\\\[1ex]\n& = 1 - \\highlight{\\mathrm{F}_{\\,\\text{Half-}t,n-1}}\\big(|\\mathrm{T}_{\\mathrm{obs}}|\\big),\n\\end{align*}\\] where \\(\\mathrm{F}_{\\,\\text{Half-}t,n-1}\\) denotes the cdf of the Half-\\(t\\) distribution with \\(\\operatorname{df}=n-1\\)\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(\"extraDistr\")\ndf &lt;- 5-1\n\n## 1 minus the distribution function of the Half-t\np_obs &lt;- 1 - pht(q = abs(T_obs), nu = df)\n\n\n\nThere’s a one-to-one mapping between \\(|\\mathrm{T}_{obs}|\\) and \\(p_{\\mathrm{obs}}\\).\n\n\\(p_{\\mathrm{obs}}\\) effectively measures how extrem the value of \\(|\\mathrm{T}_{obs}|\\) is, given that \\(H_0\\) is true.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>$\\mathrm{p}$-Values: Challenges for Hypothesis Testing</span>"
     ]
@@ -93,8 +53,8 @@
     "objectID": "Ch_pValues.html#two-sided-mathrmp-value-1",
     "href": "Ch_pValues.html#two-sided-mathrmp-value-1",
     "title": "\n1  \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "\n1.4 Two-Sided \\(\\mathrm{p}\\)-Value",
-    "text": "1.4 Two-Sided \\(\\mathrm{p}\\)-Value\n\n\n\n\n\n\n\\(\\mathrm{p}\\)-Value: The \\(\\mathrm{p}\\)-value is the probability of observing a test statistic \\(\\mathrm{T}\\) as extreme as \\(\\mathrm{T}_{\\mathrm{obs}}\\) or more extreme (in the direction(s) of the alternative hypothesis) than \\(\\mathrm{T}_{\\mathrm{obs}}\\), given the null hypothesis (\\(H_0\\)) is true.\n\n\nTwo-Sided \\(\\mathrm{p}\\)-Value: \\[\\displaystyle\\mathrm{p}_{\\mathrm{obs}} = \\mathrm{P}\\big(\\highlight{|\\mathrm{T}|} \\geq |\\mathrm{T}_{\\mathrm{obs}}|\\;\\big|\\;H_0\\;\\text{is true}\\big)\\]\n\n\n\n\n\nMarketing campaign data:\n\nDensity function of the Half-\\(t_{\\operatorname{df}}\\) distribution with \\(\\operatorname{df}=4\\)",
+    "section": "\n1.5 Two-Sided \\(\\mathrm{p}\\)-Value",
+    "text": "1.5 Two-Sided \\(\\mathrm{p}\\)-Value\n\n\nMarketing campaign data:\n\n\\(|\\mathrm{T}_\\mathrm{obs}|=0.84\\)\n\\(\\alpha = 0.05\\)\n\n\\((1-\\alpha/2)\\)-quantile of \\(t_{4}\\colon\\) \\(\\mathrm{q}_{1-\\alpha/2}=2.78\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe fail to reject \\(H_0\\colon\\mu = 0\\). That is, we have no statistical evidence that the marketing campaign showed a tendency toward significantly higher or lower sales.\n\n\n\n\n\n\n⚠️ Failing to reject \\(H_0\\) does not mean that \\(H_0\\) is true. It only means that we do not have enough evidence to reject it.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>$\\mathrm{p}$-Values: Challenges for Hypothesis Testing</span>"
     ]
@@ -103,8 +63,8 @@
     "objectID": "Ch_pValues.html#two-sided-mathrmp-value-2",
     "href": "Ch_pValues.html#two-sided-mathrmp-value-2",
     "title": "\n1  \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "\n1.5 Two-Sided \\(\\mathrm{p}\\)-Value",
-    "text": "1.5 Two-Sided \\(\\mathrm{p}\\)-Value\n\n\n\nTwo-sided \\(t\\)-test:  \\[\\begin{align*}\n\\mathrm{p}_{\\mathrm{obs}}\n& = \\mathrm{P}\\big(\\,|\\mathrm{T}|\\,\\geq |\\mathrm{T}_{\\mathrm{obs}}|\\;\\big|\\;H_0\\;\\text{is true}\\big)\\\\[1ex]\n& = 1 - \\mathrm{P}\\big(\\highlight{|\\mathrm{T}|}\\leq |\\mathrm{T}_{\\mathrm{obs}}|\\;\\big|\\highlight{H_0\\;\\text{is true}}\\big)\\\\[1ex]\n& = 1 - \\highlight{\\mathrm{F}_{\\,\\text{Half-}t,n-1}}\\big(|\\mathrm{T}_{\\mathrm{obs}}|\\big),\n\\end{align*}\\] where \\(\\mathrm{F}_{\\,\\text{Half-}t,n-1}\\) denotes the cdf of the Half-\\(t\\) distribution with \\(\\operatorname{df}=n-1\\)\n\n\n\nWarning in mtext(side = 1, text = bquote(\"|\" ~ T[obs] ~ \"|\"), at =\nc(abs(T_obs)), : \"hadj\" is not a graphical parameter\n\n\n\n\n\n\n\n\n\n\n\nlibrary(\"extraDistr\")\ndf &lt;- 5-1\n\n## 1 minus the distribution function of the Half-t\np_obs &lt;- 1 - pht(q = abs(T_obs), nu = df)\n\n\n\nThere’s a one-to-one mapping between \\(|\\mathrm{T}_{obs}|\\) and \\(p_{\\mathrm{obs}}\\).\n\n\\(p_{\\mathrm{obs}}\\) effectively measures how extrem the value of \\(|\\mathrm{T}_{obs}|\\) is, given that \\(H_0\\) is true.",
+    "section": "\n1.6 Two-Sided \\(\\mathrm{p}\\)-Value",
+    "text": "1.6 Two-Sided \\(\\mathrm{p}\\)-Value\nEquivalent test decisions at the significance level \\(0&lt;\\alpha&lt;1\\):\n\n\n\n\nCritical values: Reject \\(H_0\\colon \\mu =0\\) if \\(\\displaystyle|\\mathrm{T}_{\\mathrm{obs}}| &gt; q_{1-\\alpha/2}\\), where \\(q_{1-\\alpha/2}\\) denotes the \\((1-\\alpha/2)\\)-quantile of the \\(t_{\\operatorname{df}}\\) distribution.\n\n\n\n\n\\(\\mathrm{p}\\)-Values: Reject \\(H_0\\colon \\mu =0\\) if \\(\\displaystyle\\mathrm{p}_{\\mathrm{obs}} &lt; \\alpha\\)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>$\\mathrm{p}$-Values: Challenges for Hypothesis Testing</span>"
     ]
@@ -133,8 +93,8 @@
     "objectID": "Ch_pValues.html#mathrmp-values-challenges-for-hypothesis-testing",
     "href": "Ch_pValues.html#mathrmp-values-challenges-for-hypothesis-testing",
     "title": "\n1  \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "\n1.8 \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing",
-    "text": "1.8 \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing\n\nWhile the \\(\\mathrm{p}\\)-value can be a useful statistical measure, it is commonly misused and misinterpreted. (Wasserstein and Lazar (2016), Wasserstein, Schirm, and Lazar (2019))\n“Scientific method: Statistical errors.” Nuzzo (2014)\nScienceNews (Siegfried 2010): “It’s science’s dirtiest secret: The ‘scien- tific method’ of testing hypotheses by statistical analysis stands on a flimsy foundation.”",
+    "section": "\n1.4 \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing",
+    "text": "1.4 \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing\n\nWhile the \\(\\mathrm{p}\\)-value can be a useful statistical measure, it is commonly misused and misinterpreted. (Wasserstein and Lazar (2016), Wasserstein, Schirm, and Lazar (2019))\n“Scientific method: Statistical errors.” Nuzzo (2014)\nScienceNews (Siegfried 2010): “It’s science’s dirtiest secret: The ‘scien- tific method’ of testing hypotheses by statistical analysis stands on a flimsy foundation.”",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>$\\mathrm{p}$-Values: Challenges for Hypothesis Testing</span>"
     ]
@@ -143,8 +103,8 @@
     "objectID": "Ch_pValues.html#references",
     "href": "Ch_pValues.html#references",
     "title": "\n1  \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "\n1.9 References",
-    "text": "1.9 References\n\n\nNuzzo, Regina. 2014. “Scientific Method: Statistical\nErrors.” Nature 506 (7487).\n\n\nWasserstein, Ronald L, and Nicole A Lazar. 2016. “The ASA\nStatement on p-Values: Context, Process, and\nPurpose.” The American Statistician. Taylor &\nFrancis.\n\n\nWasserstein, Ronald L, Allen L Schirm, and Nicole A Lazar. 2019.\n“Moving to a World Beyond \"p&lt; 0.05\".” The American\nStatistician. Taylor & Francis.",
+    "section": "References",
+    "text": "References\n\n\nNuzzo, Regina. 2014. “Scientific Method: Statistical\nErrors.” Nature 506 (7487).\n\n\nWasserstein, Ronald L, and Nicole A Lazar. 2016. “The ASA\nStatement on p-Values: Context, Process, and\nPurpose.” The American Statistician. Taylor &\nFrancis.\n\n\nWasserstein, Ronald L, Allen L Schirm, and Nicole A Lazar. 2019.\n“Moving to a World Beyond \"p&lt; 0.05\".” The American\nStatistician. Taylor & Francis.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>$\\mathrm{p}$-Values: Challenges for Hypothesis Testing</span>"
     ]
@@ -153,48 +113,28 @@
     "objectID": "Ch_pValues.html#tips-for-success",
     "href": "Ch_pValues.html#tips-for-success",
     "title": "\n1  \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "\n1.10 💡 Tips for Success",
-    "text": "1.10 💡 Tips for Success\n\n\nDon’t just memorize formulas — focus on understanding why they work.\nDiscuss and collaborate",
+    "section": "\n1.6 💡 Tips for Success",
+    "text": "1.6 💡 Tips for Success\n\n\nDon’t just memorize formulas — focus on understanding why they work.\nDiscuss and collaborate",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>$\\mathrm{p}$-Values: Challenges for Hypothesis Testing</span>"
     ]
   },
   {
-    "objectID": "index.html#link-to-this-lecture",
-    "href": "index.html#link-to-this-lecture",
-    "title": "Statistics-II (B.Sc.)",
-    "section": "Link to this Lecture",
-    "text": "Link to this Lecture\n\n\n\n\nhttps://www.dliebl.com/Script-Statistics-2/\nLecture Material\n\nThis online script\nFolder containing R-Scripts\neWhiteboard\nLiterature\n\nStatistik: Der Weg zur Datenanalyse\nProbability and Statistics for Economists",
-    "crumbs": [
-      "Organization of the Course"
-    ]
-  },
-  {
-    "objectID": "Ch_pValues.html#real-example-marketing-campaign",
-    "href": "Ch_pValues.html#real-example-marketing-campaign",
+    "objectID": "Ch_pValues.html#example-marketing-campaign",
+    "href": "Ch_pValues.html#example-marketing-campaign",
     "title": "\n1  \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "\n1.1 Real-Example: Marketing Campaign",
-    "text": "1.1 Real-Example: Marketing Campaign\nMarketing campaign in \\(n=5\\) stores (paired sample):\n\n\n\nStore\nSales Before\nSales After\nDifference (After \\(-\\) Before)\n\n\n\n\\(1\\)\n\\(4.86\\)\n\\(5.50\\)\n\\(X_{1,obs}=0.64\\)\n\n\n\\(2\\)\n\\(4.96\\)\n\\(4.24\\)\n\\(X_{2,obs}=-0.72\\)\n\n\n\\(3\\)\n\\(6.01\\)\n\\(5.78\\)\n\\(X_{3,obs}=-0.23\\)\n\n\n\\(4\\)\n\\(4.84\\)\n\\(5.75\\)\n\\(X_{4,obs}=0.91\\)\n\n\n\\(5\\)\n\\(2.84\\)\n\\(3.90\\)\n\\(X_{5,obs}=1.06\\)\n\n\n\n\nFigure 1.1 shows the observed sales differences \\[\n\\{X_{1,obs},X_{2,obs},X_{3,obs},X_{4,obs},X_{5,obs}\\}.\n\\]\n\n\n\n\n\n\n\nFigure 1.1: Sales differences (sales after minus before the marketing campaign).\n\n\n\n\n\n\n\n\n\n\nAssumption: There are no systematic differences (mean-shifts) between sales before and after the marketing campaign, other than the potential impact of the campaign itself.\n\n\n\n\n\nResearch Question: Was the marketing campaign successful? Did it show a tendency (location-shift) toward significantly higher or lower sales?\nStatistical Reformulation: Is the mean of \\(X_1,\\dots,X_n\\) different from zero?\nTesting problem: \\(\\hspace{1cm}H_0\\colon \\mu = 0\\quad\\) versus \\(\\quad H_1\\colon \\mu \\neq 0\\)",
+    "section": "\n1.1 Example: Marketing Campaign",
+    "text": "1.1 Example: Marketing Campaign\nMarketing campaign in \\(n=5\\) stores (paired sample):\n\n\n\nStore\nSales Before\nSales After\nDifference (After \\(-\\) Before)\n\n\n\n\\(1\\)\n\\(4.86\\)\n\\(5.50\\)\n\\(X_{1,obs}=0.64\\)\n\n\n\\(2\\)\n\\(4.96\\)\n\\(4.24\\)\n\\(X_{2,obs}=-0.72\\)\n\n\n\\(3\\)\n\\(6.01\\)\n\\(5.78\\)\n\\(X_{3,obs}=-0.23\\)\n\n\n\\(4\\)\n\\(4.84\\)\n\\(5.75\\)\n\\(X_{4,obs}=0.91\\)\n\n\n\\(5\\)\n\\(2.84\\)\n\\(3.90\\)\n\\(X_{5,obs}=1.06\\)\n\n\n\n\nFigure 1.1 shows the observed sales differences \\[\n\\{X_{1,obs},X_{2,obs},X_{3,obs},X_{4,obs},X_{5,obs}\\}.\n\\]\n\n\n\n\n\n\n\nFigure 1.1: Sales differences (sales after minus before the marketing campaign).\n\n\n\n\n\nResearch Question: Was the marketing campaign successful? Did it show a tendency (location-shift) toward significantly higher or lower sales?\nStatistical Reformulation: Is the mean of \\(X_1,\\dots,X_n\\) different from zero?\nTesting problem: \\(\\hspace{1cm}H_0\\colon \\mu = 0\\quad\\) versus \\(\\quad H_1\\colon \\mu \\neq 0\\)\n\n\n\n\n\n\n\nAssumption: There are no systematic differences (mean-shifts) between sales before and after the marketing campaign, other than the potential impact of the campaign itself.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>$\\mathrm{p}$-Values: Challenges for Hypothesis Testing</span>"
     ]
   },
   {
-    "objectID": "Ch_pValues.html#repetition-two-sided-t-test",
-    "href": "Ch_pValues.html#repetition-two-sided-t-test",
+    "objectID": "Ch_pValues.html#the-mathrmp-value",
+    "href": "Ch_pValues.html#the-mathrmp-value",
     "title": "\n1  \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "\n1.2 Repetition: Two-Sided \\(t\\)-Test",
-    "text": "1.2 Repetition: Two-Sided \\(t\\)-Test\n\n\n\n\n\n\nMore Details: See our lecture on hypothesis testing for more details.\n\n\n\nStatistical hypothesis:\n\n\\(\\displaystyle H_0\\colon \\mu = 0\\quad\\) versus \\(\\displaystyle \\quad H_1\\colon \\mu \\neq 0\\)\n\n\n\\(t\\)-test statistic: \\[\n\\mathrm{T} = \\frac{\\sqrt{n}(\\bar{X} - 0)}{s}\\overset{H_0}{\\sim} t_{n-1},\n\\] where \\[\n\\bar{X}=\\frac{1}{n}\\sum_{i=1}^n X_i\n\\] denotes the empirical mean and \\[\ns = \\sqrt{\\frac{1}{n-1}\\sum_{i=1}^n(X_i-\\bar{X})}\n\\] denotes the empirical standard deviation.\nSetup:\n\nRandom (iid) sample: \\[\nX_1,\\dots,X_n\\overset{\\operatorname{iid}}{\\sim}X\n\\]\nSmall sample size: \\[\nX\\sim\\mathcal{N}(\\mu, \\sigma^2)\n\\]\nLarge sample size (CLT, \\(n\\to\\infty\\)): \\[\n\\mathrm{E}(X)=\\mu\\quad\\text{and}\\quad \\mathrm{Var}(X)=\\sigma^2\n\\]\n\n\nObserved (obs) realization (marketing campaign):\n\n\\[\n\\mathrm{T}_{\\mathrm{obs}} = \\frac{\\sqrt{n}(\\bar{X}_{\\mathrm{obs}} - 0)}{s_{\\mathrm{obs}}} = 0.84\n\\]\n\nRealized random sample: \\(\\{X_{1,obs},X_{2,obs},X_{3,obs},X_{4,obs},X_{5,obs}\\}=\\{0.64\\), \\(-0.72\\), \\(-0.23\\), \\(0.91\\), \\(1.06\\}\\)\n\nEmpirical mean: \\(\\bar{X}_{\\mathrm{obs}}=\\frac{1}{n}\\sum_{i=1}^n X_{i,obs} = 0.30\\)\n\nEmpirical standard deviation: \\(s_{\\mathrm{obs}} = \\sqrt{\\frac{1}{n-1}\\sum_{i=1}^n(X_{i,obs}-\\bar{X}_{\\mathrm{obs}})} = 0.80\\)\n\n\nCritical Values \\(\\phantom{\\mathrm{p}}\\)\n\n\n\n\n\n\nCritical Values: The critical values — the \\((1-\\alpha/2)\\)- and the \\(\\alpha/2\\)-quantiles of the \\(t\\)-distribution with \\(\\operatorname{df}=n-1\\) — define the rejection regions for a given significance level \\(0&lt;\\alpha&lt;1\\).\n\n\n\nMarketing campaign data:\n\nDensity function of the \\(t_{\\operatorname{df}}\\) distribution with \\(\\operatorname{df}=4\\)",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>$\\mathrm{p}$-Values: Challenges for Hypothesis Testing</span>"
-    ]
-  },
-  {
-    "objectID": "Ch_pValues.html#short-repetition-two-sided-t-test",
-    "href": "Ch_pValues.html#short-repetition-two-sided-t-test",
-    "title": "\n1  \\(\\mathrm{p}\\)-Values: Challenges for Hypothesis Testing\n",
-    "section": "\n1.2 Short Repetition: Two-Sided \\(t\\)-Test",
-    "text": "1.2 Short Repetition: Two-Sided \\(t\\)-Test\n\n\n\n\n\n\nMore Details: See our lecture on hypothesis testing for more details.\n\n\n\nStatistical hypothesis:\n\n\\(\\displaystyle H_0\\colon \\mu = 0\\quad\\) versus \\(\\displaystyle \\quad H_1\\colon \\mu \\neq 0\\)\n\n\n\\(t\\)-test statistic: \\[\n\\mathrm{T} = \\frac{\\sqrt{n}(\\bar{X} - 0)}{s}\\overset{H_0}{\\sim} t_{n-1},\n\\] where \\[\\begin{align*}\n\\bar{X}&=\\frac{1}{n}\\sum_{i=1}^n X_i\\\\\ns      &= \\sqrt{\\frac{1}{n-1}\\sum_{i=1}^n(X_i-\\bar{X})}\n\\end{align*}\\]\ndenote the empirical mean and the empirical standard deviation.\n\n\n\n\n\n\nAssumptions:\n\nRandom (iid) sample: \\(X_1,\\dots,X_n\\overset{\\operatorname{iid}}{\\sim}X\\)\nFor small sample sizes: \\(X\\sim\\mathcal{N}(\\mu, \\sigma^2)\\)\nFor large sample sizes (CLT, \\(n\\to\\infty\\)): \\[\n\\mathrm{E}(X)=\\mu\\quad\\text{and}\\quad \\mathrm{Var}(X)=\\sigma^2\n\\]\n\n\n\n\n\nObserved (obs) realization (marketing campaign):\n\n\\[\n\\mathrm{T}_{\\mathrm{obs}} = \\frac{\\sqrt{n}(\\bar{X}_{\\mathrm{obs}} - 0)}{s_{\\mathrm{obs}}} = 0.84\n\\]\n\nEmpirical mean: \\(\\bar{X}_{\\mathrm{obs}}=\\frac{1}{5}\\sum_{i=1}^5 X_{i,obs} = 0.30\\)\n\nEmpirical standard deviation: \\(s_{\\mathrm{obs}} = \\sqrt{\\frac{1}{5-1}\\sum_{i=1}^5(X_{i,obs}-\\bar{X}_{\\mathrm{obs}})} = 0.80\\)\n\n\nCritical Values \\(\\phantom{\\mathrm{p}}\\)\n\n\n\n\n\n\nCritical Values: The critical values — the \\((1-\\alpha/2)\\)- and the \\(\\alpha/2\\)-quantiles of the \\(t\\)-distribution with \\(\\operatorname{df}=n-1\\) — define the rejection regions for a given significance level \\(0&lt;\\alpha&lt;1\\).\n\n\n\nMarketing campaign data:\n\nDensity function of the \\(t_{\\operatorname{df}}\\) distribution with \\(\\operatorname{df}=4\\)",
+    "section": "\n1.3 The \\(\\mathrm{p}\\)-Value",
+    "text": "1.3 The \\(\\mathrm{p}\\)-Value\n\n\n\n\n\n\n\\(\\mathrm{p}\\)-Value: The \\(\\mathrm{p}\\)-value is the probability of observing a test statistic \\(\\mathrm{T}\\) as extreme as the observed value \\(\\mathrm{T}_{\\mathrm{obs}}\\) or more extreme than \\(\\mathrm{T}_{\\mathrm{obs}}\\) (in the direction(s) of the alternative hypothesis), given the null hypothesis (\\(H_0\\)) is true.\n\n\nTwo-Sided \\(\\mathrm{p}\\)-Value: \\[\\displaystyle\\mathrm{p}_{\\mathrm{obs}} = \\mathrm{P}\\big(\\,|\\mathrm{T}|\\,\\geq |\\mathrm{T}_{\\mathrm{obs}}|\\;\\big|\\;H_0\\;\\text{is true}\\big)\\]\n\n\n\n\n\nMarketing campaign data:\n\nDensity function of the \\(t_{\\operatorname{df}}\\) distribution with \\(\\operatorname{df}=4\\)\n\n\n\n\n\n\n\n\n\nMarketing campaign data:\n\nDensity function of the Half-\\(t_{\\operatorname{df}}\\) distribution with \\(\\operatorname{df}=4\\)\n\n\n\n\n\n\n\n\n\n\n\n\nTwo-sided \\(t\\)-test:  \\[\\begin{align*}\n\\mathrm{p}_{\\mathrm{obs}}\n& = \\mathrm{P}\\big(\\,|\\mathrm{T}|\\,\\geq |\\mathrm{T}_{\\mathrm{obs}}|\\;\\big|\\;H_0\\;\\text{is true}\\big)\\\\[1ex]\n& = 1 - \\mathrm{P}\\big(\\highlight{|\\mathrm{T}|}\\leq |\\mathrm{T}_{\\mathrm{obs}}|\\;\\big|\\highlight{H_0\\;\\text{is true}}\\big)\\\\[1ex]\n& = 1 - \\highlight{\\mathrm{F}_{\\,\\text{Half-}t,n-1}}\\big(|\\mathrm{T}_{\\mathrm{obs}}|\\big),\n\\end{align*}\\] where \\(\\mathrm{F}_{\\,\\text{Half-}t,n-1}\\) denotes the cdf of the Half-\\(t\\) distribution with \\(\\operatorname{df}=n-1\\)\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(\"extraDistr\")\ndf &lt;- 5-1\n\n## 1 minus the distribution function of the Half-t\np_obs &lt;- 1 - pht(q = abs(T_obs), nu = df)\n\n\n\nThere’s a one-to-one mapping between \\(|\\mathrm{T}_{obs}|\\) and \\(p_{\\mathrm{obs}}\\).\n\n\\(p_{\\mathrm{obs}}\\) effectively measures how extrem the value of \\(|\\mathrm{T}_{obs}|\\) is, given that \\(H_0\\) is true.\n\n\n\n\nMarketing campaign data:\n\n\\(|\\mathrm{T}_\\mathrm{obs}|=0.84\\)\n\\(\\alpha = 0.05\\)\n\n\\((1-\\alpha/2)\\)-quantile of \\(t_{4}\\colon\\) \\(\\mathrm{q}_{1-\\alpha/2}=2.78\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe fail to reject \\(H_0\\colon\\mu = 0\\). That is, we have no statistical evidence that the marketing campaign showed a tendency toward significantly higher or lower sales.\n\n\n\n\n\n\n⚠️ Failing to reject \\(H_0\\) does not mean that \\(H_0\\) is true. It only means that we do not have enough evidence to reject it.\n\n\n\nEquivalent test decisions at the significance level \\(0&lt;\\alpha&lt;1\\):\n\n\n\n\nCritical values: Reject \\(H_0\\colon \\mu =0\\) if \\(\\displaystyle|\\mathrm{T}_{\\mathrm{obs}}| &gt; q_{1-\\alpha/2}\\), where \\(q_{1-\\alpha/2}\\) denotes the \\((1-\\alpha/2)\\)-quantile of the \\(t_{\\operatorname{df}}\\) distribution.\n\n\n\n\n\\(\\mathrm{p}\\)-Values: Reject \\(H_0\\colon \\mu =0\\) if \\(\\displaystyle\\mathrm{p}_{\\mathrm{obs}} &lt; \\alpha\\)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>$\\mathrm{p}$-Values: Challenges for Hypothesis Testing</span>"
     ]

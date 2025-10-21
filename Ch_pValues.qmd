@@ -2,6 +2,44 @@
 # $\mathrm{p}$-Values: Challenges for Hypothesis Testing
 
 
+
+::: {.content-hidden unless-format="html"}
+$$
+\require{color}
+%% Colorbox within equation-environments:
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  }%
+$$
+:::
+
+::: {.content-hidden unless-format="pdf"}
+```{=latex}
+%% Colorbox within equation-environments:
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  }%
+```
+:::
+
+ 
+<!-- ::: {.hidden}
+$$
+\require{color}
+%% Colorbox within equation-environments:
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  }%
+$$
+::: -->
+
+
 #### 🎯 **Lecture Goals** {-}
 
 
@@ -13,17 +51,6 @@
 
 * **What** alternatives are there? 
 
-::: {.hidden}
-$$
-\require{color}
-%% Colorbox within equation-environments:
-\newcommand{\highlight}[2][yellow]{\mathchoice%
-  {\colorbox{#1}{$\displaystyle#2$}}%
-  {\colorbox{#1}{$\displaystyle#2$}}%
-  {\colorbox{#1}{$\displaystyle#2$}}%
-  }%
-$$
-:::
 
 
 ```{r}
@@ -44,7 +71,7 @@ T_obs <- round((sqrt(n) * X_bar)/s, 2)
 ```
 
 
-## Real-Example: Marketing Campaign
+## Example: Marketing Campaign
 
 
 Marketing campaign in $n=5$ stores (paired sample): 
@@ -85,11 +112,7 @@ plot(x = X, y = rep(0, n),
 axis(1, at = -2:2, line = -3.5, cex.axis = 1.5, lwd = 2, family="serif")
 ```
 
-::: {.callout-note appearance="minimal"}
-**Assumption:** There are no systematic differences (mean-shifts) between sales before and after the marketing campaign, other than the potential impact of the campaign itself.
-:::
 
-</br>
 
 
 * **Research Question:**  </br>Was the marketing campaign successful? Did it show a tendency (location-shift) toward *significantly* higher or lower sales?
@@ -98,9 +121,9 @@ axis(1, at = -2:2, line = -3.5, cex.axis = 1.5, lwd = 2, family="serif")
 
 * **Testing problem:** $\hspace{1cm}H_0\colon \mu = 0\quad$ versus $\quad H_1\colon \mu \neq 0$
 
-<!-- * **Setup:**</br>Random sample $X_1,\dots,X_n\overset{iid}{\sim}X$ with $\mu_X = E(X)$ -->
-
-
+::: {.callout-note appearance="minimal"}
+**Assumption:** There are no systematic differences (mean-shifts) between sales before and after the marketing campaign, other than the potential impact of the campaign itself.
+:::
 
 ## Short Repetition: Two-Sided $t$-Test
 
@@ -139,10 +162,7 @@ $X_1,\dots,X_n\overset{\operatorname{iid}}{\sim}X$
 * For small sample sizes: 
 $X\sim\mathcal{N}(\mu, \sigma^2)$ 
 
-* For large sample sizes (CLT, $n\to\infty$): 
-$$
-\mathrm{E}(X)=\mu\quad\text{and}\quad \mathrm{Var}(X)=\sigma^2
-$$
+* For large sample sizes: $\mathrm{E}(X)=\mu$ and $\mathrm{Var}(X)=\sigma^2$
 :::
 
 </br>
@@ -155,8 +175,8 @@ $$
 \mathrm{T}_{\mathrm{obs}} = \frac{\sqrt{n}(\bar{X}_{\mathrm{obs}} - 0)}{s_{\mathrm{obs}}} = `r format(T_obs, nsmall=2)`
 $$ 
 
-* Empirical mean: $\bar{X}_{\mathrm{obs}}=\frac{1}{5}\sum_{i=1}^5 X_{i,obs} = `r format(X_bar,nsmall=2)`$ 
-* Empirical standard deviation: $s_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,obs}-\bar{X}_{\mathrm{obs}})} = `r format(s,nsmall=2)`$ 
+* $\bar{X}_{\mathrm{obs}}=\frac{1}{5}\sum_{i=1}^5 X_{i,obs} = `r format(X_bar,nsmall=2)`$ 
+* $s_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,obs}-\bar{X}_{\mathrm{obs}})} = `r format(s,nsmall=2)`$ 
 
 
 
@@ -214,10 +234,10 @@ legend("topright", pch=c(22), cex=2.1,
 
  
 
-## Two-Sided $\mathrm{p}$-Value
+## The $\mathrm{p}$-Value
 
 ::: {.callout-note appearance="minimal"}
-**$\mathrm{p}$-Value:** The $\mathrm{p}$-value is the probability of observing a test statistic $\mathrm{T}$ as extreme as $\mathrm{T}_{\mathrm{obs}}$ or more extreme (in the direction(s) of the alternative hypothesis) than $\mathrm{T}_{\mathrm{obs}}$, given the null hypothesis ($H_0$) is true.
+**$\mathrm{p}$-Value:** The $\mathrm{p}$-value is the probability of observing a test statistic $\mathrm{T}$ as extreme as the observed value $\mathrm{T}_{\mathrm{obs}}$ or more extreme than $\mathrm{T}_{\mathrm{obs}}$ (in the direction(s) of the alternative hypothesis), given the null hypothesis ($H_0$) is true.
 
 * **Two-Sided $\mathrm{p}$-Value:** 
 $$\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)$$
@@ -269,16 +289,6 @@ legend("topright", pch=c(22), cex=2.1,
        bty="n", pt.bg = alpha("red", 0.25))
 ```
 
-
-
-## Two-Sided $\mathrm{p}$-Value
-
-::: {.callout-note appearance="minimal"}
-**$\mathrm{p}$-Value:** The $\mathrm{p}$-value is the probability of observing a test statistic $\mathrm{T}$ as extreme as $\mathrm{T}_{\mathrm{obs}}$ or more extreme (in the direction(s) of the alternative hypothesis) than $\mathrm{T}_{\mathrm{obs}}$, given the null hypothesis ($H_0$) is true.
-
-* **Two-Sided $\mathrm{p}$-Value:** 
-$$\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\highlight{|\mathrm{T}|} \geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)$$
-:::
 
 Marketing campaign data:
 
@@ -338,8 +348,6 @@ legend("topright", pch=c(22), cex=2.1,
 
 
 
-## Two-Sided $\mathrm{p}$-Value
-
 <!-- 
 ::: {.callout-note appearance="minimal"}
 **$\mathrm{p}$-Value:** The $\mathrm{p}$-value is the probability, assuming the null hypothesis ($H_0$) is true, of observing a test statistic $\mathrm{T}$ as extreme as $\mathrm{T}_{\mathrm{obs}}$ or more extreme (in the direction(s) of the alternative hypothesis) than $\mathrm{T}_{\mathrm{obs}}$. 
@@ -395,7 +403,7 @@ axis(2, at =  myfun(T_obs), col = "blue", labels = FALSE, tck=-0.05)
 lines(x = c(0,T_obs), y= rep(myfun(T_obs), 2), col="blue")
 lines(x = rep(T_obs, 2), y= c(0, myfun(T_obs)), col="blue")
 ##
-mtext(side = 1, text = bquote("|"~T[obs]~"|"), at = c(abs(T_obs)), line = 3.5, cex = 2, family = "serif", hadj = 1)
+mtext(side = 1, text = bquote("|"~T[obs]~"|"), at = c(abs(T_obs)), line = 3.5, cex = 2, family = "serif")
 corners = par("usr") #Gets the four corners of plot area (x1, x2, y1, y2)
 par(xpd = TRUE) #Draw outside plot area
 text(x = corners[1]-.75, y = mean(myfun(T_obs)), bquote(p[obs]), srt = 0, cex = 2, family = "serif")
@@ -423,7 +431,6 @@ p_obs <- 1 - pht(q = abs(T_obs), nu = df)
 :::
 
 
-## Two-Sided $\mathrm{p}$-Value
 
 
 :::: {.columns}
@@ -464,8 +471,8 @@ lines(x = c(0,qt(1-alpha/2, df=df)), y= rep(alpha, 2), col="red")
 #lines(x = c(0, 0), y= c(0, alpha), lwd = 3, col = "red")
 lines(x = rep(qt(1-alpha/2, df=df), 2), y= c(0, alpha), lwd = 1, col = "red")
 ##
-mtext(side = 1, text = bquote("|"~T[obs]~"|"), at = c(abs(T_obs)), line = 3.5, cex = 2, family = "serif", hadj = 1)
-mtext(side = 1, text = bquote(q[1-alpha/2]), at = qt(1-alpha/2, df=df), line = 3.5, cex = 2, family = "serif", hadj = 1)
+mtext(side = 1, text = bquote("|"~T[obs]~"|"), at = c(abs(T_obs)), line = 3.5, cex = 2, family = "serif")
+mtext(side = 1, text = bquote(q[1-alpha/2]), at = qt(1-alpha/2, df=df), line = 3.5, cex = 2, family = "serif")
 corners = par("usr") #Gets the four corners of plot area (x1, x2, y1, y2)
 par(xpd = TRUE) #Draw outside plot area
 text(x = corners[1]-.75, y = mean(myfun(T_obs)), bquote(p[obs]==.(round(myfun(T_obs), 2))), srt = 0, cex = 2, family = "serif")
@@ -498,7 +505,6 @@ We fail to reject $H_0\colon\mu = 0$. That is, we have no statistical evidence t
 :::
 
 
-## Two-Sided $\mathrm{p}$-Value
 
 
 [Equivalent test decisions]{style="background-color: yellow"} at the significance level $0<\alpha<1$: 
@@ -547,8 +553,8 @@ lines(x = c(0,qt(1-alpha/2, df=df)), y= rep(alpha, 2), col="red")
 #lines(x = c(0, 0), y= c(0, alpha), lwd = 3, col = "red")
 lines(x = rep(qt(1-alpha/2, df=df), 2), y= c(0, alpha), lwd = 1, col = "red")
 ##
-mtext(side = 1, text = bquote("|"~T[obs]~"|"), at = c(abs(T_2obs)), line = 3.5, cex = 2, family = "serif", hadj = 1)
-mtext(side = 1, text = bquote(q[1-alpha/2]), at = qt(1-alpha/2, df=df), line = 3.5, cex = 2, family = "serif", hadj = 1)
+mtext(side = 1, text = bquote("|"~T[obs]~"|"), at = c(abs(T_2obs)), line = 3.5, cex = 2, family = "serif")
+mtext(side = 1, text = bquote(q[1-alpha/2]), at = qt(1-alpha/2, df=df), line = 3.5, cex = 2, family = "serif")
 corners = par("usr") #Gets the four corners of plot area (x1, x2, y1, y2)
 par(xpd = TRUE) #Draw outside plot area
 text(x = corners[1]-.75, y = mean(myfun(T_2obs)), bquote(p[obs]), srt = 0, cex = 2, family = "serif")
@@ -575,16 +581,16 @@ legend("topright", lty = 1, lwd=2,
 tific method' of testing hypotheses by statistical analysis stands on a flimsy foundation."
 
 
-## References
+## References {-}
 
 ::: {#refs}
 :::
 
-
+<!-- 
 ## 💡 Tips for Success
 
 <br>
 
 * Don’t just memorize formulas — focus on understanding *why* they work.
 * Discuss and collaborate
-
+ -->

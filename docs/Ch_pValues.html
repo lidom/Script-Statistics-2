@@ -195,16 +195,11 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#real-example-marketing-campaign" id="toc-real-example-marketing-campaign" class="nav-link active" data-scroll-target="#real-example-marketing-campaign"><span class="header-section-number">1.1</span> Real-Example: Marketing Campaign</a></li>
+<li><a href="#example-marketing-campaign" id="toc-example-marketing-campaign" class="nav-link active" data-scroll-target="#example-marketing-campaign"><span class="header-section-number">1.1</span> Example: Marketing Campaign</a></li>
   <li><a href="#short-repetition-two-sided-t-test" id="toc-short-repetition-two-sided-t-test" class="nav-link" data-scroll-target="#short-repetition-two-sided-t-test"><span class="header-section-number">1.2</span> Short Repetition: Two-Sided <span class="math inline">\(t\)</span>-Test</a></li>
-  <li><a href="#two-sided-mathrmp-value" id="toc-two-sided-mathrmp-value" class="nav-link" data-scroll-target="#two-sided-mathrmp-value"><span class="header-section-number">1.3</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
-  <li><a href="#two-sided-mathrmp-value-1" id="toc-two-sided-mathrmp-value-1" class="nav-link" data-scroll-target="#two-sided-mathrmp-value-1"><span class="header-section-number">1.4</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
-  <li><a href="#two-sided-mathrmp-value-2" id="toc-two-sided-mathrmp-value-2" class="nav-link" data-scroll-target="#two-sided-mathrmp-value-2"><span class="header-section-number">1.5</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
-  <li><a href="#two-sided-mathrmp-value-3" id="toc-two-sided-mathrmp-value-3" class="nav-link" data-scroll-target="#two-sided-mathrmp-value-3"><span class="header-section-number">1.6</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
-  <li><a href="#two-sided-mathrmp-value-4" id="toc-two-sided-mathrmp-value-4" class="nav-link" data-scroll-target="#two-sided-mathrmp-value-4"><span class="header-section-number">1.7</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
-  <li><a href="#mathrmp-values-challenges-for-hypothesis-testing" id="toc-mathrmp-values-challenges-for-hypothesis-testing" class="nav-link" data-scroll-target="#mathrmp-values-challenges-for-hypothesis-testing"><span class="header-section-number">1.8</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">1.9</span> References</a></li>
-  <li><a href="#tips-for-success" id="toc-tips-for-success" class="nav-link" data-scroll-target="#tips-for-success"><span class="header-section-number">1.10</span> 💡 Tips for Success</a></li>
+  <li><a href="#the-mathrmp-value" id="toc-the-mathrmp-value" class="nav-link" data-scroll-target="#the-mathrmp-value"><span class="header-section-number">1.3</span> The <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
+  <li><a href="#mathrmp-values-challenges-for-hypothesis-testing" id="toc-mathrmp-values-challenges-for-hypothesis-testing" class="nav-link" data-scroll-target="#mathrmp-values-challenges-for-hypothesis-testing"><span class="header-section-number">1.4</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -225,7 +220,27 @@ window.Quarto = {
   
 
 
-</header><!-- LTeX: language=en-US --><section id="lecture-goals" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="lecture-goals">🎯 <strong>Lecture Goals</strong>
+</header><!-- LTeX: language=en-US --><p><span class="math display">\[
+\require{color}
+%% Colorbox within equation-environments:
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  }%
+\]</span></p>
+<!-- ::: {.hidden}
+$$
+\require{color}
+%% Colorbox within equation-environments:
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  }%
+$$
+::: -->
+<section id="lecture-goals" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="lecture-goals">🎯 <strong>Lecture Goals</strong>
 </h4>
 <ul>
 <li>
@@ -237,20 +252,8 @@ window.Quarto = {
 </li>
 <li><p><strong>Why</strong> are <span class="math inline">\(\mathrm{p}\)</span>-values a challenge for hypothesis testing?</p></li>
 <li><p><strong>What</strong> alternatives are there?</p></li>
-</ul>
-<div class="hidden">
-<p><span class="math display">\[
-\require{color}
-%% Colorbox within equation-environments:
-\newcommand{\highlight}[2][yellow]{\mathchoice%
-  {\colorbox{#1}{$\displaystyle#2$}}%
-  {\colorbox{#1}{$\displaystyle#2$}}%
-  {\colorbox{#1}{$\displaystyle#2$}}%
-  }%
-\]</span></p>
-</div>
-</section><section id="real-example-marketing-campaign" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="real-example-marketing-campaign">
-<span class="header-section-number">1.1</span> Real-Example: Marketing Campaign</h2>
+</ul></section><section id="example-marketing-campaign" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="example-marketing-campaign">
+<span class="header-section-number">1.1</span> Example: Marketing Campaign</h2>
 <p>Marketing campaign in <span class="math inline">\(n=5\)</span> stores (paired sample):</p>
 <p></p>
 <table class="caption-top table">
@@ -309,6 +312,11 @@ Figure&nbsp;1.1: Sales differences (sales after minus before the marketing campa
 </div>
 </div>
 </div>
+<ul>
+<li><p><strong>Research Question:</strong> Was the marketing campaign successful? Did it show a tendency (location-shift) toward <em>significantly</em> higher or lower sales?</p></li>
+<li><p><strong>Statistical Reformulation:</strong> Is the mean of <span class="math inline">\(X_1,\dots,X_n\)</span> different from zero?</p></li>
+<li><p><strong>Testing problem:</strong> <span class="math inline">\(\hspace{1cm}H_0\colon \mu = 0\quad\)</span> versus <span class="math inline">\(\quad H_1\colon \mu \neq 0\)</span></p></li>
+</ul>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -319,13 +327,7 @@ Figure&nbsp;1.1: Sales differences (sales after minus before the marketing campa
 </div>
 </div>
 </div>
-<p></p>
-<ul>
-<li><p><strong>Research Question:</strong> Was the marketing campaign successful? Did it show a tendency (location-shift) toward <em>significantly</em> higher or lower sales?</p></li>
-<li><p><strong>Statistical Reformulation:</strong> Is the mean of <span class="math inline">\(X_1,\dots,X_n\)</span> different from zero?</p></li>
-<li><p><strong>Testing problem:</strong> <span class="math inline">\(\hspace{1cm}H_0\colon \mu = 0\quad\)</span> versus <span class="math inline">\(\quad H_1\colon \mu \neq 0\)</span></p></li>
-</ul>
-<!-- * **Setup:**</br>Random sample $X_1,\dots,X_n\overset{iid}{\sim}X$ with $\mu_X = E(X)$ --></section><section id="short-repetition-two-sided-t-test" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="short-repetition-two-sided-t-test">
+</section><section id="short-repetition-two-sided-t-test" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="short-repetition-two-sided-t-test">
 <span class="header-section-number">1.2</span> Short Repetition: Two-Sided <span class="math inline">\(t\)</span>-Test</h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
@@ -359,9 +361,7 @@ s      &amp;= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}
 <ul>
 <li><p>Random (iid) sample: <span class="math inline">\(X_1,\dots,X_n\overset{\operatorname{iid}}{\sim}X\)</span></p></li>
 <li><p>For small sample sizes: <span class="math inline">\(X\sim\mathcal{N}(\mu, \sigma^2)\)</span></p></li>
-<li><p>For large sample sizes (CLT, <span class="math inline">\(n\to\infty\)</span>): <span class="math display">\[
-\mathrm{E}(X)=\mu\quad\text{and}\quad \mathrm{Var}(X)=\sigma^2
-\]</span></p></li>
+<li><p>For large sample sizes: <span class="math inline">\(\mathrm{E}(X)=\mu\)</span> and <span class="math inline">\(\mathrm{Var}(X)=\sigma^2\)</span></p></li>
 </ul>
 </div>
 </div>
@@ -373,10 +373,8 @@ s      &amp;= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}
 \mathrm{T}_{\mathrm{obs}} = \frac{\sqrt{n}(\bar{X}_{\mathrm{obs}} - 0)}{s_{\mathrm{obs}}} = 0.84
 \]</span></p>
 <ul>
-<li>Empirical mean: <span class="math inline">\(\bar{X}_{\mathrm{obs}}=\frac{1}{5}\sum_{i=1}^5 X_{i,obs} = 0.30\)</span>
-</li>
-<li>Empirical standard deviation: <span class="math inline">\(s_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,obs}-\bar{X}_{\mathrm{obs}})} = 0.80\)</span>
-</li>
+<li><span class="math inline">\(\bar{X}_{\mathrm{obs}}=\frac{1}{5}\sum_{i=1}^5 X_{i,obs} = 0.30\)</span></li>
+<li><span class="math inline">\(s_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,obs}-\bar{X}_{\mathrm{obs}})} = 0.80\)</span></li>
 </ul>
 <section id="critical-values-phantommathrmp" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="critical-values-phantommathrmp"><strong>Critical Values <span class="math inline">\(\phantom{\mathrm{p}}\)</span></strong></h4>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -401,15 +399,15 @@ s      &amp;= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}
 </div>
 </div>
 </div>
-</section></section><section id="two-sided-mathrmp-value" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="two-sided-mathrmp-value">
-<span class="header-section-number">1.3</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
+</section></section><section id="the-mathrmp-value" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="the-mathrmp-value">
+<span class="header-section-number">1.3</span> The <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong><span class="math inline">\(\mathrm{p}\)</span>-Value:</strong> The <span class="math inline">\(\mathrm{p}\)</span>-value is the probability of observing a test statistic <span class="math inline">\(\mathrm{T}\)</span> as extreme as <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span> or more extreme (in the direction(s) of the alternative hypothesis) than <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span>, given the null hypothesis (<span class="math inline">\(H_0\)</span>) is true.</p>
+<p><strong><span class="math inline">\(\mathrm{p}\)</span>-Value:</strong> The <span class="math inline">\(\mathrm{p}\)</span>-value is the probability of observing a test statistic <span class="math inline">\(\mathrm{T}\)</span> as extreme as the observed value <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span> or more extreme than <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span> (in the direction(s) of the alternative hypothesis), given the null hypothesis (<span class="math inline">\(H_0\)</span>) is true.</p>
 <ul>
 <li>
 <strong>Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value:</strong> <span class="math display">\[\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)\]</span>
@@ -430,23 +428,6 @@ s      &amp;= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}
 </div>
 </div>
 </div>
-</section><section id="two-sided-mathrmp-value-1" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="two-sided-mathrmp-value-1">
-<span class="header-section-number">1.4</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong><span class="math inline">\(\mathrm{p}\)</span>-Value:</strong> The <span class="math inline">\(\mathrm{p}\)</span>-value is the probability of observing a test statistic <span class="math inline">\(\mathrm{T}\)</span> as extreme as <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span> or more extreme (in the direction(s) of the alternative hypothesis) than <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span>, given the null hypothesis (<span class="math inline">\(H_0\)</span>) is true.</p>
-<ul>
-<li>
-<strong>Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value:</strong> <span class="math display">\[\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\highlight{|\mathrm{T}|} \geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)\]</span>
-</li>
-</ul>
-</div>
-</div>
-</div>
 <p>Marketing campaign data:</p>
 <div class="r-stack">
 <p>Density function of the <span style="background-color: yellow">Half-<span class="math inline">\(t_{\operatorname{df}}\)</span></span> distribution with <span class="math inline">\(\operatorname{df}=4\)</span></p>
@@ -459,8 +440,6 @@ s      &amp;= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}
 </div>
 </div>
 </div>
-</section><section id="two-sided-mathrmp-value-2" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="two-sided-mathrmp-value-2">
-<span class="header-section-number">1.5</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
 <!-- 
 ::: {.callout-note appearance="minimal"}
 **$\mathrm{p}$-Value:** The $\mathrm{p}$-value is the probability, assuming the null hypothesis ($H_0$) is true, of observing a test statistic $\mathrm{T}$ as extreme as $\mathrm{T}_{\mathrm{obs}}$ or more extreme (in the direction(s) of the alternative hypothesis) than $\mathrm{T}_{\mathrm{obs}}$. 
@@ -486,10 +465,6 @@ Since $\mathrm{T}\overset{H_0}{\sim} t_{n-1}$, we have that [$|\mathrm{T}|\overs
 \end{align*}\]</span> where <span class="math inline">\(\mathrm{F}_{\,\text{Half-}t,n-1}\)</span> denotes the cdf of the Half-<span class="math inline">\(t\)</span> distribution with <span class="math inline">\(\operatorname{df}=n-1\)</span></p>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in mtext(side = 1, text = bquote("|" ~ T[obs] ~ "|"), at =
-c(abs(T_obs)), : "hadj" is not a graphical parameter</code></pre>
-</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
@@ -500,7 +475,7 @@ c(abs(T_obs)), : "hadj" is not a graphical parameter</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/twolodzko/extraDistr">"extraDistr"</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/twolodzko/extraDistr">"extraDistr"</a></span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fl">5</span><span class="op">-</span><span class="fl">1</span></span>
 <span></span>
 <span><span class="co">## 1 minus the distribution function of the Half-t</span></span>
@@ -513,8 +488,6 @@ c(abs(T_obs)), : "hadj" is not a graphical parameter</code></pre>
 <span class="math inline">\(p_{\mathrm{obs}}\)</span> effectively measures how extrem the value of <span class="math inline">\(|\mathrm{T}_{obs}|\)</span> is, given that <span class="math inline">\(H_0\)</span> is true.</li>
 </ul>
 </div>
-</section><section id="two-sided-mathrmp-value-3" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="two-sided-mathrmp-value-3">
-<span class="header-section-number">1.6</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p>Marketing campaign data:</p>
@@ -527,14 +500,6 @@ c(abs(T_obs)), : "hadj" is not a graphical parameter</code></pre>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in mtext(side = 1, text = bquote("|" ~ T[obs] ~ "|"), at =
-c(abs(T_obs)), : "hadj" is not a graphical parameter</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in mtext(side = 1, text = bquote(q[1 - alpha/2]), at = qt(1 - alpha/2,
-: "hadj" is not a graphical parameter</code></pre>
-</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
@@ -545,6 +510,9 @@ c(abs(T_obs)), : "hadj" is not a graphical parameter</code></pre>
 </div>
 </div>
 <!-- 
+
+
+
 
 
 
@@ -563,6 +531,9 @@ p_obs <- 1 - pht(q = abs(T_obs), nu = df)
 
 
 
+
+
+
 -->
 <p>We fail to reject <span class="math inline">\(H_0\colon\mu = 0\)</span>. That is, we have no statistical evidence that the marketing campaign showed a tendency toward <em>significantly</em> higher or lower sales.</p>
 <div class="callout callout-style-simple callout-caution no-icon">
@@ -575,8 +546,6 @@ p_obs <- 1 - pht(q = abs(T_obs), nu = df)
 </div>
 </div>
 </div>
-</section><section id="two-sided-mathrmp-value-4" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="two-sided-mathrmp-value-4">
-<span class="header-section-number">1.7</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
 <p><span style="background-color: yellow">Equivalent test decisions</span> at the significance level <span class="math inline">\(0&lt;\alpha&lt;1\)</span>:</p>
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -592,14 +561,6 @@ p_obs <- 1 - pht(q = abs(T_obs), nu = df)
 </ul>
 </div><div class="column" style="width:55%;">
 <div class="cell" data-layout-align="center">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in mtext(side = 1, text = bquote("|" ~ T[obs] ~ "|"), at =
-c(abs(T_2obs)), : "hadj" is not a graphical parameter</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in mtext(side = 1, text = bquote(q[1 - alpha/2]), at = qt(1 - alpha/2,
-: "hadj" is not a graphical parameter</code></pre>
-</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
@@ -609,14 +570,13 @@ c(abs(T_2obs)), : "hadj" is not a graphical parameter</code></pre>
 </div>
 </div>
 </div>
-</section><section id="mathrmp-values-challenges-for-hypothesis-testing" class="level2" data-number="1.8"><h2 data-number="1.8" class="anchored" data-anchor-id="mathrmp-values-challenges-for-hypothesis-testing">
-<span class="header-section-number">1.8</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</h2>
+</section><section id="mathrmp-values-challenges-for-hypothesis-testing" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="mathrmp-values-challenges-for-hypothesis-testing">
+<span class="header-section-number">1.4</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</h2>
 <ul>
 <li><p>While the <span class="math inline">\(\mathrm{p}\)</span>-value can be a useful statistical measure, it is commonly misused and misinterpreted. (<span class="citation" data-cites="Wasserstein2016asa">Wasserstein and Lazar (<a href="Ch_pValues.html#ref-Wasserstein2016asa" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="wasserstein2019asa">Wasserstein, Schirm, and Lazar (<a href="Ch_pValues.html#ref-wasserstein2019asa" role="doc-biblioref">2019</a>)</span>)</p></li>
 <li><p>“Scientific method: Statistical errors.” <span class="citation" data-cites="nuzzo2014scientific">Nuzzo (<a href="Ch_pValues.html#ref-nuzzo2014scientific" role="doc-biblioref">2014</a>)</span></p></li>
 <li><p>ScienceNews (Siegfried 2010): “It’s science’s dirtiest secret: The ‘scien- tific method’ of testing hypotheses by statistical analysis stands on a flimsy foundation.”</p></li>
-</ul></section><section id="references" class="level2" data-number="1.9"><h2 data-number="1.9" class="anchored" data-anchor-id="references">
-<span class="header-section-number">1.9</span> References</h2>
+</ul></section><section id="references" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-nuzzo2014scientific" class="csl-entry" role="listitem">
 Nuzzo, Regina. 2014. <span>“Scientific Method: <span>S</span>tatistical
@@ -634,13 +594,14 @@ Wasserstein, Ronald L, Allen L Schirm, and Nicole A Lazar. 2019.
 Statistician</em>. Taylor &amp; Francis.
 </div>
 </div>
-</section><section id="tips-for-success" class="level2" data-number="1.10"><h2 data-number="1.10" class="anchored" data-anchor-id="tips-for-success">
-<span class="header-section-number">1.10</span> 💡 Tips for Success</h2>
-<p><br></p>
-<ul>
-<li>Don’t just memorize formulas — focus on understanding <em>why</em> they work.</li>
-<li>Discuss and collaborate</li>
-</ul>
+<!-- 
+## 💡 Tips for Success
+
+<br>
+
+* Don’t just memorize formulas — focus on understanding *why* they work.
+* Discuss and collaborate
+ -->
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
