@@ -20,6 +20,14 @@ resources:
 ---
 
 
+## Link to this Lecture
+
+![](images/lecture_page_linke.png){width=150% fig-align="center"}
+
+::: {.r-stack}
+[https://www.dliebl.com/Script-Statistics-2/](https://www.dliebl.com/Script-Statistics-2/)
+:::
+
 ## 🎯 Lecture Goals {.larger}
 
 <br>
