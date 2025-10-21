@@ -1,0 +1,130 @@
+Hier ist ein Vorschlag, wie eine **Vorlesung zum Thema „P-Values: Challenges for Hypothesis Testing“** aufgebaut sein könnte – mit inhaltlicher Struktur, didaktischen Ideen und Beispielen.
+
+---
+
+## 🎓 **Titel der Vorlesung:**
+
+**P-Values: Challenges for Hypothesis Testing**
+
+### 🕒 Dauer:
+
+90 Minuten (typisch für eine Universitätsvorlesung)
+
+---
+
+## 🧭 **1. Einführung (10–15 Min.)**
+
+### Ziele:
+
+* Grundverständnis von p-Werten auffrischen
+* Kontext der Problematik aufzeigen
+
+### Inhalte:
+
+* Wiederholung: Was ist ein p-Wert?
+  [
+  p = P(\text{Daten oder extremer} \mid H_0)
+  ]
+* Typische Schwellenwerte (z. B. 0.05)
+* Bedeutung von Signifikanztests in Wissenschaft und Industrie
+* Motivation: Warum gibt es „Challenges“?
+
+### Didaktischer Impuls:
+
+* Kurze Umfrage unter Studierenden: *„Wie interpretieren Sie einen p-Wert?“*
+* Zeigen häufiger Fehlinterpretationen (z. B. „p ist die Wahrscheinlichkeit, dass H₀ wahr ist“)
+
+---
+
+## ⚙️ **2. Theoretische und praktische Herausforderungen (35–40 Min.)**
+
+### A. **Fehlinterpretationen (10 Min.)**
+
+* p-Wert ≠ Wahrscheinlichkeit, dass H₀ wahr ist
+* p-Wert hängt von Stichprobengröße ab
+* Selektionsbias und p-Hacking
+* Unterschied zwischen *statistical* und *practical significance*
+
+**Beispiel:**
+Ein winziger Effekt (z. B. Δ = 0.1) kann bei n=10.000 signifikant sein, aber praktisch irrelevant.
+
+---
+
+### B. **P-Hacking und Publication Bias (10 Min.)**
+
+* Definition von p-Hacking
+* Exploratives vs. konfirmatorisches Arbeiten
+* Publication Bias: „Nur signifikante Ergebnisse werden veröffentlicht“
+
+**Beispiel:**
+Simulation: Wenn 100 Forscher zufällige Tests machen, wie viele finden fälschlich „signifikante“ Ergebnisse?
+
+---
+
+### C. **Multiple Testing Problem (10 Min.)**
+
+* Warum steigt die Fehlerwahrscheinlichkeit bei vielen Tests?
+* Bonferroni-Korrektur, FDR (False Discovery Rate)
+* Beispiel aus Genomforschung (tausende Gene → multiple Hypothesen)
+
+---
+
+### D. **Reproduzierbarkeitskrise (5–10 Min.)**
+
+* Verbindung von p-Value-Problemen zur Reproducibility Crisis
+* Diskussion: Open Science, Pre-Registration, Meta-Analysen
+
+---
+
+## 🔍 **3. Alternative Ansätze (20 Min.)**
+
+### A. **Konfidenzintervalle und Effektgrößen**
+
+* Warum sie oft informativer sind als p-Werte
+* Beispiel: CI zeigt Unsicherheit und Richtung des Effekts
+
+### B. **Bayesianische Ansätze**
+
+* Posterior Probability anstelle von p-Wert
+* Bayes Factors als alternative Evidenzmaßzahl
+
+### C. **„New Statistics“ Bewegung**
+
+* Betonung von Transparenz, Effektgrößen, Replikation
+
+---
+
+## 💬 **4. Diskussion & Zusammenfassung (10–15 Min.)**
+
+### Fragen an das Publikum:
+
+* Welche Probleme treten in Ihrem Fachgebiet mit p-Werten auf?
+* Wie könnte man Statistikunterricht verbessern?
+
+### Zusammenfassung:
+
+* p-Werte sind nützlich, aber anfällig für Missverständnisse
+* Gute wissenschaftliche Praxis ist entscheidend
+* Kombination von Methoden (CI, Bayes, Pre-Registration) empfohlen
+
+---
+
+## 📚 **Empfohlene Literatur**
+
+1. Wasserstein, R.L. & Lazar, N.A. (2016). *The ASA’s Statement on p-Values: Context, Process, and Purpose.*
+2. McShane, B.B. et al. (2019). *Abandon Statistical Significance.* *The American Statistician.*
+3. Gelman, A., & Loken, E. (2014). *The garden of forking paths.*
+4. Goodman, S. (2008). *A dirty dozen: twelve p-value misconceptions.*
+
+---
+
+## 💡 **Optionale Lehraktivitäten**
+
+* **Mini-Experiment:** Studierende führen kleine Simulationen durch (z. B. Zufallsdaten → p-Hacking).
+* **Debatte:** „Sollte der p-Wert abgeschafft werden?“
+* **Live-Demo in R oder Python:** Multiple Tests + False Positives visualisieren.
+
+---
+
+Möchtest du, dass ich daraus eine **Folienstruktur** oder ein **Skript mit Folientiteln und Stichpunkten** (z. B. PowerPoint-Gliederung) erstelle?
+
