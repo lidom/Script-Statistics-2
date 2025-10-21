@@ -1,0 +1,585 @@
+<!-- LTeX: language=en-US -->
+# $\mathrm{p}$-Values: Challenges for Hypothesis Testing
+
+
+#### 🎯 **Lecture Goals** {-}
+
+
+* **How** do $\mathrm{p}$-values work?
+
+  * Today: [two-sided $t$-test]{style="background-color: yellow"}
+
+* **Why** are $\mathrm{p}$-values a challenge for hypothesis testing?
+
+* **What** alternatives are there? 
+
+::: {.hidden}
+$$
+\require{color}
+%% Colorbox within equation-environments:
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  }%
+$$
+:::
+
+
+```{r}
+#| echo: false
+library("scales")
+library("extraDistr")
+
+value <- 0
+value <- value + 1
+set.seed(33)
+n     <- 5
+Y_1   <- round(rnorm(n, mean = 5), 2)
+Y_2   <- round(rnorm(n, mean = 5), 2)
+X     <- Y_2 - Y_1
+X_bar <- round(mean(X), 1)
+s     <- round(sd(X), 1)
+T_obs <- round((sqrt(n) * X_bar)/s, 2)
+```
+
+
+## Real-Example: Marketing Campaign
+
+
+Marketing campaign in $n=5$ stores (paired sample): 
+
+</br>
+
+Store | Sales Before | Sales After | Difference (After $-$ Before)
+----|------------|------------|--------- 
+$1$   |$`r format(Y_1[1], nsmall=2)`$|$`r format(Y_2[1], nsmall=2)`$|$X_{1,obs}=`r format(X[1], nsmall=2)`$
+$2$   |$`r format(Y_1[2], nsmall=2)`$|$`r format(Y_2[2], nsmall=2)`$|$X_{2,obs}=`r format(X[2], nsmall=2)`$
+$3$   |$`r format(Y_1[3], nsmall=2)`$|$`r format(Y_2[3], nsmall=2)`$|$X_{3,obs}=`r format(X[3], nsmall=2)`$
+$4$   |$`r format(Y_1[4], nsmall=2)`$|$`r format(Y_2[4], nsmall=2)`$|$X_{4,obs}=`r format(X[4], nsmall=2)`$
+$5$   |$`r format(Y_1[5], nsmall=2)`$|$`r format(Y_2[5], nsmall=2)`$|$X_{5,obs}=`r format(X[5], nsmall=2)`$  
+
+</br>
+
+
+@fig-diffData shows the observed sales differences 
+$$
+\{X_{1,obs},X_{2,obs},X_{3,obs},X_{4,obs},X_{5,obs}\}.
+$$ 
+
+```{r}
+#| echo: false
+#| fig.width: 8
+#| fig.height: 2
+#| out.width: "1\\textwidth"
+#| fig-align: center
+#| label: fig-diffData
+#| fig-cap: "Sales differences (sales after minus before the marketing campaign)."
+par(mar = c(0, 0, 0, 0))
+plot(x = X, y = rep(0, n), 
+     pch = 21, 
+     col = alpha("red", 0.5), 
+     bg  = alpha("red", 0.5), 
+     cex = 1.5, axes = FALSE, 
+     ylab = "", xlab = "", xlim = c(-3,3))
+axis(1, at = -2:2, line = -3.5, cex.axis = 1.5, lwd = 2, family="serif")
+```
+
+::: {.callout-note appearance="minimal"}
+**Assumption:** There are no systematic differences (mean-shifts) between sales before and after the marketing campaign, other than the potential impact of the campaign itself.
+:::
+
+</br>
+
+
+* **Research Question:**  </br>Was the marketing campaign successful? Did it show a tendency (location-shift) toward *significantly* higher or lower sales?
+
+* **Statistical Reformulation:** </br>Is the mean of $X_1,\dots,X_n$ different from zero?
+
+* **Testing problem:** $\hspace{1cm}H_0\colon \mu = 0\quad$ versus $\quad H_1\colon \mu \neq 0$
+
+<!-- * **Setup:**</br>Random sample $X_1,\dots,X_n\overset{iid}{\sim}X$ with $\mu_X = E(X)$ -->
+
+
+
+## Short Repetition: Two-Sided $t$-Test
+
+::: {.callout-note appearance="minimal"}
+**More Details:** See our lecture on hypothesis testing for more details. 
+:::
+
+
+
+Statistical hypothesis:
+
+<center>
+$\displaystyle H_0\colon \mu = 0\quad$ versus $\displaystyle \quad H_1\colon \mu \neq 0$
+</center>
+
+</br>
+
+$t$-test statistic:
+$$
+\mathrm{T} = \frac{\sqrt{n}(\bar{X} - 0)}{s}\overset{H_0}{\sim} t_{n-1},
+$$
+where 
+\begin{align*}
+\bar{X}&=\frac{1}{n}\sum_{i=1}^n X_i\\
+s      &= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}
+\end{align*}
+
+denote the empirical mean and the empirical standard deviation.
+
+::: {.callout-note appearance="minimal"}
+**Assumptions:**
+
+* Random (iid) sample: 
+$X_1,\dots,X_n\overset{\operatorname{iid}}{\sim}X$ 
+
+* For small sample sizes: 
+$X\sim\mathcal{N}(\mu, \sigma^2)$ 
+
+* For large sample sizes (CLT, $n\to\infty$): 
+$$
+\mathrm{E}(X)=\mu\quad\text{and}\quad \mathrm{Var}(X)=\sigma^2
+$$
+:::
+
+</br>
+
+**Observed (*obs*) realization (marketing campaign):**
+
+</br>
+
+$$
+\mathrm{T}_{\mathrm{obs}} = \frac{\sqrt{n}(\bar{X}_{\mathrm{obs}} - 0)}{s_{\mathrm{obs}}} = `r format(T_obs, nsmall=2)`
+$$ 
+
+* Empirical mean: $\bar{X}_{\mathrm{obs}}=\frac{1}{5}\sum_{i=1}^5 X_{i,obs} = `r format(X_bar,nsmall=2)`$ 
+* Empirical standard deviation: $s_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,obs}-\bar{X}_{\mathrm{obs}})} = `r format(s,nsmall=2)`$ 
+
+
+
+#### **Critical Values $\phantom{\mathrm{p}}$** {-}
+
+::: {.callout-note appearance="minimal"}
+**Critical Values:** The critical values — the $(1-\alpha/2)$- and the $\alpha/2$-quantiles of the $t$-distribution with $\operatorname{df}=n-1$ — define the rejection regions for a given significance level $0<\alpha<1$.
+:::
+
+Marketing campaign data:
+
+::: {.r-stack}
+Density function of the $t_{\operatorname{df}}$ distribution with $\operatorname{df}=4$
+:::
+
+```{r}
+#| echo: false
+#| fig-width: 7
+#| out-width: 7in
+#| fig-align: center
+
+alpha  <- 0.05
+df     <- 5-1
+q_1    <- qt(p = alpha/2,   df=df)
+q_2    <- qt(p = 1-alpha/2, df=df)
+
+xx1    <- seq(-5, q_1, len=25)
+yy1    <- dt(x = xx1, df = df)
+##
+xx2    <- seq(q_2,  5, len=25)
+yy2    <- dt(x = xx2, df = df)
+
+par(mar = c(4.5, .1, .1, .1))
+curve(expr = dt(x = x, df = df),
+      xlab = "", ylab = "", main = "",
+      lwd = 2, col = 1, xlim = c(-5, 5),
+      ylim = c(0, .4), xaxs="i",yaxs="i", axes = FALSE)
+
+polygon(x = c(xx1,rev(xx1)), y=c(yy1, rep(0,length(yy1))), border = NA, col = alpha("red", 0.25))
+polygon(x = c(xx2,rev(xx2)), y=c(yy2, rep(0,length(yy2))), border = NA, col = alpha("red", 0.25))
+axis(1, cex.axis = 2, family = "serif")
+axis(1, at = T_obs, col = "blue", labels = FALSE, tck=-0.11)
+axis(1, at = q_1,   col = "red",  labels = FALSE, tck=-0.11)
+lines(x = c(q_1,q_1), y = c(0, dt(x = q_1, df = df)), col="red")
+axis(1, at = q_2,   col = "red",  labels = FALSE, tck=-0.11)
+lines(x = c(q_2,q_2), y = c(0, dt(x = q_2, df = df)), col="red")
+#mtext(side = 1, text = c(expression(q[alpha/2]), bquote(T[obs]==.(T_obs)), expression(q[1-alpha/2])), at = c(q_1,T_obs,q_2), line = 3.5, cex = 2, family = "serif")
+mtext(side = 1, text = c(expression(q[alpha/2]), expression(T[obs]), expression(q[1-alpha/2])), at = c(q_1,T_obs,q_2), line = 3.5, cex = 2, family = "serif")
+legend("topright", pch=c(22), cex=2.1, 
+       col = alpha("red", 0.25), 
+       legend=expression(alpha==0.05), 
+       bty="n", pt.bg = alpha("red", 0.25))
+```
+
+
+ 
+
+## Two-Sided $\mathrm{p}$-Value
+
+::: {.callout-note appearance="minimal"}
+**$\mathrm{p}$-Value:** The $\mathrm{p}$-value is the probability of observing a test statistic $\mathrm{T}$ as extreme as $\mathrm{T}_{\mathrm{obs}}$ or more extreme (in the direction(s) of the alternative hypothesis) than $\mathrm{T}_{\mathrm{obs}}$, given the null hypothesis ($H_0$) is true.
+
+* **Two-Sided $\mathrm{p}$-Value:** 
+$$\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)$$
+:::
+
+
+
+Marketing campaign data:
+
+
+::: {.r-stack}
+Density function of the $t_{\operatorname{df}}$ distribution with $\operatorname{df}=4$
+:::
+
+```{r}
+#| fig-width: 7
+#| out-width: 7in
+#| fig-align: center
+
+alpha  <- 0.05
+df     <- 5-1
+q_1    <- -abs(T_obs)
+q_2    <- abs(T_obs)
+
+pValue <- round(2 * min(pt(q_1, df = df), pt(q_2, df = df)), 2)
+
+xx1    <- seq(-5, q_1, len=25)
+yy1    <- dt(x = xx1, df = df)
+##
+xx2    <- seq(q_2,  5, len=25)
+yy2    <- dt(x = xx2, df = df)
+
+par(mar = c(4.5, .1, .1, .1))
+curve(expr = dt(x = x, df = df),
+      xlab = "", ylab = "", main = "",
+      lwd = 2, col = 1, xlim = c(-5, 5),
+      ylim = c(0, .4), xaxs="i",yaxs="i", axes = FALSE)
+
+polygon(x = c(xx1,rev(xx1)), y=c(yy1, rep(0,length(yy1))), border = NA, col = alpha("red", 0.25))
+polygon(x = c(xx2,rev(xx2)), y=c(yy2, rep(0,length(yy2))), border = NA, col = alpha("red", 0.25))
+axis(1, cex.axis = 2, family = "serif")
+axis(1, at =  T_obs, col = "red", labels = FALSE, tck=-0.11)
+axis(1, at = -T_obs, col = "red", labels = FALSE, tck=-0.11)
+mtext(side = 1, text = expression(-T[obs], T[obs]), at = c(-abs(T_obs),abs(T_obs)), line = 3.5, cex = 2, family = "serif")
+legend("topright", pch=c(22), cex=2.1, 
+       col = alpha("red", 0.25), 
+       legend=bquote("p-value"==.(pValue)), 
+       bty="n", pt.bg = alpha("red", 0.25))
+```
+
+
+
+## Two-Sided $\mathrm{p}$-Value
+
+::: {.callout-note appearance="minimal"}
+**$\mathrm{p}$-Value:** The $\mathrm{p}$-value is the probability of observing a test statistic $\mathrm{T}$ as extreme as $\mathrm{T}_{\mathrm{obs}}$ or more extreme (in the direction(s) of the alternative hypothesis) than $\mathrm{T}_{\mathrm{obs}}$, given the null hypothesis ($H_0$) is true.
+
+* **Two-Sided $\mathrm{p}$-Value:** 
+$$\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\highlight{|\mathrm{T}|} \geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)$$
+:::
+
+Marketing campaign data:
+
+
+::: {.r-stack}
+Density function of the [Half-$t_{\operatorname{df}}$]{style="background-color: yellow"} distribution with $\operatorname{df}=4$
+:::
+
+```{r}
+#| fig-width: 7
+#| out-width: 7in
+#| fig-align: center
+
+library("extraDistr")
+
+alpha  <- 0.05
+df     <- 5-1
+q_1    <- -abs(T_obs)
+q_2    <- abs(T_obs)
+
+pValue <- round(2 * min(pt(q_1, df = df), pt(q_2, df = df)), 2)
+
+xx0    <- seq(0.00001, 5, len=50)
+##
+xx1    <- seq(-5, q_1, len=25)
+yy1    <- dt(x = xx1, df = df)
+##
+xx2    <- seq(q_2,  5, len=25)
+yy2    <- dt(x = xx2, df = df)
+##
+xx3    <- seq(abs(T_obs),  5, len=25)
+yy3    <- dht(x = xx3, nu = df)
+
+par(mar = c(4.5, .1, .1, .1))
+plot(y = dht(x = xx0, nu = df), x = xx0,
+      xlab = "", ylab = "", main = "",
+      lwd = 2, col = 1, xlim = c(-5, 5),
+      xaxs="i",yaxs="i", axes = FALSE, type="l")
+lines(x=c(0,0), y = c(0,dht(x = xx0, nu = df)[1]), lwd=2)
+curve(expr = dt(x = x, df = df), 
+      lwd = 2, col = gray(.75), add = TRUE)
+
+
+polygon(x = c(xx1,rev(xx1)), y=c(yy1, rep(0,length(yy1))), border = NA, col = gray(.95))
+polygon(x = c(xx2,rev(xx2)), y=c(yy2, rep(0,length(yy2))), border = NA, col = gray(.95))
+polygon(x = c(xx3,rev(xx3)), y=c(yy3, rep(0,length(yy3))), border = NA, col = alpha("red", 0.25))
+axis(1, cex.axis = 2, family = "serif")
+axis(1, at =  T_obs, col = "red", labels = FALSE, tck=-0.11)
+axis(1, at = -T_obs, col = gray(.75), labels = FALSE, tck=-0.11)
+mtext(side = 1, text = expression("|"~T[obs]~"|"), at = c(abs(T_obs)), line = 3.5, cex = 2, family = "serif")
+legend("topright", pch=c(22), cex=2.1, 
+       col = alpha("red", 0.25), 
+       legend=bquote("p-value"==.(pValue)), 
+       bty="n", pt.bg = alpha("red", 0.25))
+```
+
+
+
+## Two-Sided $\mathrm{p}$-Value
+
+<!-- 
+::: {.callout-note appearance="minimal"}
+**$\mathrm{p}$-Value:** The $\mathrm{p}$-value is the probability, assuming the null hypothesis ($H_0$) is true, of observing a test statistic $\mathrm{T}$ as extreme as $\mathrm{T}_{\mathrm{obs}}$ or more extreme (in the direction(s) of the alternative hypothesis) than $\mathrm{T}_{\mathrm{obs}}$. 
+::: 
+
+::: {.callout-note appearance="minimal"}
+Thus for two-sided test statistics, we have
+\begin{align*}
+\mathrm{p}_{\mathrm{obs}} 
+& = \mathrm{P}\big(|\mathrm{T}| \geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big).
+\end{align*}
+:::
+-->
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Two-sided $t$-test:** 
+<!-- 
+Since $\mathrm{T}\overset{H_0}{\sim} t_{n-1}$, we have that [$|\mathrm{T}|\overset{H_0}{\sim} \text{Half-}t_{n-1}$]{style="background-color: yellow"} 
+-->
+\begin{align*}
+\mathrm{p}_{\mathrm{obs}} 
+& = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)\\[1ex]
+& = 1 - \mathrm{P}\big(\highlight{|\mathrm{T}|}\leq |\mathrm{T}_{\mathrm{obs}}|\;\big|\highlight{H_0\;\text{is true}}\big)\\[1ex]
+& = 1 - \highlight{\mathrm{F}_{\,\text{Half-}t,n-1}}\big(|\mathrm{T}_{\mathrm{obs}}|\big),
+\end{align*}
+where 
+$\mathrm{F}_{\,\text{Half-}t,n-1}$ denotes the cdf of the Half-$t$ distribution with $\operatorname{df}=n-1$
+:::
+::: {.column width="50%"}
+
+```{r}
+#| fig-width: 7
+#| out-width: 7in
+#| fig-align: center
+
+alpha  <- 0.05
+df     <- 5-1
+
+myfun <- function(x){1-pht(q = x, nu = df)}
+
+par(mar = c(4.5, 9, 1, 0.5))
+curve(expr = myfun,
+      xlab = "", ylab = "", main = "",
+      lwd = 2, col = 1, xlim = c(0, 4),
+      ylim = c(0, 1), xaxs="i",yaxs="i", axes = FALSE)
+axis(1, cex.axis = 1.75, family = "serif", mgp = c(3, 1, 0))
+axis(2, at = c(0,1), labels = c("0","1"), cex.axis = 1.75, family = "serif", las=2, mgp = c(3, 1, 0))
+axis(1, at =  T_obs, col = "blue", labels = FALSE, tck=-0.11)
+axis(2, at =  myfun(T_obs), col = "blue", labels = FALSE, tck=-0.05)
+lines(x = c(0,T_obs), y= rep(myfun(T_obs), 2), col="blue")
+lines(x = rep(T_obs, 2), y= c(0, myfun(T_obs)), col="blue")
+##
+mtext(side = 1, text = bquote("|"~T[obs]~"|"), at = c(abs(T_obs)), line = 3.5, cex = 2, family = "serif", hadj = 1)
+corners = par("usr") #Gets the four corners of plot area (x1, x2, y1, y2)
+par(xpd = TRUE) #Draw outside plot area
+text(x = corners[1]-.75, y = mean(myfun(T_obs)), bquote(p[obs]), srt = 0, cex = 2, family = "serif")
+
+
+legend("top", lty = 1, lwd=2,
+       legend=expression(1-F["Half-t,n-1"]), 
+       bty="n", cex = 1.5)
+```
+:::
+::::
+
+```{r}
+#| echo: true
+library("extraDistr")
+df <- 5-1
+
+## 1 minus the distribution function of the Half-t
+p_obs <- 1 - pht(q = abs(T_obs), nu = df)
+```
+
+::: {.notes}
+* There's a one-to-one mapping between $|\mathrm{T}_{obs}|$ and $p_{\mathrm{obs}}$. 
+* $p_{\mathrm{obs}}$ effectively measures how extrem the value of $|\mathrm{T}_{obs}|$ is, given that $H_0$ is true.
+:::
+
+
+## Two-Sided $\mathrm{p}$-Value
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Marketing campaign data:
+
+* $|\mathrm{T}_\mathrm{obs}|=`r T_obs`$
+* $\alpha = 0.05$
+* $(1-\alpha/2)$-quantile of $t_{4}\colon$</br> $\mathrm{q}_{1-\alpha/2}=`r round(qt(p = 1-alpha/2, df=df),2)`$ 
+:::
+::: {.column width="50%"}
+```{r}
+#| fig-width: 7
+#| out-width: 7in
+#| fig-align: center
+
+alpha  <- 0.05
+df     <- 5-1
+
+myfun <- function(x){1-pht(q = x, nu = df)}
+
+par(mar = c(4.5, 9, 1, 0.5))
+curve(expr = myfun,
+      xlab = "", ylab = "", main = "",
+      lwd = 2, col = 1, xlim = c(0, 4),
+      ylim = c(0, 1), xaxs="i",yaxs="i", axes = FALSE)
+axis(1, cex.axis = 1.75, family = "serif", mgp = c(3, 1, 0))
+axis(2, at = c(0,1), labels = c("0","1"), cex.axis = 1.75, family = "serif", las=2, mgp = c(3, 1, 0))
+axis(1, at =  T_obs, col = "blue", labels = FALSE, tck=-0.11)
+axis(2, at =  myfun(T_obs), col = "blue", labels = FALSE, tck=-0.05)
+axis(1, at =  qt(1-alpha/2, df=df), col = "red", labels = FALSE, tck=-0.1)
+axis(2, at = alpha, col = "red", labels = FALSE, tck=-0.05)
+lines(x = c(0,T_obs), y= rep(myfun(T_obs), 2), col="blue")
+lines(x = rep(T_obs, 2), y= c(0, myfun(T_obs)), col="blue")
+lines(x = c(0,qt(1-alpha/2, df=df)), y= rep(alpha, 2), col="red")
+#lines(x = c(0, 0), y= c(0, alpha), lwd = 3, col = "red")
+lines(x = rep(qt(1-alpha/2, df=df), 2), y= c(0, alpha), lwd = 1, col = "red")
+##
+mtext(side = 1, text = bquote("|"~T[obs]~"|"), at = c(abs(T_obs)), line = 3.5, cex = 2, family = "serif", hadj = 1)
+mtext(side = 1, text = bquote(q[1-alpha/2]), at = qt(1-alpha/2, df=df), line = 3.5, cex = 2, family = "serif", hadj = 1)
+corners = par("usr") #Gets the four corners of plot area (x1, x2, y1, y2)
+par(xpd = TRUE) #Draw outside plot area
+text(x = corners[1]-.75, y = mean(myfun(T_obs)), bquote(p[obs]==.(round(myfun(T_obs), 2))), srt = 0, cex = 2, family = "serif")
+text(x = corners[1]-.75, y = alpha, bquote(alpha==.(alpha)), srt = 0, cex = 2, family = "serif")
+
+legend("top", lty = 1, lwd=2,
+       legend=expression(1-F["Half-t,n-1"]), 
+       bty="n", cex = 1.5)
+```
+:::
+::::
+<!-- 
+```{r}
+#| echo: true
+library("extraDistr")
+df <- 5-1
+
+## 1 minus the distribution function of the Half-t
+p_obs <- 1 - pht(q = abs(T_obs), nu = df)
+``` 
+-->
+
+
+We fail to reject $H_0\colon\mu = 0$. That is, we have no statistical evidence that the marketing campaign showed a tendency toward *significantly* higher or lower sales. 
+
+
+
+::: {.callout-caution appearance="minimal"}
+⚠️ Failing to reject $H_0$ does not mean that $H_0$ is true. It only means that we do not have enough evidence to reject it.
+:::
+
+
+## Two-Sided $\mathrm{p}$-Value
+
+
+[Equivalent test decisions]{style="background-color: yellow"} at the significance level $0<\alpha<1$: 
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+* **Critical values:**</br> 
+Reject $H_0\colon \mu =0$ if [$\displaystyle|\mathrm{T}_{\mathrm{obs}}| > q_{1-\alpha/2}$]{style="background-color: yellow"}, 
+   where $q_{1-\alpha/2}$ denotes the $(1-\alpha/2)$-quantile of the $t_{\operatorname{df}}$ distribution. 
+
+</br>
+
+* **$\mathrm{p}$-Values:**</br>
+Reject $H_0\colon \mu =0$ if [$\displaystyle\mathrm{p}_{\mathrm{obs}} < \alpha$]{style="background-color: yellow"} 
+:::
+::: {.column width="55%"}
+```{r}
+#| fig-width: 7
+#| out-width: 7in
+#| fig-align: center
+
+alpha  <- 0.05
+df     <- 5-1
+
+T_2obs <- 3.7
+
+myfun <- function(x){1-pht(q = x, nu = df)}
+
+par(mar = c(4.5, 9, 1, 0.5))
+curve(expr = myfun,
+      xlab = "", ylab = "", main = "",
+      lwd = 2, col = 1, xlim = c(0, 4),
+      ylim = c(0, .2), xaxs="i",yaxs="i", axes = FALSE)
+axis(1, cex.axis = 1.75, family = "serif", mgp = c(3, 1, 0))
+axis(2, at = c(0,1), labels = c("0","1"), cex.axis = 1.75, family = "serif", las=2, mgp = c(3, 1, 0))
+axis(1, at =  T_2obs, col = "blue", labels = FALSE, tck=-0.11)
+axis(2, at =  myfun(T_2obs), col = "blue", labels = FALSE, tck=-0.05)
+axis(1, at =  qt(1-alpha/2, df=df), col = "red", labels = FALSE, tck=-0.1)
+axis(2, at = alpha, col = "red", labels = FALSE, tck=-0.05)
+lines(x = c(0,T_2obs), y= rep(myfun(T_2obs), 2), col="blue")
+lines(x = rep(T_2obs, 2), y= c(0, myfun(T_2obs)), col="blue")
+lines(x = c(0,qt(1-alpha/2, df=df)), y= rep(alpha, 2), col="red")
+#lines(x = c(0, 0), y= c(0, alpha), lwd = 3, col = "red")
+lines(x = rep(qt(1-alpha/2, df=df), 2), y= c(0, alpha), lwd = 1, col = "red")
+##
+mtext(side = 1, text = bquote("|"~T[obs]~"|"), at = c(abs(T_2obs)), line = 3.5, cex = 2, family = "serif", hadj = 1)
+mtext(side = 1, text = bquote(q[1-alpha/2]), at = qt(1-alpha/2, df=df), line = 3.5, cex = 2, family = "serif", hadj = 1)
+corners = par("usr") #Gets the four corners of plot area (x1, x2, y1, y2)
+par(xpd = TRUE) #Draw outside plot area
+text(x = corners[1]-.75, y = mean(myfun(T_2obs)), bquote(p[obs]), srt = 0, cex = 2, family = "serif")
+text(x = corners[1]-.75, y = alpha, bquote(alpha==.(alpha)), srt = 0, cex = 2, family = "serif")
+
+
+legend("topright", lty = 1, lwd=2,
+       legend=expression(1-F["Half-t,n-1"]), 
+       bty="n", cex = 1.5)
+```
+:::
+::::
+
+
+
+## $\mathrm{p}$-Values: Challenges for Hypothesis Testing
+
+* While the $\mathrm{p}$-value can be a useful statistical measure, it is commonly misused and misinterpreted. (@Wasserstein2016asa, @wasserstein2019asa)
+
+
+* "Scientific method: Statistical errors." @nuzzo2014scientific
+
+* ScienceNews (Siegfried 2010): "It’s science's dirtiest secret: The 'scien-
+tific method' of testing hypotheses by statistical analysis stands on a flimsy foundation."
+
+
+## References
+
+::: {#refs}
+:::
+
+
+## 💡 Tips for Success
+
+<br>
+
+* Don’t just memorize formulas — focus on understanding *why* they work.
+* Discuss and collaborate
+

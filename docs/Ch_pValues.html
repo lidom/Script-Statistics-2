@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>1&nbsp; \mathrm{p}-Values: Challenges for Hypothesis Testing – Statistics-II (B.Sc.)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Ch_pValues.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistics-II (B.Sc.)</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Organization of the Course</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch_pValues.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</span></span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#real-example-marketing-campaign" id="toc-real-example-marketing-campaign" class="nav-link active" data-scroll-target="#real-example-marketing-campaign"><span class="header-section-number">1.1</span> Real-Example: Marketing Campaign</a></li>
+  <li><a href="#short-repetition-two-sided-t-test" id="toc-short-repetition-two-sided-t-test" class="nav-link" data-scroll-target="#short-repetition-two-sided-t-test"><span class="header-section-number">1.2</span> Short Repetition: Two-Sided <span class="math inline">\(t\)</span>-Test</a></li>
+  <li><a href="#two-sided-mathrmp-value" id="toc-two-sided-mathrmp-value" class="nav-link" data-scroll-target="#two-sided-mathrmp-value"><span class="header-section-number">1.3</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
+  <li><a href="#two-sided-mathrmp-value-1" id="toc-two-sided-mathrmp-value-1" class="nav-link" data-scroll-target="#two-sided-mathrmp-value-1"><span class="header-section-number">1.4</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
+  <li><a href="#two-sided-mathrmp-value-2" id="toc-two-sided-mathrmp-value-2" class="nav-link" data-scroll-target="#two-sided-mathrmp-value-2"><span class="header-section-number">1.5</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
+  <li><a href="#two-sided-mathrmp-value-3" id="toc-two-sided-mathrmp-value-3" class="nav-link" data-scroll-target="#two-sided-mathrmp-value-3"><span class="header-section-number">1.6</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
+  <li><a href="#two-sided-mathrmp-value-4" id="toc-two-sided-mathrmp-value-4" class="nav-link" data-scroll-target="#two-sided-mathrmp-value-4"><span class="header-section-number">1.7</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
+  <li><a href="#mathrmp-values-challenges-for-hypothesis-testing" id="toc-mathrmp-values-challenges-for-hypothesis-testing" class="nav-link" data-scroll-target="#mathrmp-values-challenges-for-hypothesis-testing"><span class="header-section-number">1.8</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">1.9</span> References</a></li>
+  <li><a href="#tips-for-success" id="toc-tips-for-success" class="nav-link" data-scroll-target="#tips-for-success"><span class="header-section-number">1.10</span> 💡 Tips for Success</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</span>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><!-- LTeX: language=en-US --><section id="lecture-goals" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="lecture-goals">🎯 <strong>Lecture Goals</strong>
+</h4>
+<ul>
+<li>
+<p><strong>How</strong> do <span class="math inline">\(\mathrm{p}\)</span>-values work?</p>
+<ul>
+<li>Today: <span style="background-color: yellow">two-sided <span class="math inline">\(t\)</span>-test</span>
+</li>
+</ul>
+</li>
+<li><p><strong>Why</strong> are <span class="math inline">\(\mathrm{p}\)</span>-values a challenge for hypothesis testing?</p></li>
+<li><p><strong>What</strong> alternatives are there?</p></li>
+</ul>
+<div class="hidden">
+<p><span class="math display">\[
+\require{color}
+%% Colorbox within equation-environments:
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  }%
+\]</span></p>
+</div>
+</section><section id="real-example-marketing-campaign" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="real-example-marketing-campaign">
+<span class="header-section-number">1.1</span> Real-Example: Marketing Campaign</h2>
+<p>Marketing campaign in <span class="math inline">\(n=5\)</span> stores (paired sample):</p>
+<p></p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Store</th>
+<th>Sales Before</th>
+<th>Sales After</th>
+<th>Difference (After <span class="math inline">\(-\)</span> Before)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(4.86\)</span></td>
+<td><span class="math inline">\(5.50\)</span></td>
+<td><span class="math inline">\(X_{1,obs}=0.64\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(2\)</span></td>
+<td><span class="math inline">\(4.96\)</span></td>
+<td><span class="math inline">\(4.24\)</span></td>
+<td><span class="math inline">\(X_{2,obs}=-0.72\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(3\)</span></td>
+<td><span class="math inline">\(6.01\)</span></td>
+<td><span class="math inline">\(5.78\)</span></td>
+<td><span class="math inline">\(X_{3,obs}=-0.23\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(4\)</span></td>
+<td><span class="math inline">\(4.84\)</span></td>
+<td><span class="math inline">\(5.75\)</span></td>
+<td><span class="math inline">\(X_{4,obs}=0.91\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(5\)</span></td>
+<td><span class="math inline">\(2.84\)</span></td>
+<td><span class="math inline">\(3.90\)</span></td>
+<td><span class="math inline">\(X_{5,obs}=1.06\)</span></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p><a href="#fig-diffData" class="quarto-xref">Figure&nbsp;<span>1.1</span></a> shows the observed sales differences <span class="math display">\[
+\{X_{1,obs},X_{2,obs},X_{3,obs},X_{4,obs},X_{5,obs}\}.
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-diffData" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-diffData-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Ch_pValues_files/figure-html/fig-diffData-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diffData-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: Sales differences (sales after minus before the marketing campaign).
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Assumption:</strong> There are no systematic differences (mean-shifts) between sales before and after the marketing campaign, other than the potential impact of the campaign itself.</p>
+</div>
+</div>
+</div>
+<p></p>
+<ul>
+<li><p><strong>Research Question:</strong> Was the marketing campaign successful? Did it show a tendency (location-shift) toward <em>significantly</em> higher or lower sales?</p></li>
+<li><p><strong>Statistical Reformulation:</strong> Is the mean of <span class="math inline">\(X_1,\dots,X_n\)</span> different from zero?</p></li>
+<li><p><strong>Testing problem:</strong> <span class="math inline">\(\hspace{1cm}H_0\colon \mu = 0\quad\)</span> versus <span class="math inline">\(\quad H_1\colon \mu \neq 0\)</span></p></li>
+</ul>
+<!-- * **Setup:**</br>Random sample $X_1,\dots,X_n\overset{iid}{\sim}X$ with $\mu_X = E(X)$ --></section><section id="short-repetition-two-sided-t-test" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="short-repetition-two-sided-t-test">
+<span class="header-section-number">1.2</span> Short Repetition: Two-Sided <span class="math inline">\(t\)</span>-Test</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>More Details:</strong> See our lecture on hypothesis testing for more details.</p>
+</div>
+</div>
+</div>
+<p>Statistical hypothesis:</p>
+<center>
+<span class="math inline">\(\displaystyle H_0\colon \mu = 0\quad\)</span> versus <span class="math inline">\(\displaystyle \quad H_1\colon \mu \neq 0\)</span>
+</center>
+<p></p>
+<p><span class="math inline">\(t\)</span>-test statistic: <span class="math display">\[
+\mathrm{T} = \frac{\sqrt{n}(\bar{X} - 0)}{s}\overset{H_0}{\sim} t_{n-1},
+\]</span> where <span class="math display">\[\begin{align*}
+\bar{X}&amp;=\frac{1}{n}\sum_{i=1}^n X_i\\
+s      &amp;= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}
+\end{align*}\]</span></p>
+<p>denote the empirical mean and the empirical standard deviation.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Assumptions:</strong></p>
+<ul>
+<li><p>Random (iid) sample: <span class="math inline">\(X_1,\dots,X_n\overset{\operatorname{iid}}{\sim}X\)</span></p></li>
+<li><p>For small sample sizes: <span class="math inline">\(X\sim\mathcal{N}(\mu, \sigma^2)\)</span></p></li>
+<li><p>For large sample sizes (CLT, <span class="math inline">\(n\to\infty\)</span>): <span class="math display">\[
+\mathrm{E}(X)=\mu\quad\text{and}\quad \mathrm{Var}(X)=\sigma^2
+\]</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+<p></p>
+<p><strong>Observed (<em>obs</em>) realization (marketing campaign):</strong></p>
+<p></p>
+<p><span class="math display">\[
+\mathrm{T}_{\mathrm{obs}} = \frac{\sqrt{n}(\bar{X}_{\mathrm{obs}} - 0)}{s_{\mathrm{obs}}} = 0.84
+\]</span></p>
+<ul>
+<li>Empirical mean: <span class="math inline">\(\bar{X}_{\mathrm{obs}}=\frac{1}{5}\sum_{i=1}^5 X_{i,obs} = 0.30\)</span>
+</li>
+<li>Empirical standard deviation: <span class="math inline">\(s_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,obs}-\bar{X}_{\mathrm{obs}})} = 0.80\)</span>
+</li>
+</ul>
+<section id="critical-values-phantommathrmp" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="critical-values-phantommathrmp"><strong>Critical Values <span class="math inline">\(\phantom{\mathrm{p}}\)</span></strong></h4>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Critical Values:</strong> The critical values — the <span class="math inline">\((1-\alpha/2)\)</span>- and the <span class="math inline">\(\alpha/2\)</span>-quantiles of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(\operatorname{df}=n-1\)</span> — define the rejection regions for a given significance level <span class="math inline">\(0&lt;\alpha&lt;1\)</span>.</p>
+</div>
+</div>
+</div>
+<p>Marketing campaign data:</p>
+<div class="r-stack">
+<p>Density function of the <span class="math inline">\(t_{\operatorname{df}}\)</span> distribution with <span class="math inline">\(\operatorname{df}=4\)</span></p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section id="two-sided-mathrmp-value" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="two-sided-mathrmp-value">
+<span class="header-section-number">1.3</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong><span class="math inline">\(\mathrm{p}\)</span>-Value:</strong> The <span class="math inline">\(\mathrm{p}\)</span>-value is the probability of observing a test statistic <span class="math inline">\(\mathrm{T}\)</span> as extreme as <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span> or more extreme (in the direction(s) of the alternative hypothesis) than <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span>, given the null hypothesis (<span class="math inline">\(H_0\)</span>) is true.</p>
+<ul>
+<li>
+<strong>Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value:</strong> <span class="math display">\[\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)\]</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<p>Marketing campaign data:</p>
+<div class="r-stack">
+<p>Density function of the <span class="math inline">\(t_{\operatorname{df}}\)</span> distribution with <span class="math inline">\(\operatorname{df}=4\)</span></p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span>  <span class="op">&lt;-</span> <span class="fl">0.05</span></span>
+<span><span class="va">df</span>     <span class="op">&lt;-</span> <span class="fl">5</span><span class="op">-</span><span class="fl">1</span></span>
+<span><span class="va">q_1</span>    <span class="op">&lt;-</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span></span>
+<span><span class="va">q_2</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">pValue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">q_1</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">q_2</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">xx1</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="va">q_1</span>, len<span class="op">=</span><span class="fl">25</span><span class="op">)</span></span>
+<span><span class="va">yy1</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">dt</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">xx1</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span><span class="co">##</span></span>
+<span><span class="va">xx2</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="va">q_2</span>,  <span class="fl">5</span>, len<span class="op">=</span><span class="fl">25</span><span class="op">)</span></span>
+<span><span class="va">yy2</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">dt</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">xx2</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4.5</span>, <span class="fl">.1</span>, <span class="fl">.1</span>, <span class="fl">.1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span>expr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">dt</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span>,</span>
+<span>      xlab <span class="op">=</span> <span class="st">""</span>, ylab <span class="op">=</span> <span class="st">""</span>, main <span class="op">=</span> <span class="st">""</span>,</span>
+<span>      lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="fl">1</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>      ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.4</span><span class="op">)</span>, xaxs<span class="op">=</span><span class="st">"i"</span>,yaxs<span class="op">=</span><span class="st">"i"</span>, axes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/polygon.html">polygon</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">xx1</span>,<span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">xx1</span><span class="op">)</span><span class="op">)</span>, y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yy1</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">yy1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, border <span class="op">=</span> <span class="cn">NA</span>, col <span class="op">=</span> <span class="fu">alpha</span><span class="op">(</span><span class="st">"red"</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/polygon.html">polygon</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">xx2</span>,<span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">xx2</span><span class="op">)</span><span class="op">)</span>, y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yy2</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">yy2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, border <span class="op">=</span> <span class="cn">NA</span>, col <span class="op">=</span> <span class="fu">alpha</span><span class="op">(</span><span class="st">"red"</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, cex.axis <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span>  <span class="va">T_obs</span>, col <span class="op">=</span> <span class="st">"red"</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.11</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span> <span class="op">-</span><span class="va">T_obs</span>, col <span class="op">=</span> <span class="st">"red"</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.11</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">1</span>, text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="op">-</span><span class="cn">T</span><span class="op">[</span><span class="va">obs</span><span class="op">]</span>, <span class="cn">T</span><span class="op">[</span><span class="va">obs</span><span class="op">]</span><span class="op">)</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span><span class="op">)</span>, line <span class="op">=</span> <span class="fl">3.5</span>, cex <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, pch<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22</span><span class="op">)</span>, cex<span class="op">=</span><span class="fl">2.1</span>, </span>
+<span>       col <span class="op">=</span> <span class="fu">alpha</span><span class="op">(</span><span class="st">"red"</span>, <span class="fl">0.25</span><span class="op">)</span>, </span>
+<span>       legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="st">"p-value"</span><span class="op">==</span><span class="fu">.</span><span class="op">(</span><span class="va">pValue</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>       bty<span class="op">=</span><span class="st">"n"</span>, pt.bg <span class="op">=</span> <span class="fu">alpha</span><span class="op">(</span><span class="st">"red"</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="two-sided-mathrmp-value-1" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="two-sided-mathrmp-value-1">
+<span class="header-section-number">1.4</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong><span class="math inline">\(\mathrm{p}\)</span>-Value:</strong> The <span class="math inline">\(\mathrm{p}\)</span>-value is the probability of observing a test statistic <span class="math inline">\(\mathrm{T}\)</span> as extreme as <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span> or more extreme (in the direction(s) of the alternative hypothesis) than <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span>, given the null hypothesis (<span class="math inline">\(H_0\)</span>) is true.</p>
+<ul>
+<li>
+<strong>Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value:</strong> <span class="math display">\[\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\highlight{|\mathrm{T}|} \geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)\]</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<p>Marketing campaign data:</p>
+<div class="r-stack">
+<p>Density function of the <span style="background-color: yellow">Half-<span class="math inline">\(t_{\operatorname{df}}\)</span></span> distribution with <span class="math inline">\(\operatorname{df}=4\)</span></p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/twolodzko/extraDistr">"extraDistr"</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">alpha</span>  <span class="op">&lt;-</span> <span class="fl">0.05</span></span>
+<span><span class="va">df</span>     <span class="op">&lt;-</span> <span class="fl">5</span><span class="op">-</span><span class="fl">1</span></span>
+<span><span class="va">q_1</span>    <span class="op">&lt;-</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span></span>
+<span><span class="va">q_2</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">pValue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">q_1</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">q_2</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">xx0</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.00001</span>, <span class="fl">5</span>, len<span class="op">=</span><span class="fl">50</span><span class="op">)</span></span>
+<span><span class="co">##</span></span>
+<span><span class="va">xx1</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="va">q_1</span>, len<span class="op">=</span><span class="fl">25</span><span class="op">)</span></span>
+<span><span class="va">yy1</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">dt</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">xx1</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span><span class="co">##</span></span>
+<span><span class="va">xx2</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="va">q_2</span>,  <span class="fl">5</span>, len<span class="op">=</span><span class="fl">25</span><span class="op">)</span></span>
+<span><span class="va">yy2</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">dt</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">xx2</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span><span class="co">##</span></span>
+<span><span class="va">xx3</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span>,  <span class="fl">5</span>, len<span class="op">=</span><span class="fl">25</span><span class="op">)</span></span>
+<span><span class="va">yy3</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extraDistr/man/HalfT.html">dht</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">xx3</span>, nu <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4.5</span>, <span class="fl">.1</span>, <span class="fl">.1</span>, <span class="fl">.1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/extraDistr/man/HalfT.html">dht</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">xx0</span>, nu <span class="op">=</span> <span class="va">df</span><span class="op">)</span>, x <span class="op">=</span> <span class="va">xx0</span>,</span>
+<span>      xlab <span class="op">=</span> <span class="st">""</span>, ylab <span class="op">=</span> <span class="st">""</span>, main <span class="op">=</span> <span class="st">""</span>,</span>
+<span>      lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="fl">1</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>      xaxs<span class="op">=</span><span class="st">"i"</span>,yaxs<span class="op">=</span><span class="st">"i"</span>, axes <span class="op">=</span> <span class="cn">FALSE</span>, type<span class="op">=</span><span class="st">"l"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/pkg/extraDistr/man/HalfT.html">dht</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">xx0</span>, nu <span class="op">=</span> <span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>, lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span>expr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">dt</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span>, </span>
+<span>      lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html">gray</a></span><span class="op">(</span><span class="fl">.75</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/polygon.html">polygon</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">xx1</span>,<span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">xx1</span><span class="op">)</span><span class="op">)</span>, y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yy1</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">yy1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, border <span class="op">=</span> <span class="cn">NA</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html">gray</a></span><span class="op">(</span><span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/polygon.html">polygon</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">xx2</span>,<span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">xx2</span><span class="op">)</span><span class="op">)</span>, y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yy2</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">yy2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, border <span class="op">=</span> <span class="cn">NA</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html">gray</a></span><span class="op">(</span><span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/polygon.html">polygon</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">xx3</span>,<span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">xx3</span><span class="op">)</span><span class="op">)</span>, y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yy3</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">yy3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, border <span class="op">=</span> <span class="cn">NA</span>, col <span class="op">=</span> <span class="fu">alpha</span><span class="op">(</span><span class="st">"red"</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, cex.axis <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span>  <span class="va">T_obs</span>, col <span class="op">=</span> <span class="st">"red"</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.11</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span> <span class="op">-</span><span class="va">T_obs</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html">gray</a></span><span class="op">(</span><span class="fl">.75</span><span class="op">)</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.11</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">1</span>, text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="st">"|"</span><span class="op">~</span><span class="cn">T</span><span class="op">[</span><span class="va">obs</span><span class="op">]</span><span class="op">~</span><span class="st">"|"</span><span class="op">)</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span><span class="op">)</span>, line <span class="op">=</span> <span class="fl">3.5</span>, cex <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, pch<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22</span><span class="op">)</span>, cex<span class="op">=</span><span class="fl">2.1</span>, </span>
+<span>       col <span class="op">=</span> <span class="fu">alpha</span><span class="op">(</span><span class="st">"red"</span>, <span class="fl">0.25</span><span class="op">)</span>, </span>
+<span>       legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="st">"p-value"</span><span class="op">==</span><span class="fu">.</span><span class="op">(</span><span class="va">pValue</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>       bty<span class="op">=</span><span class="st">"n"</span>, pt.bg <span class="op">=</span> <span class="fu">alpha</span><span class="op">(</span><span class="st">"red"</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="two-sided-mathrmp-value-2" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="two-sided-mathrmp-value-2">
+<span class="header-section-number">1.5</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
+<!-- 
+::: {.callout-note appearance="minimal"}
+**$\mathrm{p}$-Value:** The $\mathrm{p}$-value is the probability, assuming the null hypothesis ($H_0$) is true, of observing a test statistic $\mathrm{T}$ as extreme as $\mathrm{T}_{\mathrm{obs}}$ or more extreme (in the direction(s) of the alternative hypothesis) than $\mathrm{T}_{\mathrm{obs}}$. 
+::: 
+
+::: {.callout-note appearance="minimal"}
+Thus for two-sided test statistics, we have
+\begin{align*}
+\mathrm{p}_{\mathrm{obs}} 
+& = \mathrm{P}\big(|\mathrm{T}| \geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big).
+\end{align*}
+:::
+-->
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Two-sided <span class="math inline">\(t\)</span>-test:</strong> <!-- 
+Since $\mathrm{T}\overset{H_0}{\sim} t_{n-1}$, we have that [$|\mathrm{T}|\overset{H_0}{\sim} \text{Half-}t_{n-1}$]{style="background-color: yellow"} 
+--> <span class="math display">\[\begin{align*}
+\mathrm{p}_{\mathrm{obs}}
+&amp; = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)\\[1ex]
+&amp; = 1 - \mathrm{P}\big(\highlight{|\mathrm{T}|}\leq |\mathrm{T}_{\mathrm{obs}}|\;\big|\highlight{H_0\;\text{is true}}\big)\\[1ex]
+&amp; = 1 - \highlight{\mathrm{F}_{\,\text{Half-}t,n-1}}\big(|\mathrm{T}_{\mathrm{obs}}|\big),
+\end{align*}\]</span> where <span class="math inline">\(\mathrm{F}_{\,\text{Half-}t,n-1}\)</span> denotes the cdf of the Half-<span class="math inline">\(t\)</span> distribution with <span class="math inline">\(\operatorname{df}=n-1\)</span></p>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span>  <span class="op">&lt;-</span> <span class="fl">0.05</span></span>
+<span><span class="va">df</span>     <span class="op">&lt;-</span> <span class="fl">5</span><span class="op">-</span><span class="fl">1</span></span>
+<span></span>
+<span><span class="va">myfun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/pkg/extraDistr/man/HalfT.html">pht</a></span><span class="op">(</span>q <span class="op">=</span> <span class="va">x</span>, nu <span class="op">=</span> <span class="va">df</span><span class="op">)</span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4.5</span>, <span class="fl">9</span>, <span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span>expr <span class="op">=</span> <span class="va">myfun</span>,</span>
+<span>      xlab <span class="op">=</span> <span class="st">""</span>, ylab <span class="op">=</span> <span class="st">""</span>, main <span class="op">=</span> <span class="st">""</span>,</span>
+<span>      lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="fl">1</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span>      ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, xaxs<span class="op">=</span><span class="st">"i"</span>,yaxs<span class="op">=</span><span class="st">"i"</span>, axes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, cex.axis <span class="op">=</span> <span class="fl">1.75</span>, family <span class="op">=</span> <span class="st">"serif"</span>, mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">2</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0"</span>,<span class="st">"1"</span><span class="op">)</span>, cex.axis <span class="op">=</span> <span class="fl">1.75</span>, family <span class="op">=</span> <span class="st">"serif"</span>, las<span class="op">=</span><span class="fl">2</span>, mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span>  <span class="va">T_obs</span>, col <span class="op">=</span> <span class="st">"blue"</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.11</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">2</span>, at <span class="op">=</span>  <span class="fu">myfun</span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">T_obs</span><span class="op">)</span>, y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu">myfun</span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">T_obs</span>, <span class="fl">2</span><span class="op">)</span>, y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu">myfun</span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span>
+<span><span class="co">##</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">1</span>, text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="st">"|"</span><span class="op">~</span><span class="cn">T</span><span class="op">[</span><span class="va">obs</span><span class="op">]</span><span class="op">~</span><span class="st">"|"</span><span class="op">)</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span><span class="op">)</span>, line <span class="op">=</span> <span class="fl">3.5</span>, cex <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span>, hadj <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mtext(side = 1, text = bquote("|" ~ T[obs] ~ "|"), at =
+c(abs(T_obs)), : "hadj" is not a graphical parameter</code></pre>
+</div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">corners</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span><span class="st">"usr"</span><span class="op">)</span> <span class="co">#Gets the four corners of plot area (x1, x2, y1, y2)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>xpd <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co">#Draw outside plot area</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">corners</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="fl">.75</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu">myfun</span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="va">p</span><span class="op">[</span><span class="va">obs</span><span class="op">]</span><span class="op">)</span>, srt <span class="op">=</span> <span class="fl">0</span>, cex <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"top"</span>, lty <span class="op">=</span> <span class="fl">1</span>, lwd<span class="op">=</span><span class="fl">2</span>,</span>
+<span>       legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="cn">F</span><span class="op">[</span><span class="st">"Half-t,n-1"</span><span class="op">]</span><span class="op">)</span>, </span>
+<span>       bty<span class="op">=</span><span class="st">"n"</span>, cex <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/twolodzko/extraDistr">"extraDistr"</a></span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fl">5</span><span class="op">-</span><span class="fl">1</span></span>
+<span></span>
+<span><span class="co">## 1 minus the distribution function of the Half-t</span></span>
+<span><span class="va">p_obs</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/pkg/extraDistr/man/HalfT.html">pht</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span>, nu <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="notes">
+<ul>
+<li>There’s a one-to-one mapping between <span class="math inline">\(|\mathrm{T}_{obs}|\)</span> and <span class="math inline">\(p_{\mathrm{obs}}\)</span>.</li>
+<li>
+<span class="math inline">\(p_{\mathrm{obs}}\)</span> effectively measures how extrem the value of <span class="math inline">\(|\mathrm{T}_{obs}|\)</span> is, given that <span class="math inline">\(H_0\)</span> is true.</li>
+</ul>
+</div>
+</section><section id="two-sided-mathrmp-value-3" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="two-sided-mathrmp-value-3">
+<span class="header-section-number">1.6</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Marketing campaign data:</p>
+<ul>
+<li><span class="math inline">\(|\mathrm{T}_\mathrm{obs}|=0.84\)</span></li>
+<li><span class="math inline">\(\alpha = 0.05\)</span></li>
+<li>
+<span class="math inline">\((1-\alpha/2)\)</span>-quantile of <span class="math inline">\(t_{4}\colon\)</span> <span class="math inline">\(\mathrm{q}_{1-\alpha/2}=2.78\)</span>
+</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span>  <span class="op">&lt;-</span> <span class="fl">0.05</span></span>
+<span><span class="va">df</span>     <span class="op">&lt;-</span> <span class="fl">5</span><span class="op">-</span><span class="fl">1</span></span>
+<span></span>
+<span><span class="va">myfun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/pkg/extraDistr/man/HalfT.html">pht</a></span><span class="op">(</span>q <span class="op">=</span> <span class="va">x</span>, nu <span class="op">=</span> <span class="va">df</span><span class="op">)</span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4.5</span>, <span class="fl">9</span>, <span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span>expr <span class="op">=</span> <span class="va">myfun</span>,</span>
+<span>      xlab <span class="op">=</span> <span class="st">""</span>, ylab <span class="op">=</span> <span class="st">""</span>, main <span class="op">=</span> <span class="st">""</span>,</span>
+<span>      lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="fl">1</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span>      ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, xaxs<span class="op">=</span><span class="st">"i"</span>,yaxs<span class="op">=</span><span class="st">"i"</span>, axes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, cex.axis <span class="op">=</span> <span class="fl">1.75</span>, family <span class="op">=</span> <span class="st">"serif"</span>, mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">2</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0"</span>,<span class="st">"1"</span><span class="op">)</span>, cex.axis <span class="op">=</span> <span class="fl">1.75</span>, family <span class="op">=</span> <span class="st">"serif"</span>, las<span class="op">=</span><span class="fl">2</span>, mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span>  <span class="va">T_obs</span>, col <span class="op">=</span> <span class="st">"blue"</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.11</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">2</span>, at <span class="op">=</span>  <span class="fu">myfun</span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span>, df<span class="op">=</span><span class="va">df</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">2</span>, at <span class="op">=</span> <span class="va">alpha</span>, col <span class="op">=</span> <span class="st">"red"</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">T_obs</span><span class="op">)</span>, y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu">myfun</span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">T_obs</span>, <span class="fl">2</span><span class="op">)</span>, y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu">myfun</span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span>, df<span class="op">=</span><span class="va">df</span><span class="op">)</span><span class="op">)</span>, y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">alpha</span>, <span class="fl">2</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="co">#lines(x = c(0, 0), y= c(0, alpha), lwd = 3, col = "red")</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span>, df<span class="op">=</span><span class="va">df</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">alpha</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="co">##</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">1</span>, text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="st">"|"</span><span class="op">~</span><span class="cn">T</span><span class="op">[</span><span class="va">obs</span><span class="op">]</span><span class="op">~</span><span class="st">"|"</span><span class="op">)</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span><span class="op">)</span>, line <span class="op">=</span> <span class="fl">3.5</span>, cex <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span>, hadj <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mtext(side = 1, text = bquote("|" ~ T[obs] ~ "|"), at =
+c(abs(T_obs)), : "hadj" is not a graphical parameter</code></pre>
+</div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">1</span>, text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="va">q</span><span class="op">[</span><span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span>, df<span class="op">=</span><span class="va">df</span><span class="op">)</span>, line <span class="op">=</span> <span class="fl">3.5</span>, cex <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span>, hadj <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mtext(side = 1, text = bquote(q[1 - alpha/2]), at = qt(1 - alpha/2,
+: "hadj" is not a graphical parameter</code></pre>
+</div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">corners</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span><span class="st">"usr"</span><span class="op">)</span> <span class="co">#Gets the four corners of plot area (x1, x2, y1, y2)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>xpd <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co">#Draw outside plot area</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">corners</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="fl">.75</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu">myfun</span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="va">p</span><span class="op">[</span><span class="va">obs</span><span class="op">]</span><span class="op">==</span><span class="fu">.</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">myfun</span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, srt <span class="op">=</span> <span class="fl">0</span>, cex <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">corners</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="fl">.75</span>, y <span class="op">=</span> <span class="va">alpha</span>, <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="va">alpha</span><span class="op">==</span><span class="fu">.</span><span class="op">(</span><span class="va">alpha</span><span class="op">)</span><span class="op">)</span>, srt <span class="op">=</span> <span class="fl">0</span>, cex <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"top"</span>, lty <span class="op">=</span> <span class="fl">1</span>, lwd<span class="op">=</span><span class="fl">2</span>,</span>
+<span>       legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="cn">F</span><span class="op">[</span><span class="st">"Half-t,n-1"</span><span class="op">]</span><span class="op">)</span>, </span>
+<span>       bty<span class="op">=</span><span class="st">"n"</span>, cex <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 
+
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+library("extraDistr")
+df <- 5-1
+
+## 1 minus the distribution function of the Half-t
+p_obs <- 1 - pht(q = abs(T_obs), nu = df)
+```
+:::
+
+
+
+-->
+<p>We fail to reject <span class="math inline">\(H_0\colon\mu = 0\)</span>. That is, we have no statistical evidence that the marketing campaign showed a tendency toward <em>significantly</em> higher or lower sales.</p>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>⚠️ Failing to reject <span class="math inline">\(H_0\)</span> does not mean that <span class="math inline">\(H_0\)</span> is true. It only means that we do not have enough evidence to reject it.</p>
+</div>
+</div>
+</div>
+</section><section id="two-sided-mathrmp-value-4" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="two-sided-mathrmp-value-4">
+<span class="header-section-number">1.7</span> Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
+<p><span style="background-color: yellow">Equivalent test decisions</span> at the significance level <span class="math inline">\(0&lt;\alpha&lt;1\)</span>:</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li>
+<strong>Critical values:</strong> Reject <span class="math inline">\(H_0\colon \mu =0\)</span> if <span style="background-color: yellow"><span class="math inline">\(\displaystyle|\mathrm{T}_{\mathrm{obs}}| &gt; q_{1-\alpha/2}\)</span></span>, where <span class="math inline">\(q_{1-\alpha/2}\)</span> denotes the <span class="math inline">\((1-\alpha/2)\)</span>-quantile of the <span class="math inline">\(t_{\operatorname{df}}\)</span> distribution.</li>
+</ul>
+<p></p>
+<ul>
+<li>
+<strong><span class="math inline">\(\mathrm{p}\)</span>-Values:</strong> Reject <span class="math inline">\(H_0\colon \mu =0\)</span> if <span style="background-color: yellow"><span class="math inline">\(\displaystyle\mathrm{p}_{\mathrm{obs}} &lt; \alpha\)</span></span>
+</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span>  <span class="op">&lt;-</span> <span class="fl">0.05</span></span>
+<span><span class="va">df</span>     <span class="op">&lt;-</span> <span class="fl">5</span><span class="op">-</span><span class="fl">1</span></span>
+<span></span>
+<span><span class="va">T_2obs</span> <span class="op">&lt;-</span> <span class="fl">3.7</span></span>
+<span></span>
+<span><span class="va">myfun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/pkg/extraDistr/man/HalfT.html">pht</a></span><span class="op">(</span>q <span class="op">=</span> <span class="va">x</span>, nu <span class="op">=</span> <span class="va">df</span><span class="op">)</span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4.5</span>, <span class="fl">9</span>, <span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span>expr <span class="op">=</span> <span class="va">myfun</span>,</span>
+<span>      xlab <span class="op">=</span> <span class="st">""</span>, ylab <span class="op">=</span> <span class="st">""</span>, main <span class="op">=</span> <span class="st">""</span>,</span>
+<span>      lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="fl">1</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span>      ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.2</span><span class="op">)</span>, xaxs<span class="op">=</span><span class="st">"i"</span>,yaxs<span class="op">=</span><span class="st">"i"</span>, axes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, cex.axis <span class="op">=</span> <span class="fl">1.75</span>, family <span class="op">=</span> <span class="st">"serif"</span>, mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">2</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0"</span>,<span class="st">"1"</span><span class="op">)</span>, cex.axis <span class="op">=</span> <span class="fl">1.75</span>, family <span class="op">=</span> <span class="st">"serif"</span>, las<span class="op">=</span><span class="fl">2</span>, mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span>  <span class="va">T_2obs</span>, col <span class="op">=</span> <span class="st">"blue"</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.11</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">2</span>, at <span class="op">=</span>  <span class="fu">myfun</span><span class="op">(</span><span class="va">T_2obs</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span>, df<span class="op">=</span><span class="va">df</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">2</span>, at <span class="op">=</span> <span class="va">alpha</span>, col <span class="op">=</span> <span class="st">"red"</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, tck<span class="op">=</span><span class="op">-</span><span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">T_2obs</span><span class="op">)</span>, y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu">myfun</span><span class="op">(</span><span class="va">T_2obs</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">T_2obs</span>, <span class="fl">2</span><span class="op">)</span>, y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu">myfun</span><span class="op">(</span><span class="va">T_2obs</span><span class="op">)</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span>, df<span class="op">=</span><span class="va">df</span><span class="op">)</span><span class="op">)</span>, y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">alpha</span>, <span class="fl">2</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="co">#lines(x = c(0, 0), y= c(0, alpha), lwd = 3, col = "red")</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span>, df<span class="op">=</span><span class="va">df</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">alpha</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="co">##</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">1</span>, text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="st">"|"</span><span class="op">~</span><span class="cn">T</span><span class="op">[</span><span class="va">obs</span><span class="op">]</span><span class="op">~</span><span class="st">"|"</span><span class="op">)</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_2obs</span><span class="op">)</span><span class="op">)</span>, line <span class="op">=</span> <span class="fl">3.5</span>, cex <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span>, hadj <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mtext(side = 1, text = bquote("|" ~ T[obs] ~ "|"), at =
+c(abs(T_2obs)), : "hadj" is not a graphical parameter</code></pre>
+</div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">1</span>, text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="va">q</span><span class="op">[</span><span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span>, df<span class="op">=</span><span class="va">df</span><span class="op">)</span>, line <span class="op">=</span> <span class="fl">3.5</span>, cex <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span>, hadj <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mtext(side = 1, text = bquote(q[1 - alpha/2]), at = qt(1 - alpha/2,
+: "hadj" is not a graphical parameter</code></pre>
+</div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">corners</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span><span class="st">"usr"</span><span class="op">)</span> <span class="co">#Gets the four corners of plot area (x1, x2, y1, y2)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>xpd <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co">#Draw outside plot area</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">corners</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="fl">.75</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu">myfun</span><span class="op">(</span><span class="va">T_2obs</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="va">p</span><span class="op">[</span><span class="va">obs</span><span class="op">]</span><span class="op">)</span>, srt <span class="op">=</span> <span class="fl">0</span>, cex <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">corners</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="fl">.75</span>, y <span class="op">=</span> <span class="va">alpha</span>, <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="va">alpha</span><span class="op">==</span><span class="fu">.</span><span class="op">(</span><span class="va">alpha</span><span class="op">)</span><span class="op">)</span>, srt <span class="op">=</span> <span class="fl">0</span>, cex <span class="op">=</span> <span class="fl">2</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, lty <span class="op">=</span> <span class="fl">1</span>, lwd<span class="op">=</span><span class="fl">2</span>,</span>
+<span>       legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="cn">F</span><span class="op">[</span><span class="st">"Half-t,n-1"</span><span class="op">]</span><span class="op">)</span>, </span>
+<span>       bty<span class="op">=</span><span class="st">"n"</span>, cex <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="mathrmp-values-challenges-for-hypothesis-testing" class="level2" data-number="1.8"><h2 data-number="1.8" class="anchored" data-anchor-id="mathrmp-values-challenges-for-hypothesis-testing">
+<span class="header-section-number">1.8</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</h2>
+<ul>
+<li><p>While the <span class="math inline">\(\mathrm{p}\)</span>-value can be a useful statistical measure, it is commonly misused and misinterpreted. (<span class="citation" data-cites="Wasserstein2016asa">Wasserstein and Lazar (<a href="Ch_pValues.html#ref-Wasserstein2016asa" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="wasserstein2019asa">Wasserstein, Schirm, and Lazar (<a href="Ch_pValues.html#ref-wasserstein2019asa" role="doc-biblioref">2019</a>)</span>)</p></li>
+<li><p>“Scientific method: Statistical errors.” <span class="citation" data-cites="nuzzo2014scientific">Nuzzo (<a href="Ch_pValues.html#ref-nuzzo2014scientific" role="doc-biblioref">2014</a>)</span></p></li>
+<li><p>ScienceNews (Siegfried 2010): “It’s science’s dirtiest secret: The ‘scien- tific method’ of testing hypotheses by statistical analysis stands on a flimsy foundation.”</p></li>
+</ul></section><section id="references" class="level2" data-number="1.9"><h2 data-number="1.9" class="anchored" data-anchor-id="references">
+<span class="header-section-number">1.9</span> References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-nuzzo2014scientific" class="csl-entry" role="listitem">
+Nuzzo, Regina. 2014. <span>“Scientific Method: <span>S</span>tatistical
+Errors.”</span> <em>Nature</em> 506 (7487).
+</div>
+<div id="ref-Wasserstein2016asa" class="csl-entry" role="listitem">
+Wasserstein, Ronald L, and Nicole A Lazar. 2016. <span>“The ASA
+Statement on p-Values: <span>C</span>ontext, Process, and
+Purpose.”</span> <em>The American Statistician</em>. Taylor &amp;
+Francis.
+</div>
+<div id="ref-wasserstein2019asa" class="csl-entry" role="listitem">
+Wasserstein, Ronald L, Allen L Schirm, and Nicole A Lazar. 2019.
+<span>“Moving to a World Beyond "p&lt; 0.05".”</span> <em>The American
+Statistician</em>. Taylor &amp; Francis.
+</div>
+</div>
+</section><section id="tips-for-success" class="level2" data-number="1.10"><h2 data-number="1.10" class="anchored" data-anchor-id="tips-for-success">
+<span class="header-section-number">1.10</span> 💡 Tips for Success</h2>
+<p><br></p>
+<ul>
+<li>Don’t just memorize formulas — focus on understanding <em>why</em> they work.</li>
+<li>Discuss and collaborate</li>
+</ul>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Organization of the Course">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Organization of the Course</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

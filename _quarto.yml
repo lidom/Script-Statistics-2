@@ -1,0 +1,35 @@
+project:
+  type: book
+  output-dir: docs
+  
+book:
+  title: Statistics-II (B.Sc.)
+  author: Prof. Dr. Dominik Liebl 
+  date: last-modified
+  date-format: "[Last Updated on] MMMM DD, YYYY"
+  sidebar: 
+    #logo: images/Uni_Bonn_Logo.jpeg
+    number-depth: 2
+  search: true
+  chapters:
+    - index.qmd
+    - Ch_pValues.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      light: [flatly, theme.scss]
+      dark: [flatly, darkly, theme.scss]
+    html-math-method:
+      method: mathjax
+      url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML"
+    number-sections: true
+    code-link: true
+    reference-links: true
+    reference-location: margin
+    knitr:
+      opts_chunk:
+        fig.align: center
+        fig-align: center
