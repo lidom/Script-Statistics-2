@@ -233,6 +233,7 @@ Density function of the $t_{\operatorname{df}}$ distribution with $\operatorname
 :::
 
 ```{r}
+#| echo: false
 #| fig-width: 7
 #| out-width: 7in
 #| fig-align: center
@@ -287,6 +288,7 @@ Density function of the [Half-$t_{\operatorname{df}}$]{style="background-color: 
 :::
 
 ```{r}
+#| echo: false
 #| fig-width: 7
 #| out-width: 7in
 #| fig-align: center
@@ -371,6 +373,7 @@ $\mathrm{F}_{\,\text{Half-}t,n-1}$ denotes the cdf of the Half-$t$ distribution 
 ::: {.column width="50%"}
 
 ```{r}
+#| echo: false
 #| fig-width: 7
 #| out-width: 7in
 #| fig-align: center
@@ -434,6 +437,7 @@ Marketing campaign data:
 :::
 ::: {.column width="50%"}
 ```{r}
+#| echo: false
 #| fig-width: 7
 #| out-width: 7in
 #| fig-align: center
@@ -514,6 +518,7 @@ Reject $H_0\colon \mu =0$ if [$\displaystyle\mathrm{p}_{\mathrm{obs}} < \alpha$]
 :::
 ::: {.column width="55%"}
 ```{r}
+#| echo: false
 #| fig-width: 7
 #| out-width: 7in
 #| fig-align: center
