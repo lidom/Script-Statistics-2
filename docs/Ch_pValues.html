@@ -195,10 +195,22 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#example-marketing-campaign" id="toc-example-marketing-campaign" class="nav-link active" data-scroll-target="#example-marketing-campaign"><span class="header-section-number">1.1</span> Example: Marketing Campaign</a></li>
-  <li><a href="#short-repetition-two-sided-t-test" id="toc-short-repetition-two-sided-t-test" class="nav-link" data-scroll-target="#short-repetition-two-sided-t-test"><span class="header-section-number">1.2</span> Short Repetition: Two-Sided <span class="math inline">\(t\)</span>-Test</a></li>
-  <li><a href="#the-two-sided-mathrmp-value" id="toc-the-two-sided-mathrmp-value" class="nav-link" data-scroll-target="#the-two-sided-mathrmp-value"><span class="header-section-number">1.3</span> The Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
-  <li><a href="#mathrmp-values-challenges-for-hypothesis-testing" id="toc-mathrmp-values-challenges-for-hypothesis-testing" class="nav-link" data-scroll-target="#mathrmp-values-challenges-for-hypothesis-testing"><span class="header-section-number">1.4</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</a></li>
+<li>
+<a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1.1</span> Introduction</a>
+  <ul class="collapse">
+<li><a href="#lecture-goals" id="toc-lecture-goals" class="nav-link" data-scroll-target="#lecture-goals">🎯 Lecture Goals</a></li>
+  <li><a href="#example-marketing-campaign" id="toc-example-marketing-campaign" class="nav-link" data-scroll-target="#example-marketing-campaign">💻 Example: Marketing Campaign</a></li>
+  <li><a href="#quick-recap-two-sided-t-test-critical-values-and-decision" id="toc-quick-recap-two-sided-t-test-critical-values-and-decision" class="nav-link" data-scroll-target="#quick-recap-two-sided-t-test-critical-values-and-decision">📖 Quick Recap: Two-Sided <span class="math inline">\(t\)</span>-Test, Critical Values, and Decision</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#the-two-sided-mathrmp-value" id="toc-the-two-sided-mathrmp-value" class="nav-link" data-scroll-target="#the-two-sided-mathrmp-value"><span class="header-section-number">1.2</span> The Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</a>
+  <ul class="collapse">
+<li><a href="#test-decision-based-on-the-mathrmp-value" id="toc-test-decision-based-on-the-mathrmp-value" class="nav-link" data-scroll-target="#test-decision-based-on-the-mathrmp-value"><span class="header-section-number">1.2.1</span> Test Decision based on the <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
+  <li><a href="#equivalent-test-decisions" id="toc-equivalent-test-decisions" class="nav-link" data-scroll-target="#equivalent-test-decisions"><span class="header-section-number">1.2.2</span> Equivalent Test Decisions</a></li>
+  </ul>
+</li>
+  <li><a href="#mathrmp-values-challenges-for-hypothesis-testing" id="toc-mathrmp-values-challenges-for-hypothesis-testing" class="nav-link" data-scroll-target="#mathrmp-values-challenges-for-hypothesis-testing"><span class="header-section-number">1.3</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></nav>
     </div>
@@ -229,32 +241,21 @@ window.Quarto = {
   {\colorbox{#1}{$\displaystyle#2$}}%
   }%
 \]</span></p>
-<!-- ::: {.hidden}
-$$
-\require{color}
-%% Colorbox within equation-environments:
-\newcommand{\highlight}[2][yellow]{\mathchoice%
-  {\colorbox{#1}{$\displaystyle#2$}}%
-  {\colorbox{#1}{$\displaystyle#2$}}%
-  {\colorbox{#1}{$\displaystyle#2$}}%
-  }%
-$$
-::: -->
-<section id="lecture-goals" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="lecture-goals">🎯 <strong>Lecture Goals</strong>
-</h4>
+<section id="introduction" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="introduction">
+<span class="header-section-number">1.1</span> Introduction</h2>
+<section id="lecture-goals" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="lecture-goals">🎯 Lecture Goals</h3>
+<p>In this lecture, we’ll tackle three key questions:</p>
 <ul>
 <li>
-<p><strong>How</strong> do <span class="math inline">\(\mathrm{p}\)</span>-values work?</p>
-<ul>
-<li>Today: <span style="background-color: yellow">two-sided <span class="math inline">\(t\)</span>-test</span>
-</li>
+<strong>How</strong> do <span class="math inline">\(\mathrm{p}\)</span>-values actually work?</li>
+<li>
+<strong>Why</strong> can <span class="math inline">\(\mathrm{p}\)</span>-values be tricky or even misleading in hypothesis testing?</li>
+<li>
+<strong>What</strong> is good practice when working with <span class="math inline">\(\mathrm{p}\)</span>-values?</li>
 </ul>
-</li>
-<li><p><strong>Why</strong> are <span class="math inline">\(\mathrm{p}\)</span>-values a challenge for hypothesis testing?</p></li>
-<li><p><strong>What</strong> alternatives are there?</p></li>
-</ul></section><section id="example-marketing-campaign" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="example-marketing-campaign">
-<span class="header-section-number">1.1</span> Example: Marketing Campaign</h2>
-<p>Marketing campaign in <span class="math inline">\(n=5\)</span> stores (paired sample):</p>
+<p>We’ll explore these questions using the two-sided <span class="math inline">\(t\)</span>-test as our main example.</p>
+</section><section id="example-marketing-campaign" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="example-marketing-campaign">💻 Example: Marketing Campaign</h3>
+<p>Imagine a company runs a marketing campaign in <span class="math inline">\(n = 5\)</span> stores and measures sales <em>before</em> and <em>after</em> the campaign.</p>
 <p></p>
 <table class="caption-top table">
 <thead><tr class="header">
@@ -297,9 +298,10 @@ $$
 </tbody>
 </table>
 <p></p>
-<p><a href="#fig-diffData" class="quarto-xref">Figure&nbsp;<span>1.1</span></a> shows the observed sales differences <span class="math display">\[
-\{X_{1,obs},X_{2,obs},X_{3,obs},X_{4,obs},X_{5,obs}\}.
-\]</span></p>
+<p><a href="#fig-diffData" class="quarto-xref">Figure&nbsp;<span>1.1</span></a> visualizes the observed differences <span class="math inline">\(X_{i,\mathrm{obs}},\)</span> <span class="math inline">\(i=1,\dots,5.\)</span> <!-- \begin{align*}
+&\{X_{1,obs},X_{2,obs},X_{3,obs},X_{4,obs},X_{5,obs}\}\\
+=&\{0.64, -0.72, -0.23, 0.91, 1.06\}
+\end{align*} --></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-diffData" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -312,12 +314,13 @@ Figure&nbsp;1.1: Sales differences (sales after minus before the marketing campa
 </div>
 </div>
 </div>
+<p><strong>We want to know:</strong></p>
 <ul>
-<li><p><strong>Research Question:</strong> Was the marketing campaign successful? Did it show a tendency (location-shift) toward <em>significantly</em> higher or lower sales?</p></li>
-<li><p><strong>Statistical Reformulation:</strong> Is the mean of <span class="math inline">\(X_1,\dots,X_n\)</span> different from zero?</p></li>
-<li><p><strong>Testing problem:</strong> <span class="math inline">\(\hspace{1cm}H_0\colon \mu = 0\quad\)</span> versus <span class="math inline">\(\quad H_1\colon \mu \neq 0\)</span></p></li>
+<li><p><strong>Research question:</strong>  Was the marketing campaign successful? Did it show a tendency (location-shift) toward <em>significantly</em> higher or lower sales?</p></li>
+<li><p><strong>Statistical question:</strong>  Is the mean <span class="math inline">\(\mu\)</span> of <span class="math inline">\(X_1,\dots,X_n\)</span> different from zero?</p></li>
+<li><p><strong>Formal test:</strong> <span class="math inline">\(\hspace{1cm}H_0\colon \mu = 0\quad\)</span> versus <span class="math inline">\(\quad H_1\colon \mu \neq 0\)</span></p></li>
 </ul>
-<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -327,32 +330,34 @@ Figure&nbsp;1.1: Sales differences (sales after minus before the marketing campa
 </div>
 </div>
 </div>
-</section><section id="short-repetition-two-sided-t-test" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="short-repetition-two-sided-t-test">
-<span class="header-section-number">1.2</span> Short Repetition: Two-Sided <span class="math inline">\(t\)</span>-Test</h2>
-<div class="callout callout-style-simple callout-note no-icon">
+</section><section id="quick-recap-two-sided-t-test-critical-values-and-decision" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="quick-recap-two-sided-t-test-critical-values-and-decision">📖 Quick Recap: Two-Sided <span class="math inline">\(t\)</span>-Test, Critical Values, and Decision</h3>
+<div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>More Details:</strong> See our lecture on hypothesis testing for more details.</p>
+<p>For more background, see our earlier lecture on hypothesis testing.</p>
 </div>
 </div>
 </div>
-<p>Statistical hypothesis:</p>
+<section id="refresher-two-sided-t-test" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="refresher-two-sided-t-test"><strong>Refresher: Two-Sided <span class="math inline">\(t\)</span>-Test</strong></h4>
+<p>We test</p>
 <center>
 <span class="math inline">\(\displaystyle H_0\colon \mu = 0\quad\)</span> versus <span class="math inline">\(\displaystyle \quad H_1\colon \mu \neq 0\)</span>
 </center>
 <p></p>
-<p><span class="math inline">\(t\)</span>-test statistic: <span class="math display">\[
+<p>The <span class="math inline">\(t\)</span>-statistic is: <span class="math display">\[
 \mathrm{T} = \frac{\bar{X} - 0}{S/\sqrt{n}}\overset{H_0}{\sim} t_{n-1},
 \]</span> where</p>
 <ul>
-<li><span class="math inline">\(\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\)</span></li>
-<li><span class="math inline">\(S= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}\)</span></li>
+<li>
+<span class="math inline">\(\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\)</span> is the <strong>sample mean</strong>, and</li>
+<li>
+<span class="math inline">\(S= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}\)</span> is the <strong>sample standard deviation.</strong>
+</li>
 </ul>
-<p>denote the empirical mean and the empirical standard deviation.</p>
-<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -361,48 +366,65 @@ Figure&nbsp;1.1: Sales differences (sales after minus before the marketing campa
 <p><strong>Assumptions:</strong></p>
 <ul>
 <li><p>Random (iid) sample: <span class="math inline">\(X_1,\dots,X_n\overset{\operatorname{iid}}{\sim}X\)</span></p></li>
-<li><p>For small sample sizes: <span class="math inline">\(X\sim\mathcal{N}(\mu, \sigma^2)\)</span></p></li>
-<li><p>For large sample sizes: <span class="math inline">\(\mathrm{E}(X)=\mu\)</span> and <span class="math inline">\(\mathrm{Var}(X)=\sigma^2\)</span></p></li>
+<li><p>For small <span class="math inline">\(n\)</span>: <span class="math inline">\(X\sim\mathcal{N}(\mu, \sigma^2)\)</span></p></li>
+<li><p>For large <span class="math inline">\(n\)</span>: we just need finite mean and variance (Central Limit Theorem helps).</p></li>
 </ul>
 </div>
 </div>
 </div>
 <p></p>
-<p><strong>Observed (<em>obs</em>) realization (marketing campaign):</strong></p>
-<p></p>
+<p><strong>Observed (obs) Statistic (Marketing Campaign Data):</strong></p>
 <p><span class="math display">\[
 \mathrm{T}_{\mathrm{obs}} = \frac{\bar{X}_{\mathrm{obs}} - 0}{S_{\mathrm{obs}}/\sqrt{5}} = 0.84
 \]</span></p>
 <ul>
-<li><span class="math inline">\(\bar{X}_{\mathrm{obs}}=\frac{1}{5}\sum_{i=1}^5 X_{i,obs} = 0.30\)</span></li>
-<li><span class="math inline">\(S_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,obs}-\bar{X}_{\mathrm{obs}})} = 0.80\)</span></li>
+<li><span class="math inline">\(\bar{X}_{\mathrm{obs}}=\frac{1}{5}\sum_{i=1}^5 X_{i,\mathrm{obs}} = 0.30\)</span></li>
+<li><span class="math inline">\(S_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,\mathrm{obs}}-\bar{X}_{\mathrm{obs}})} = 0.80\)</span></li>
 </ul>
-<section id="critical-values-phantommathrmp" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="critical-values-phantommathrmp"><strong>Critical Values <span class="math inline">\(\phantom{\mathrm{p}}\)</span></strong></h4>
-<div class="callout callout-style-simple callout-note no-icon">
+<p>This observed <span class="math inline">\(t\)</span>-statistic value tells us how far the mean difference is from <span class="math inline">\(0,\)</span> measured in units of the estimated standard error.</p>
+</section><section id="refresher-critical-values" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="refresher-critical-values"><strong>Refresher: Critical Values</strong></h4>
+<div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Critical Values:</strong> The critical values — the <span class="math inline">\((1-\alpha/2)\)</span>- and the <span class="math inline">\(\alpha/2\)</span>-quantiles of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(\operatorname{df}=n-1\)</span> — define the rejection regions for a given significance level <span class="math inline">\(0&lt;\alpha&lt;1\)</span>.</p>
+<p><strong>Critical values</strong> mark the “cutoff points” for deciding whether our observed statistic <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span> is too extreme to be consistent with <span class="math inline">\(H_0\)</span>.</p>
 </div>
 </div>
 </div>
-<p>Marketing campaign data:</p>
-<div class="r-stack">
-<p>Density function of the <span class="math inline">\(t_{\operatorname{df}}\)</span> distribution with <span class="math inline">\(\operatorname{df}=4\)</span></p>
-</div>
+In case of the two-sided <span class="math inline">\(t\)</span>-test, the <strong>critical values</strong> are the <span class="math inline">\((\alpha/2)\)</span>- and <span class="math inline">\((1 - \alpha/2)\)</span>-quantiles
+<center>
+<span class="math inline">\(\displaystyle \mathrm{q}_{\alpha/2}\quad\)</span> and <span class="math inline">\(\displaystyle \quad\mathrm{q}_{1-\alpha/2}\quad\)</span>
+</center>
+<p>of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom, where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the significance level. <a href="#fig-CriticalValues" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> shows the null distribution (the <span class="math inline">\(t_{n-1}\)</span> density) and the rejection regions for <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
-</figure>
+<div id="fig-CriticalValues" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CriticalValues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Ch_pValues_files/figure-html/fig-CriticalValues-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CriticalValues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: Density function of the <span class="math inline">\(t_{\operatorname{df}}\)</span> distribution with <span class="math inline">\(\operatorname{df}=n-1=4\)</span> (marketing data) with the rejection regions defined by the critical values <span class="math inline">\(\mathrm{q}_{\alpha/2}\)</span> and <span class="math inline">\(\mathrm{q}_{1-\alpha/2}\)</span> for <span class="math inline">\(\alpha=0.05.\)</span>
+</figcaption></figure>
 </div>
 </div>
 </div>
-</section></section><section id="the-two-sided-mathrmp-value" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="the-two-sided-mathrmp-value">
-<span class="header-section-number">1.3</span> The Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
-<div class="callout callout-style-simple callout-note no-icon">
+</section><section id="refresher-test-decision" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="refresher-test-decision"><strong>Refresher: Test Decision</strong></h4>
+<ul>
+<li>Our observed <span class="math inline">\(t\)</span>-statistic is <span class="math inline">\(\textrm{T}_{\textrm{obs}}=0.84\)</span>
+</li>
+<li>The critical values are <span class="math inline">\(\mathrm{q}_{\alpha/2} = -2.78\)</span> and <span class="math inline">\(\mathrm{q}_{1-\alpha/2} = 2.78\)</span>.</li>
+</ul>
+<p>Since <span class="math inline">\(\textrm{T}_{\textrm{obs}}\)</span> is not in the rejection regions (<a href="#fig-CriticalValues" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>) <span class="math display">\[\begin{align*}
+\textrm{T}_{\textrm{obs}}=0.84 &amp;\;\not\in\;]-\infty, \mathrm{q}_{\alpha/2}[\\
+\textrm{T}_{\textrm{obs}}=0.84 &amp;\;\not\in\;]\,\mathrm{q}_{1-\alpha/2},\infty\,[,
+\end{align*}\]</span> we <span style="background-color: yellow">fail to reject</span> <span class="math display">\[
+H_0\colon\mu = 0
+\]</span> at the significance level <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+</section></section></section><section id="the-two-sided-mathrmp-value" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="the-two-sided-mathrmp-value">
+<span class="header-section-number">1.2</span> The Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value</h2>
+<div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -417,36 +439,39 @@ Figure&nbsp;1.1: Sales differences (sales after minus before the marketing campa
 </div>
 </div>
 </div>
-<p>Marketing campaign data:</p>
-<div class="r-stack">
-<p>Density function of the <span class="math inline">\(t_{\operatorname{df}}\)</span> distribution with <span class="math inline">\(\operatorname{df}=4\)</span></p>
+<p><a href="#fig-pValue" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> shows the density function of the <span class="math inline">\(t_{\operatorname{df}}\)</span> distribution with <span class="math inline">\(\operatorname{df}=n-1=4;\)</span> i.e., the null-distribution for our marketing campaign example.</p>
+<p>The light-red area in <a href="#fig-pValue" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> equals the observed <span class="math inline">\(\mathrm{p}\)</span>-value <span class="math inline">\(\mathrm{p}_{\mathrm{obs}}=0.45\)</span> for the observed value of the <span class="math inline">\(t\)</span>-test statistic <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}=0.84.\)</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-pValue" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pValue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Ch_pValues_files/figure-html/fig-pValue-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pValue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: Density function of the <span class="math inline">\(t_{\operatorname{df}}\)</span> distribution with <span class="math inline">\(\operatorname{df}=n-1=4\)</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Note that <span class="math display">\[
+\mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}
+\]</span> implies that the absolute value <span class="math inline">\(|T|\)</span> of the random <span class="math inline">\(t\)</span>-statistic is Half-<span class="math inline">\(t_{n-1}\)</span> distributed <span class="math display">\[
+|\mathrm{T}|\overset{H_0}{\sim}\text{Half-}t_{n-1}.
+\]</span></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Marketing campaign data:</p>
-<div class="r-stack">
-<p>Density function of the <span style="background-color: yellow">Half-<span class="math inline">\(t_{\operatorname{df}}\)</span></span> distribution with <span class="math inline">\(\operatorname{df}=4\)</span></p>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
+<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <!-- 
-::: {.callout-note appearance="minimal"}
+::: {.callout-tip appearance="minimal"}
 **$\mathrm{p}$-Value:** The $\mathrm{p}$-value is the probability, assuming the null hypothesis ($H_0$) is true, of observing a test statistic $\mathrm{T}$ as extreme as $\mathrm{T}_{\mathrm{obs}}$ or more extreme (in the direction(s) of the alternative hypothesis) than $\mathrm{T}_{\mathrm{obs}}$. 
 ::: 
 
-::: {.callout-note appearance="minimal"}
+::: {.callout-tip appearance="minimal"}
 Thus for two-sided test statistics, we have
 \begin{align*}
 \mathrm{p}_{\mathrm{obs}} 
@@ -462,10 +487,13 @@ Since $\mathrm{T}\overset{H_0}{\sim} t_{n-1}$, we have that [$|\mathrm{T}|\overs
 &amp; = 1 - \mathrm{P}\big(\highlight{|\mathrm{T}|}\leq |\mathrm{T}_{\mathrm{obs}}|\;\big|\highlight{H_0\;\text{is true}}\big)\\[1ex]
 &amp; = 1 - \highlight{\mathrm{F}_{\,\text{Half-}t,n-1}}\big(|\mathrm{T}_{\mathrm{obs}}|\big),
 \end{align*}\]</span> where <span class="math inline">\(\mathrm{F}_{\,\text{Half-}t,n-1}\)</span> denotes the cdf of the Half-<span class="math inline">\(t\)</span> distribution with <span class="math inline">\(\operatorname{df}=n-1\)</span></p>
+<p>The <span class="math inline">\(\textrm{p}\)</span>-value <span class="math inline">\(\textrm{p}{\mathrm{obs}}\)</span> tells us the probability of observing a value of <span class="math inline">\(|\mathrm{T}|\)</span> as extreme as (or more extreme than) <span class="math inline">\(|\mathrm{T}_{\mathrm{obs}}|\)</span> under <span class="math inline">\(H_0\)</span>.</p>
+<p>That is, <span class="math inline">\(\textrm{p}{\mathrm{obs}}\)</span> measures how extreme the absolute value of our observed test statistic <span class="math inline">\(|\mathrm{T}{\mathrm{obs}}|\)</span> is if the null hypothesis <span class="math inline">\(H_0\)</span> were true.</p>
+<p>A very small <span class="math inline">\(\textrm{p}_{\mathrm{obs}}\)</span> suggests that such an observation would be highly unlikely if <span class="math inline">\(H_0\)</span> were true, so we may decide that <span class="math inline">\(H_0\)</span> does not provide a plausible explanation for the data.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
+<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -476,6 +504,26 @@ Since $\mathrm{T}\overset{H_0}{\sim} t_{n-1}$, we have that [$|\mathrm{T}|\overs
 <span></span>
 <span><span class="co">## 1 minus the distribution function of the Half-t</span></span>
 <span><span class="va">p_obs</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/pkg/extraDistr/man/HalfT.html">pht</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">T_obs</span><span class="op">)</span>, nu <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="test-decision-based-on-the-mathrmp-value" class="level3" data-number="1.2.1"><h3 data-number="1.2.1" class="anchored" data-anchor-id="test-decision-based-on-the-mathrmp-value">
+<span class="header-section-number">1.2.1</span> Test Decision based on the <span class="math inline">\(\mathrm{p}\)</span>-Value</h3>
+<ul>
+<li><p>We <strong>reject</strong> <span class="math inline">\(H_0\colon \mu =0\)</span> and accept <span class="math inline">\(H_1\colon \mu \neq 0\)</span> at the significance level <span class="math inline">\(0&lt;\alpha&lt;1\)</span> if <span class="math display">\[
+\highlight{\mathrm{p}_{\mathrm{obs}} &lt; \alpha.}
+\]</span></p></li>
+<li><p>We <strong>fail to reject</strong> <span class="math inline">\(H_0\)</span> at the significance level <span class="math inline">\(0&lt;\alpha&lt;1\)</span> if <span class="math display">\[
+\highlight{\mathrm{p}_{\mathrm{obs}} \geq \alpha.}
+\]</span></p></li>
+</ul>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>⚠️ Failing to reject <span class="math inline">\(H_0\)</span> does not mean that <span class="math inline">\(H_0\)</span> is true. It only means that we do not have enough evidence to reject it.</p>
+</div>
+</div>
 </div>
 <p>Marketing campaign data:</p>
 <ul>
@@ -488,7 +536,7 @@ Since $\mathrm{T}\overset{H_0}{\sim} t_{n-1}$, we have that [$|\mathrm{T}|\overs
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
+<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -505,11 +553,23 @@ Since $\mathrm{T}\overset{H_0}{\sim} t_{n-1}$, we have that [$|\mathrm{T}|\overs
 
 ```{.r .cell-code}
 library("extraDistr")
-df <- 5-1
+n  <- 5
+df <- n-1
 
 ## 1 minus the distribution function of the Half-t
 p_obs <- 1 - pht(q = abs(T_obs), nu = df)
+
+qht(1-0.05, nu = df)
 ```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 2.776445
+```
+
+
+:::
 :::
 
 
@@ -520,37 +580,22 @@ p_obs <- 1 - pht(q = abs(T_obs), nu = df)
 
 -->
 <p>We fail to reject <span class="math inline">\(H_0\colon\mu = 0\)</span>. That is, we have no statistical evidence that the marketing campaign showed a tendency toward <em>significantly</em> higher or lower sales.</p>
-<div class="callout callout-style-simple callout-caution no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>⚠️ Failing to reject <span class="math inline">\(H_0\)</span> does not mean that <span class="math inline">\(H_0\)</span> is true. It only means that we do not have enough evidence to reject it.</p>
-</div>
-</div>
-</div>
-<p><span style="background-color: yellow">Equivalent test decisions</span> at the significance level <span class="math inline">\(0&lt;\alpha&lt;1\)</span>:</p>
+</section><section id="equivalent-test-decisions" class="level3" data-number="1.2.2"><h3 data-number="1.2.2" class="anchored" data-anchor-id="equivalent-test-decisions">
+<span class="header-section-number">1.2.2</span> Equivalent Test Decisions</h3>
 <ul>
 <li>
 <strong>Critical values:</strong> Reject <span class="math inline">\(H_0\colon \mu =0\)</span> if <span style="background-color: yellow"><span class="math inline">\(\displaystyle|\mathrm{T}_{\mathrm{obs}}| &gt; q_{1-\alpha/2}\)</span></span>, where <span class="math inline">\(q_{1-\alpha/2}\)</span> denotes the <span class="math inline">\((1-\alpha/2)\)</span>-quantile of the <span class="math inline">\(t_{\operatorname{df}}\)</span> distribution.</li>
 </ul>
-<p></p>
-<ul>
-<li>
-<strong><span class="math inline">\(\mathrm{p}\)</span>-Values:</strong> Reject <span class="math inline">\(H_0\colon \mu =0\)</span> if <span style="background-color: yellow"><span class="math inline">\(\displaystyle\mathrm{p}_{\mathrm{obs}} &lt; \alpha\)</span></span>
-</li>
-</ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:7in"></p>
+<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="mathrmp-values-challenges-for-hypothesis-testing" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="mathrmp-values-challenges-for-hypothesis-testing">
-<span class="header-section-number">1.4</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</h2>
+</section></section><section id="mathrmp-values-challenges-for-hypothesis-testing" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="mathrmp-values-challenges-for-hypothesis-testing">
+<span class="header-section-number">1.3</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</h2>
 <ul>
 <li><p>While the <span class="math inline">\(\mathrm{p}\)</span>-value can be a useful statistical measure, it is commonly misused and misinterpreted. (<span class="citation" data-cites="Wasserstein2016asa">Wasserstein and Lazar (<a href="Ch_pValues.html#ref-Wasserstein2016asa" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="wasserstein2019asa">Wasserstein, Schirm, and Lazar (<a href="Ch_pValues.html#ref-wasserstein2019asa" role="doc-biblioref">2019</a>)</span>)</p></li>
 <li><p>“Scientific method: Statistical errors.” <span class="citation" data-cites="nuzzo2014scientific">Nuzzo (<a href="Ch_pValues.html#ref-nuzzo2014scientific" role="doc-biblioref">2014</a>)</span></p></li>
