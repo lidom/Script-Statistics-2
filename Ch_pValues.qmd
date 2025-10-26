@@ -36,7 +36,7 @@ In this lecture, we’ll tackle three key questions:
 * **Why** can $\mathrm{p}$-values be tricky or even misleading in hypothesis testing?
 * **What** is good practice when working with $\mathrm{p}$-values?
 
-We’ll explore these questions using the **two-sided $t$-test** as our main example.
+We’ll explore these questions using the **two-sided $t$-test** as our main example. Parallel arguments apply to one-sided testing and other hypothesis tests (F-test, etc.)
 
 ```{r}
 #| echo: false
@@ -179,12 +179,14 @@ S_obs <- sd(X_obs)
 ## Observed t-statistic
 T_obs <- (X_bar - 0)/(S_obs/sqrt(n))
 
+## Alternatively: 
+result <- t.test(X_obs, mu = 0, alternative = "two.sided")
+T_obs  <- result$statistic
+
 ## critical values
 alpha <- 0.05
 qt(p =     alpha/2, df = n-1)
 qt(p = 1 - alpha/2, df = n-1)
-
-## alternatively: t.test(X_obs, mu = 0, alternative = "two.sided")
 ```
 
 <!-- 
@@ -206,8 +208,8 @@ of the $t$-distribution with $n-1$ degrees of freedom, where $0<\alpha<1$ denote
 
 Since $\textrm{T}_{\textrm{obs}}$ is not in the rejection regions (see @fig-CriticalValues)
 \begin{align*}
-\textrm{T}_{\textrm{obs}}=`r T_obs` &\;\not\in\;]-\infty, \mathrm{q}_{\alpha/2}[\\
-\textrm{T}_{\textrm{obs}}=`r T_obs` &\;\not\in\;]\,\mathrm{q}_{1-\alpha/2},\infty\,[,
+\textrm{T}_{\textrm{obs}}=`r T_obs` &\;\not\in\;(-\infty, \mathrm{q}_{\alpha/2})\; \cup \;(\mathrm{q}_{1-\alpha/2},\infty\,)
+%\textrm{T}_{\textrm{obs}}=`r T_obs` &\;\not\in\;]\,\mathrm{q}_{1-\alpha/2},\infty\,[,
 \end{align*}
 we [fail to reject $H_0\colon\mu = 0$]{style="background-color: yellow; padding: 0.1em 0.1em;"}  at the significance level [$\alpha = 0.05.$]{style="background-color: #F88379CC; padding: 0.1em 0.1em;"}
 
@@ -219,7 +221,7 @@ we [fail to reject $H_0\colon\mu = 0$]{style="background-color: yellow; padding:
 #| out.width: "1\\textwidth"
 #| fig-align: center
 #| label: fig-CriticalValues
-#| fig-cap: "Density function of the $t_{\\operatorname{df}}$ distribution with $\\operatorname{df}=n-1=4$ (marketing campaign data) with the rejection regions defined by the critical values $\\mathrm{q}_{\\alpha/2}$ and $\\mathrm{q}_{1-\\alpha/2}$ for $\\alpha=0.05.$"
+#| fig-cap: "Density of the null-distribution $t_{\\operatorname{df}}$ with $\\operatorname{df}=n-1=4$ (marketing campaign data). The rejection regions are defined by the quantiles (critical values) $\\mathrm{q}_{\\alpha/2}$ and $\\mathrm{q}_{1-\\alpha/2}$ of $t_{\\operatorname{df}}$ for $\\alpha=0.05.$"
 
 
 alpha  <- 0.05
@@ -259,10 +261,13 @@ legend("topleft", pch=c(22), cex=1.5,
 ```
 
 
-## The Two-Sided $\mathrm{p}$-Value
+## The Two-Sided $\mathrm{p}$-Value of the $t$-Test 
+
+### Definition of the $\mathrm{p}$-Value
 
 ::: {.callout-tip appearance="minimal"}
-**$\mathrm{p}$-Value:** The $\mathrm{p}$-value is the probability of observing a test statistic $\mathrm{T}$ as extreme as the observed value $\mathrm{T}_{\mathrm{obs}}$ or more extreme than $\mathrm{T}_{\mathrm{obs}}$ (in the direction(s) of the alternative hypothesis), given the null hypothesis ($H_0$) is true.
+## Definition of the $\mathrm{p}$-Value 
+The $\mathrm{p}$-value, $\textrm{p}_{\mathrm{obs}},$ is the probability of observing a test statistic $\mathrm{T}$ as extreme as or more extreme than $\mathrm{T}_{\mathrm{obs}}$ (in the direction(s) of the alternative hypothesis), given the null hypothesis ($H_0$) is true.
 
 * **Two-Sided $\mathrm{p}$-Value:** 
 $$\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)$$
@@ -274,10 +279,10 @@ alpha  <- 0.05
 df     <- 5-1
 q_1    <- -abs(T_obs)
 q_2    <- abs(T_obs)
-p_obs <- round(2 * min(pt(q_1, df = df), pt(q_2, df = df)), 2)
+p_obs  <- round(2 * min(pt(q_1, df = df), pt(q_2, df = df)), 2)
 ```
 
-The light-red area in @fig-pValue equals the observed $\mathrm{p}$-value [$\mathrm{p}_{\mathrm{obs}}=`r p_obs`$]{style="background-color: #F88379CC; padding: 0.2em 0.1em;"} for the observed value of the $t$-test statistic $\mathrm{T}_{\mathrm{obs}}=`r T_obs`.$
+The light-red area in @fig-pValue equals the observed $\mathrm{p}$-value [$\mathrm{p}_{\mathrm{obs}}=`r p_obs`$]{style="background-color: #F88379CC; padding: 0.2em 0.1em;"} corresponding to the observed value of the $t$-statistic $\mathrm{T}_{\mathrm{obs}}=`r T_obs`.$
 
 ```{r}
 #| echo: false
@@ -286,7 +291,7 @@ The light-red area in @fig-pValue equals the observed $\mathrm{p}$-value [$\math
 #| out.width: "1\\textwidth"
 #| fig-align: center
 #| label: fig-pValue
-#| fig-cap: "Density function of the $t_{\\operatorname{df}}$ distribution with $\\operatorname{df}=n-1=4$ (marketing campaign data)."
+#| fig-cap: "Density of the null-distribution $t_{\\operatorname{df}}$ with $\\operatorname{df}=n-1=4$ (marketing campaign data)."
 
 
 xx1    <- seq(-5, q_1, len=25)
@@ -315,20 +320,20 @@ legend("topleft", pch=c(22), cex=1.5,
 ```
 
 
-#### **Computing the $\mathrm{p}$-Value** {-}
+### Computing the $\mathrm{p}$-Value
 
 Note that 
 $$
 % \mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}
-\mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}
+\mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}\phantom{Half}
 $$
-implies that the absolute value $|T|$ of the random $t$-statistic is Half-$t_{n-1}$ distributed,
+implies that the **absolute value** $|T|$ of the random $t$-statistic is Half-$t_{n-1}$ distributed,
 $$
 % \mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}
 |\mathrm{T}|=\frac{|\bar{X}-0|}{S/\sqrt{n}}\overset{H_0}{\sim}\textrm{Half-}t_{n-1}.
 $$
 
-@fig-Halft visualizes the density function of the $\textrm{Half-}t_{n-1}$ distribution with $n-1=4$ degrees of freedom for the marketing campaign data ($n=5$).
+@fig-Halft visualizes the density function of the $\textrm{Half-}t_{n-1}$ distribution with $\operatorname{df}=n-1=4$ degrees of freedom for the marketing campaign data ($n=5$).
 
 ```{r}
 #| echo: false
@@ -337,7 +342,7 @@ $$
 #| out.width: "1\\textwidth"
 #| fig-align: center
 #| label: fig-Halft
-#| fig-cap: "Density functions of the $t_{\\operatorname{df}}$ and the $\\textrm{Half-}t_{\\operatorname{df}}$ distribution with $\\operatorname{df}=n-1=4$ (marketing campaign data)."
+#| fig-cap: "Densities of the null-distributions $t_{\\operatorname{df}}$ and $\\textrm{Half-}t_{\\operatorname{df}}$ with $\\operatorname{df}=n-1=4$ (marketing campaign data)."
 
 library("extraDistr")
 
@@ -381,7 +386,7 @@ legend("topleft", pch=22, cex=1.5,
        bty="n", pt.bg = myRed)
 
 legend("topright", lty = 1, lwd=2, col=c(1, gray(.75)),
-        legend=c(expression("Half-t"), "t"), 
+        legend=c(expression("Half-t"[n-1]), expression("t"[n-1])), 
         bty="n", cex = 1.5, title = "Density", fami)       
 ```
 
@@ -415,21 +420,16 @@ $\mathrm{F}_{\,\text{Half-}t,n-1}$ denotes the cdf of the Half-$t$ distribution 
 
 #### **Observed $\mathrm{p}$-Value (Marketing Campaign Data):** {-}
 
-* $\mathrm{p}_{\mathrm{obs}}=`r p_obs`$
+Since $|\mathrm{T}_{\mathrm{obs}}|=`r abs(T_obs)`,$
+$$
+\mathrm{p}_{\mathrm{obs}}=`r p_obs`=1 - \mathrm{F}_{\,\text{Half-}t,n-1}\big(`r abs(T_obs)`\big).
+$$
 
-```{r}
-#| echo: true
-library("extraDistr")
-n  <- 5
-df <- n - 1
+::: {.panel-tabset}
 
-## 1 minus the distribution function of the Half-t
-p_obs <- 1 - pht(q = abs(T_obs), nu = df)
+## Plot
 
-## alternatively: t.test(X_obs, mu = 0, alternative = "two.sided")
-```
-
-
+Computation of the observed $\operatorname{p}$-value:
 
 ```{r}
 #| echo: false
@@ -437,6 +437,14 @@ p_obs <- 1 - pht(q = abs(T_obs), nu = df)
 #| fig.height: 4
 #| out.width: "1\\textwidth"
 #| fig-align: center
+
+library("extraDistr")
+n  <- 5
+df <- n - 1
+
+## 1 minus the distribution function of the Half-t
+p_obs <- 1 - pht(q = abs(T_obs), nu = df)
+
 
 alpha  <- 0.05
 df     <- 5-1
@@ -465,16 +473,25 @@ legend("top", lty = 1, lwd=2,
        bty="n", cex = 1.5)
 ```
 
-::: {.callout-tip appearance="minimal"}
-**Interpretation:**
 
-**Technical:** The $\textrm{p}$-value $\textrm{p}_{\mathrm{obs}}$ tells us the probability of observing a value of $|\mathrm{T}|$ as extreme as (or more extreme than) $|\mathrm{T}_{\mathrm{obs}}|$ under $H_0$.
+## `R`-Codes
 
-That is, $\textrm{p}_{\mathrm{obs}}$ measures how extreme the absolute value of our observed test statistic $|\mathrm{T}_{\mathrm{obs}}|$ is if the null hypothesis $H_0$ were true. 
+Computation of the observed $\operatorname{p}$-value:
+```{r}
+#| echo: true
+#| eval: false
+library("extraDistr")
+n  <- 5
+df <- n - 1
 
-A very small $\textrm{p}_{\mathrm{obs}}$ suggests that such an observation would be highly unlikely if $H_0$ were true, so we may decide that $H_0$ does not provide a plausible explanation for the data.
+## 1 minus the distribution function of the Half-t
+p_obs <- 1 - pht(q = abs(T_obs), nu = df)
+
+## Alternatively: 
+result <- t.test(X_obs, mu = 0, alternative = "two.sided")
+p_obs  <- result$p.value
+```
 :::
-
 
 
 ### Test Decision based on the $\mathrm{p}$-Value
@@ -502,7 +519,7 @@ That is, we have no statistical evidence that the marketing campaign showed a te
 
 
 ::: {.callout-caution appearance="minimal"}
-⚠️ **Failing to reject $H_0$ does not mean that $H_0$ is true.** It only means that a potential impact of the campaign is not large enough such that the observed effect $(\bar{X}_{\mathrm{obs}}-0)$ was not large enough to stand out from typical random variation captured by the standard error $(S_{\mathrm{obs}}/\sqrt{n}).$ 
+⚠️ **Failing to reject $H_0$ does not mean that $H_0$ is true.** It only means that a potential impact of the campaign is not large enough such that the observed effect $(\bar{X}_{\mathrm{obs}}-0)$ was not large enough to stand out from the random variation captured by the standard error $(S_{\mathrm{obs}}/\sqrt{n});$ see @sec-Interpretation.
 :::
 
 
@@ -521,62 +538,35 @@ qht(1-0.05, nu = df)
 -->
 
 
+### Equal Test Decisions: Critical Values and $\mathrm{p}$-Values
 
+For a given significance level $0<\alpha<1$, critical values and $\mathrm{p}$-values yield equivalent test decisions:
 
+:::: {.columns}
 
-### Equivalent Test Decisions
+::: {.column width="50%"}
 
+* Reject $H_0$ 
+  * if $|\mathrm{T}_{\mathrm{obs}}| > \mathrm{q}_{1-\alpha}\;$ or
+  * if $\,\,\,\mathrm{p}_{\mathrm{obs}}\,<\alpha$
 
+:::
 
-* **Critical values:**</br> 
-Reject $H_0\colon \mu =0$ if [$\displaystyle|\mathrm{T}_{\mathrm{obs}}| > q_{1-\alpha/2}$]{style="background-color: yellow"}, 
-   where $q_{1-\alpha/2}$ denotes the $(1-\alpha/2)$-quantile of the $t_{\operatorname{df}}$ distribution. 
+::: {.column width="50%"}
 
-<!-- 
+* Fail to reject $H_0$ 
+  * if $|\mathrm{T}_{\mathrm{obs}}| \leq  \mathrm{q}_{1-\alpha}\;$ or
+  * if $\,\,\,\mathrm{p}_{\mathrm{obs}}\, \leq \alpha$
 
-```{r}
-#| echo: false
-#| fig.width: 8
-#| fig.height: 4
-#| out.width: "1\\textwidth"
-#| fig-align: center
+:::
 
-alpha  <- 0.05
-df     <- 5-1
+::::
 
-myfun <- function(x){1-pht(q = x, nu = df)}
+where $\mathrm{q}_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the Half-$t_{n-1}$ distribution.
 
-par(mar = c(4.5, 9, 1, 0.5), family = "serif")
-curve(expr = myfun,
-      xlab = "", ylab = "", main = "",
-      lwd = 2, col = 1, xlim = c(0, 4),
-      ylim = c(0, 1), xaxs="i",yaxs="i", axes = FALSE)
-axis(1, cex.axis = 1.5, family = "serif", mgp = c(3, 1, 0))
-axis(2, at = c(0,1), labels = c("0","1"), cex.axis = 1.5, family = "serif", las=2, mgp = c(3, 1, 0))
-axis(1, at =  T_obs, col = "blue", labels = FALSE, tck=-0.15)
-axis(2, at =  myfun(T_obs), col = "blue", labels = FALSE, tck=-0.15)
-#axis(1, at =  qt(1-alpha/2, df=df), col = "red", labels = FALSE, tck=-0.1)
-axis(2, at = alpha, col = "red", labels = FALSE, tck=-0.15)
-lines(x = c(0,T_obs), y= rep(myfun(T_obs), 2), col="blue")
-lines(x = rep(T_obs, 2), y= c(0, myfun(T_obs)), col="blue")
-#lines(x = c(0,qt(1-alpha/2, df=df)), y= rep(alpha, 2), col="red")
-#lines(x = c(0, 0), y= c(0, alpha), lwd = 3, col = "red")
-#lines(x = rep(qt(1-alpha/2, df=df), 2), y= c(0, alpha), lwd = 1, col = "red")
-##
-mtext(side = 1, text = bquote("|"~T[obs]~"|"), at = c(abs(T_obs)), line = 3.5, cex = 1.5, family = "serif")
-#mtext(side = 1, text = bquote(q[1-alpha/2]), at = qt(1-alpha/2, df=df), line = 3.5, cex = 1.5, family = "serif")
-corners = par("usr") #Gets the four corners of plot area (x1, x2, y1, y2)
-par(xpd = TRUE) #Draw outside plot area
-text(x = corners[1]-.75, y = mean(myfun(T_obs)), bquote(p[obs]==.(round(myfun(T_obs), 2))), srt = 0, cex = 1.5, family = "serif")
-text(x = corners[1]-.75, y = alpha, bquote(alpha==.(alpha)), srt = 0, cex = 1.5, family = "serif")
+::: {.panel-tabset}
 
-legend("top", lty = 1, lwd=2,
-       legend=expression(1-F["Half-t,n-1"]), 
-       bty="n", cex = 1.5)
-```
- -->
-
-
+## Reject $H_0$
 
 ```{r}
 #| echo: false
@@ -621,6 +611,87 @@ legend("topright", lty = 1, lwd=2,
        legend=expression(1-F["Half-t,n-1"]), 
        bty="n", cex = 1.5)
 ```
+
+
+## Fail to Reject $H_0$
+
+```{r}
+#| echo: false
+#| fig.width: 8
+#| fig.height: 4
+#| out.width: "1\\textwidth"
+#| fig-align: center
+
+alpha  <- 0.05
+df     <- 5-1
+
+T_2obs <- 2.1
+
+myfun <- function(x){1-pht(q = x, nu = df)}
+
+par(mar = c(4.5, 9, 1, 0.5))
+curve(expr = myfun,
+      xlab = "", ylab = "", main = "",
+      lwd = 2, col = 1, xlim = c(0, 4),
+      ylim = c(0, .2), xaxs="i",yaxs="i", axes = FALSE)
+axis(1, cex.axis = 1.5, family = "serif", mgp = c(3, 1, 0))
+axis(2, at = c(0,1), labels = c("0","1"), cex.axis = 1.5, family = "serif", las=2, mgp = c(3, 1, 0))
+axis(1, at =  T_2obs, col = "blue", labels = FALSE, tck=-0.15)
+axis(2, at =  myfun(T_2obs), col = "blue", labels = FALSE, tck=-0.15)
+axis(1, at =  qht(1-alpha, nu=df), col = "red", labels = FALSE, tck=-0.15)
+axis(2, at = alpha, col = "red", labels = FALSE, tck=-0.15)
+lines(x = c(0,T_2obs), y= rep(myfun(T_2obs), 2), col="blue")
+lines(x = rep(T_2obs, 2), y= c(0, myfun(T_2obs)), col="blue")
+lines(x = c(0,qt(1-alpha/2, df=df)), y= rep(alpha, 2), col="red")
+#lines(x = c(0, 0), y= c(0, alpha), lwd = 3, col = "red")
+lines(x = rep(qt(1-alpha/2, df=df), 2), y= c(0, alpha), lwd = 1, col = "red")
+##
+mtext(side = 1, text = bquote("|"~T[obs]~"|"), at = c(abs(T_2obs)), line = 3.5, cex = 1.5, family = "serif")
+mtext(side = 1, text = bquote(q[1-alpha]), at = qht(1-alpha, nu=df), line = 3.5, cex = 1.5, family = "serif")
+corners = par("usr") #Gets the four corners of plot area (x1, x2, y1, y2)
+par(xpd = TRUE) #Draw outside plot area
+text(x = corners[1]-.75, y = mean(myfun(T_2obs)), bquote(p[obs]), srt = 0, cex = 1.5, family = "serif")
+text(x = corners[1]-.75, y = alpha, bquote(alpha==.(alpha)), srt = 0, cex = 1.5, family = "serif")
+
+
+legend("topright", lty = 1, lwd=2,
+       legend=expression(1-F["Half-t,n-1"]), 
+       bty="n", cex = 1.5)
+```
+:::
+
+
+### Interpretation of the $\textrm{p}$-Value {#sec-Interpretation}
+
+By its definition, the $\textrm{p}$-value, $\textrm{p}_{\mathrm{obs}},$ tells us the probability of observing a value of $|\mathrm{T}|$ as extreme as or more extreme than $|\mathrm{T}_{\mathrm{obs}}|$ if the null hypothesis were $H_0$.
+
+
+That is, $\textrm{p}_{\mathrm{obs}}$ measures how extreme $|\mathrm{T}_{\mathrm{obs}}|$ is if the null hypothesis $H_0$ were true. 
+
+
+::: {.callout-tip appearance="minimal"}
+
+## 🤓 Small $\textrm{p}$-Values
+
+* A very small $\textrm{p}_{\mathrm{obs}}$ suggests that $|\mathrm{T}_{\mathrm{obs}}|$ is incompatible with $H_0$, so we may decide that $H_0$ does not provide a plausible explanation for the data. 
+* If we reject $H_0$, since  $\textrm{p}_{\mathrm{obs}}<\alpha,$ we falsely reject $H_0$ (type-I-error) with probability $\alpha,$ which we may find acceptable for small $\alpha$-levels such as $\alpha=0.05$ or $\alpha = 0.01.$ 
+:::
+
+
+::: {.callout-warning appearance="minimal"}
+
+## 😑 Large $\textrm{p}$-Values
+
+A large $\textrm{p}_{\mathrm{obs}}$ suggests that $|\mathrm{T}_{\mathrm{obs}}|$ is compatible with $H_0$, **but this does not allow** us to conclude that $H_0$ is confirmed--- even if $\textrm{p}_{\mathrm{obs}}\approx 1$.
+
+*  Even when $H_0$ is false, we may see very large values of $\textrm{p}_{\mathrm{obs}}$ if, for instance, 
+    * the sample size $n$ is small or  
+    * the variability $\operatorname{Var}(X)$ in the data is large. 
+
+* If we fail to reject $H_0$, since  $\textrm{p}_{\mathrm{obs}}\geq \alpha,$ we cannot simply accept $H_0$, since we do not know at which probability we falsely accept $H_0$ (type-II-error). 
+
+📢 Statistical hypothesis tests are designed to **falsify** $H_0$ not to verify $H_0.$ 
+:::
 
 
 
