@@ -5,8 +5,8 @@ project:
 book:
   title: Statistics-II (B.Sc.)
   author: Prof. Dr. Dominik Liebl 
-  date: last-modified
-  date-format: "[Last Updated on] MMMM DD, YYYY"
+  #date: last-modified
+  #date-format: "[Last Updated on] MMMM DD, YYYY"
   sidebar: 
     #logo: images/Uni_Bonn_Logo.jpeg
     number-depth: 2

@@ -7,9 +7,9 @@
 suppressPackageStartupMessages(library("kableExtra"))
 suppressPackageStartupMessages(library("tidyverse"))
 
-timetable <- tibble("Day"      = c("Monday",      "Thursday"),
-                    "Time"     = c("14:15-15:45", "15:45-16:15"),
-                    "Lecture Hall" = c("Lecture Hall K", "Lecture Hall K"))
+timetable <- tibble("Day"      = c("Thursday"),
+                    "Time"     = c("9:45-11:15"),
+                    "Lecture Hall" = c("Room 001"))
            
 timetable %>% kbl() %>%  kable_styling()
 ```
@@ -17,12 +17,12 @@ timetable %>% kbl() %>%  kable_styling()
 
 ### Link to this Lecture
 
-![](images/lecture_page_linke.png){width=25% fig-align="center"}
+![](images/lecture_page_linke.png){width=35% fig-align="center"}
 
 [https://www.dliebl.com/Script-Statistics-2/](https://www.dliebl.com/Script-Statistics-2/)
 
 
-### Lecture Material {-}
+<!-- ### Lecture Material {-}
 
 * This online script
 * [Folder containing `R`-Scripts](https://www.dropbox.com/scl/fo/omfqxytalaiyx4kd0kv4o/AE7EhUu8W3dJPvaA_ETDlQM?rlkey=w6v0am29ypq38gt4xpzy230bj&st=8p60234i&dl=0)
@@ -32,5 +32,5 @@ timetable %>% kbl() %>%  kable_styling()
 
 * [Statistik: Der Weg zur Datenanalyse](https://link.springer.com/book/10.1007/978-3-662-67526-7) 
 * [Probability and Statistics for Economists](https://press.princeton.edu/books/hardcover/9780691235943/probability-and-statistics-for-economists?srsltid=AfmBOopn6HIW0Y1Edtu1W8VdiDmPN6PfNiCwHmyTBjQEHqM5i3W4ysVK)
-
+ -->
 

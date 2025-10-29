@@ -1,8 +1,6 @@
 <!-- LTeX: language=en-US -->
 # $\mathrm{p}$-Values: Challenges for Hypothesis Testing
 
-
-
 ::: {.content-hidden unless-format="html"}
 $$
 \require{color}
@@ -60,7 +58,12 @@ T_obs <- round((sqrt(n) * X_bar)/s, 2)
 
 Imagine a company runs a marketing campaign in $n = 5$ stores and measures sales *before* and *after* the campaign.
 
-</br>
+<br>
+
+::: {.panel-tabset}
+
+## Data Table
+
 
 Store | Sales Before | Sales After | Difference (After $-$ Before)
 ----|------------|------------|--------- 
@@ -70,14 +73,11 @@ $3$   |$`r format(Y_1[3], nsmall=2)`$|$`r format(Y_2[3], nsmall=2)`$|$X_{3,\math
 $4$   |$`r format(Y_1[4], nsmall=2)`$|$`r format(Y_2[4], nsmall=2)`$|$X_{4,\mathrm{obs}}=`r format(X[4], nsmall=2)`$
 $5$   |$`r format(Y_1[5], nsmall=2)`$|$`r format(Y_2[5], nsmall=2)`$|$X_{5,\mathrm{obs}}=`r format(X[5], nsmall=2)`$  
 
-</br>
-
+## Data Plot
 
 @fig-diffData visualizes the observed differences $X_{i,\mathrm{obs}},$ $i=1,\dots,5.$
-<!-- \begin{align*}
-&\{X_{1,obs},X_{2,obs},X_{3,obs},X_{4,obs},X_{5,obs}\}\\
-=&\{`r format(X[1], nsmall=2)`, `r format(X[2], nsmall=2)`, `r format(X[3], nsmall=2)`, `r format(X[4], nsmall=2)`, `r format(X[5], nsmall=2)`\}
-\end{align*} -->
+
+<br>
 
 ```{r}
 #| echo: false
@@ -96,7 +96,7 @@ plot(x = X, y = rep(0.002, n),
      ylab = "", xlab = "", xlim = c(-2.1,2.1), ylim = c(0,.005), yaxs="i")
 axis(1, at = -2:2, cex.axis = 1.5, lwd = 2, family="serif", pos =0)
 ```
-
+:::
 
 **We want to know:**
 
@@ -106,21 +106,12 @@ Was the marketing campaign successful? Did it show a tendency (location-shift) t
 * **Statistical question:** </br> 
 Is the mean, $\mu,$ of $X_1,\dots,X_n$ different from zero?
 
-<!-- * **Formal test:** $\hspace{1cm}H_0\colon \mu = 0\quad$ versus $\quad H_1\colon \mu \neq 0$ -->
 
 ::: {.callout-tip appearance="minimal"}
-**Assumption:** There are no systematic differences (mean-shifts) between sales before and after the marketing campaign, other than the potential impact of the campaign itself.
+## Assumption
+There are no systematic differences (mean-shifts) between sales before and after the marketing campaign, other than the potential impact of the campaign itself.
 :::
 
-<!-- 
-### 📖 Quick Recap: Two-Sided $t$-Test, Critical Values, and Decision {-} 
-
-::: {.callout-tip appearance="minimal"}
-For more background, see our earlier lecture on hypothesis testing.
-:::
-
-#### **Refresher: Two-Sided $t$-Test** {-}
--->
 
 #### **Two-Sided $t$-Test** {-}
 We test
@@ -129,9 +120,9 @@ We test
 $\displaystyle H_0\colon \mu = 0\quad$ versus $\displaystyle \quad H_1\colon \mu \neq 0$
 </center>
 
-</br>
+<br>
 
-The $t$-statistic is:
+The $t$-statistic is
 $$
 \mathrm{T} = \frac{\bar{X} - 0}{S/\sqrt{n}}\overset{H_0}{\sim} t_{n-1},
 $$
@@ -140,33 +131,27 @@ where
 * $\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i$ is the **sample mean**, and
 * $S= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})}$ is the **sample standard deviation.**
 
-::: {.callout-tip appearance="minimal"}
-**Assumptions:**
-
+::: {.callout-tip appearance="minimal" collapse="true"}
+## Assumptions underlying the $t$-test
 * Random (iid) sample: 
 $X_1,\dots,X_n\overset{\operatorname{iid}}{\sim}X$ 
 * For small $n$: 
 $X\sim\mathcal{N}(\mu, \sigma^2)$ 
-
-* For large $n$: we just need finite mean and variance (Central Limit Theorem helps).
+* For large $n$: we just need finite mean $E(X)=\mu$ and variance $\operatorname{Var}(X)=\sigma^2$ (Central Limit Theorem helps).
 :::
 
-</br>
+<br>
 
-#### **Observed (obs) $t$-Statistic (Marketing Campaign Data)** {-}
-
+#### Observed (obs) Value of the $t$-statistic<br>(Marketing Example) {-}
 $$
 \mathrm{T}_{\mathrm{obs}} = \frac{\bar{X}_{\mathrm{obs}} - 0}{S_{\mathrm{obs}}/\sqrt{5}} = `r format(T_obs, nsmall=2)`
 $$ 
 
 * $\bar{X}_{\mathrm{obs}}=\frac{1}{5}\sum_{i=1}^5 X_{i,\mathrm{obs}} = `r format(X_bar,nsmall=2)`$ 
 * $S_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,\mathrm{obs}}-\bar{X}_{\mathrm{obs}})} = `r format(s,nsmall=2)`$ 
-* Significance level: $\alpha=0.05$
-* Critical values (quantiles of $t_{n-1}$): $\mathrm{q}_{\alpha/2} = `r round(qt(p = 0.05/2, df=4), 2)`\;$ and $\;\mathrm{q}_{1-\alpha/2} = `r round(qt(p = 1-0.05/2, df=4), 2)`$
 
-<!-- 
-This observed $t$-statistic value tells us how far the mean difference is from zero, measured in units of the estimated standard error. 
--->
+::: {.callout-note appearance="minimal" collapse="true"}
+## Computing $\mathrm{T}_{\mathrm{obs}}$ in `R`
 
 ```{r}
 #| echo: true
@@ -180,36 +165,35 @@ S_obs <- sd(X_obs)
 T_obs <- (X_bar - 0)/(S_obs/sqrt(n))
 
 ## Alternatively: 
-result <- t.test(X_obs, mu = 0, alternative = "two.sided")
+result <- t.test(x           = X_obs, 
+                 mu          = 0, 
+                 alternative = "two.sided")
 T_obs  <- result$statistic
-
-## critical values
-alpha <- 0.05
-qt(p =     alpha/2, df = n-1)
-qt(p = 1 - alpha/2, df = n-1)
 ```
-
-<!-- 
-#### **Refresher: Critical Values** {-}
-
-::: {.callout-tip appearance="minimal"}
-**Critical values** mark the "cutoff points" for deciding whether our observed statistic $\mathrm{T}_{\mathrm{obs}}$ is too extreme to be consistent with $H_0$.
 :::
 
-In case of the two-sided $t$-test, the **critical values** are the $(\alpha/2)$- and $(1 - \alpha/2)$-quantiles
+<br>
+
+#### Test Decision using Critical Values<br>(Marketing Example) {-}
+
+Significance level
+$$
+\alpha=0.05
+$$
+
+<br>
+
+Critical values of the $t_{n-1}$-distribution 
+
 <center>
-$\displaystyle \mathrm{q}_{\alpha/2}\quad$ and $\displaystyle \quad\mathrm{q}_{1-\alpha/2}\quad$
+$\mathrm{q}_{\alpha/2} = `r round(qt(p = 0.05/2, df=4), 2)`\;$ and $\;\mathrm{q}_{1-\alpha/2} = `r round(qt(p = 1-0.05/2, df=4), 2)`$
 </center>
-of the $t$-distribution with $n-1$ degrees of freedom, where $0<\alpha<1$ denotes the significance level. @fig-CriticalValues shows the null distribution (the $t_{n-1}$ density) and the rejection regions for $\alpha = 0.05$. 
--->
 
-
-#### **Test Decision (Marketing Campaign Data)** {-}
+<br>
 
 Since $\textrm{T}_{\textrm{obs}}$ is not in the rejection regions (see @fig-CriticalValues)
 \begin{align*}
-\textrm{T}_{\textrm{obs}}=`r T_obs` &\;\not\in\;(-\infty, \mathrm{q}_{\alpha/2})\; \cup \;(\mathrm{q}_{1-\alpha/2},\infty\,)
-%\textrm{T}_{\textrm{obs}}=`r T_obs` &\;\not\in\;]\,\mathrm{q}_{1-\alpha/2},\infty\,[,
+\textrm{T}_{\textrm{obs}}=`r T_obs` \;\highlight{\not\in}\;(-\infty, \mathrm{q}_{\alpha/2})\; \cup \;(\mathrm{q}_{1-\alpha/2},\infty\,)
 \end{align*}
 we [fail to reject $H_0\colon\mu = 0$]{style="background-color: yellow; padding: 0.1em 0.1em;"}  at the significance level [$\alpha = 0.05.$]{style="background-color: #F88379CC; padding: 0.1em 0.1em;"}
 
@@ -221,7 +205,7 @@ we [fail to reject $H_0\colon\mu = 0$]{style="background-color: yellow; padding:
 #| out.width: "1\\textwidth"
 #| fig-align: center
 #| label: fig-CriticalValues
-#| fig-cap: "Density of the null-distribution $t_{\\operatorname{df}}$ with $\\operatorname{df}=n-1=4$ (marketing campaign data). The rejection regions are defined by the quantiles (critical values) $\\mathrm{q}_{\\alpha/2}$ and $\\mathrm{q}_{1-\\alpha/2}$ of $t_{\\operatorname{df}}$ for $\\alpha=0.05.$"
+#| fig-cap: "Density of the null-distribution $t_{\\operatorname{df}}$ with $\\operatorname{df}=n-1=4$ (marketing example). The rejection regions are defined by the quantiles (critical values) $\\mathrm{q}_{\\alpha/2}$ and $\\mathrm{q}_{1-\\alpha/2}$ of $t_{\\operatorname{df}}$ for $\\alpha=0.05.$"
 
 
 alpha  <- 0.05
@@ -254,11 +238,26 @@ lines(x = c(q_1,q_1), y = c(0, dt(x = q_1, df = df)), col="red")
 axis(1, at = q_2,   col = "red",  labels = FALSE, tck=-0.09)
 lines(x = c(q_2,q_2), y = c(0, dt(x = q_2, df = df)), col="red")
 mtext(side = 1, text = c(expression(q[alpha/2]), expression(T[obs]), expression(q[1-alpha/2])), at = c(q_1,T_obs,q_2), line = 3.5, cex = 1.5, family = "serif")
-legend("topleft", pch=c(22), cex=1.5, 
+legend("topright", pch=c(22), cex=1.5, 
        col = myRed, 
        legend=expression(alpha==0.05), 
-       bty="n", pt.bg = myRed)
+       bty="n", pt.bg = myRed, title = "")
 ```
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## Computing critical values in `R`
+
+```{r}
+#| echo: true
+#| eval: false
+## Critical values
+n     <- 5
+alpha <- 0.05
+qt(p =     alpha/2, df = n-1)
+qt(p = 1 - alpha/2, df = n-1)
+```
+:::
+
 
 
 ## The Two-Sided $\mathrm{p}$-Value of the $t$-Test 
@@ -268,10 +267,13 @@ legend("topleft", pch=c(22), cex=1.5,
 ::: {.callout-tip appearance="minimal"}
 ## Definition of the $\mathrm{p}$-Value 
 The $\mathrm{p}$-value, $\textrm{p}_{\mathrm{obs}},$ is the probability of observing a test statistic $\mathrm{T}$ as extreme as or more extreme than $\mathrm{T}_{\mathrm{obs}}$ (in the direction(s) of the alternative hypothesis), given the null hypothesis ($H_0$) is true.
-
-* **Two-Sided $\mathrm{p}$-Value:** 
-$$\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)$$
 :::
+
+**Two-sided $\mathrm{p}$-value of the $t$-test** 
+$$\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)$$
+
+
+<br>
 
 ```{r}
 #| echo: false
@@ -291,7 +293,7 @@ The light-red area in @fig-pValue equals the observed $\mathrm{p}$-value [$\math
 #| out.width: "1\\textwidth"
 #| fig-align: center
 #| label: fig-pValue
-#| fig-cap: "Density of the null-distribution $t_{\\operatorname{df}}$ with $\\operatorname{df}=n-1=4$ (marketing campaign data)."
+#| fig-cap: "Density of the null-distribution $t_{\\operatorname{df}}$ with $\\operatorname{df}=n-1=4$ (marketing example)."
 
 
 xx1    <- seq(-5, q_1, len=25)
@@ -313,10 +315,10 @@ axis(1, cex.axis = 1.5, family = "serif")
 axis(1, at =  T_obs, col = "red", labels = FALSE, tck=-0.09)
 axis(1, at = -T_obs, col = "red", labels = FALSE, tck=-0.09)
 mtext(side = 1, text = expression(-T[obs], T[obs]), at = c(-abs(T_obs),abs(T_obs)), line = 3.5, cex = 1.5, family = "serif")
-legend("topleft", pch=c(22), cex=1.5, 
+legend("topright", pch=c(22), cex=1.5, 
        col = myRed, 
        legend=bquote(p[obs]==.(p_obs)), 
-       bty="n", pt.bg = myRed)
+       bty="n", pt.bg = myRed, title = "")
 ```
 
 
@@ -327,13 +329,17 @@ $$
 % \mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}
 \mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}\phantom{Half}
 $$
-implies that the **absolute value** $|T|$ of the random $t$-statistic is Half-$t_{n-1}$ distributed,
+implies that the [**absolute value** $|\mathrm{T}|$]{style="background-color: yellow; padding: 0.1em 0.1em;"} of the random $t$-statistic is Half-$t_{n-1}$ distributed,
 $$
 % \mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}
-|\mathrm{T}|=\frac{|\bar{X}-0|}{S/\sqrt{n}}\overset{H_0}{\sim}\textrm{Half-}t_{n-1}.
+|\mathrm{T}|=\frac{|\bar{X}-0|}{S/\sqrt{n}}\overset{H_0}{\sim}\highlight{\textrm{Half-}t_{n-1}.}
 $$
 
-@fig-Halft visualizes the density function of the $\textrm{Half-}t_{n-1}$ distribution with $\operatorname{df}=n-1=4$ degrees of freedom for the marketing campaign data ($n=5$).
+<br>
+
+The density function of the $\textrm{Half-}t_{n-1}$ distribution with $\operatorname{df}=n-1$ degrees of freedom is simply the **folded version** of the density function of the $t_{n-1}$ distribution (@fig-Halft).
+
+<br>
 
 ```{r}
 #| echo: false
@@ -342,7 +348,7 @@ $$
 #| out.width: "1\\textwidth"
 #| fig-align: center
 #| label: fig-Halft
-#| fig-cap: "Densities of the null-distributions $t_{\\operatorname{df}}$ and $\\textrm{Half-}t_{\\operatorname{df}}$ with $\\operatorname{df}=n-1=4$ (marketing campaign data)."
+#| fig-cap: "Densities of the null-distributions $t_{\\operatorname{df}}$ and $\\textrm{Half-}t_{\\operatorname{df}}$ with $\\operatorname{df}=n-1=4$ (marketing example)."
 
 library("extraDistr")
 
@@ -380,50 +386,44 @@ axis(1, cex.axis = 1.5, family = "serif")
 axis(1, at =  T_obs, col = "red", labels = FALSE, tck=-0.11)
 #axis(1, at = -T_obs, col = gray(.75), labels = FALSE, tck=-0.11)
 mtext(side = 1, text = expression("|"~T[obs]~"|"), at = c(abs(T_obs)), line = 3.5, cex = 1.5, family = "serif")
-legend("topleft", pch=22, cex=1.5, 
+legend("topright", pch=22, cex=1.5, 
        col = myRed, 
        legend=c(bquote(p[obs]==.(p_obs))), 
-       bty="n", pt.bg = myRed)
+       bty="n", pt.bg = myRed, title = "")
 
-legend("topright", lty = 1, lwd=2, col=c(1, gray(.75)),
-        legend=c(expression("Half-t"[n-1]), expression("t"[n-1])), 
-        bty="n", cex = 1.5, title = "Density", fami)       
+legend("topleft", lty = 1, lwd=2, col=c(1, gray(.75)),
+        legend=c(expression(paste("Half-",italic(t)[n-1])), expression(italic(t)[n-1])), 
+        bty="n", cex = 1.5, title = "Density")       
 ```
 
-
-
-<!-- 
 ::: {.callout-tip appearance="minimal"}
-**$\mathrm{p}$-Value:** The $\mathrm{p}$-value is the probability, assuming the null hypothesis ($H_0$) is true, of observing a test statistic $\mathrm{T}$ as extreme as $\mathrm{T}_{\mathrm{obs}}$ or more extreme (in the direction(s) of the alternative hypothesis) than $\mathrm{T}_{\mathrm{obs}}$. 
-::: 
-
-::: {.callout-tip appearance="minimal"}
-Thus for two-sided test statistics, we have
-\begin{align*}
-\mathrm{p}_{\mathrm{obs}} 
-& = \mathrm{P}\big(|\mathrm{T}| \geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big).
-\end{align*}
-:::
--->
-
-The cumulative distribution function (cdf) of the Half-$t$ distribution allows us to compute the $\mathrm{p}$-value of the two-sided $t$-statistic:
+## Computing the $\mathrm{p}$-Value
+<br>
+The cumulative distribution function of the Half-$t$ distribution, 
+$$
+\mathrm{F}_{\,\text{Half-}t,n-1}(x)=\mathrm{P}(|\textrm{T}|\leq x),\quad |\textrm{T}|\sim \textrm{Half-}t_{n-1}
+$$ 
+allows us to compute the $\mathrm{p}$-value, $\mathrm{p}_{\mathrm{obs}},$ for the two-sided $t$-statistic $|\mathrm{T}_{\mathrm{obs}}|$:
 
 \begin{align*}
 \mathrm{p}_{\mathrm{obs}} 
 & = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)\\[1ex]
 & = 1 - \mathrm{P}\big(\highlight{|\mathrm{T}|}\leq |\mathrm{T}_{\mathrm{obs}}|\;\big|\highlight{H_0\;\text{is true}}\big)\\[1ex]
-& = 1 - \highlight{\mathrm{F}_{\,\text{Half-}t,n-1}}\big(|\mathrm{T}_{\mathrm{obs}}|\big),
+& = 1 - \highlight{\mathrm{F}_{\,\text{Half-}t,n-1}}\big(|\mathrm{T}_{\mathrm{obs}}|\big)
 \end{align*}
-where 
-$\mathrm{F}_{\,\text{Half-}t,n-1}$ denotes the cdf of the Half-$t$ distribution with $\operatorname{df}=n-1$
+:::
 
+#### Computing the $\mathrm{p}$-Value<br>(Marketing Example) {-}
 
-#### **Observed $\mathrm{p}$-Value (Marketing Campaign Data):** {-}
+<br>
 
-Since $|\mathrm{T}_{\mathrm{obs}}|=`r abs(T_obs)`,$
-$$
-\mathrm{p}_{\mathrm{obs}}=`r p_obs`=1 - \mathrm{F}_{\,\text{Half-}t,n-1}\big(`r abs(T_obs)`\big).
-$$
+\begin{align*}
+\mathrm{p}_{\mathrm{obs}}
+&=1 - \mathrm{F}_{\,\text{Half-}t,n-1}\big(|\mathrm{T}_{\mathrm{obs}}|\big)\\
+&=1 - \mathrm{F}_{\,\text{Half-}t,n-1}\big(\,`r abs(T_obs)`\,\big)=`r p_obs`
+\end{align*}
+
+<br>
 
 ::: {.panel-tabset}
 
@@ -469,7 +469,7 @@ par(xpd = TRUE) #Draw outside plot area
 text(x = corners[1]-.75, y = mean(myfun(T_obs)), bquote(p[obs]==.(round(myfun(T_obs), 2))), srt = 0, cex = 1.5, family = "serif")
 
 legend("top", lty = 1, lwd=2,
-       legend=expression(1-F["Half-t,n-1"]), 
+       legend=expression(1-F[paste("Half-",italic(t),",n-1")]), 
        bty="n", cex = 1.5)
 ```
 
@@ -493,10 +493,13 @@ p_obs  <- result$p.value
 ```
 :::
 
+<br>
 
 ### Test Decision based on the $\mathrm{p}$-Value
 
-* We **reject** $H_0$ and accept $H_1$ at the significance level $0<\alpha<1$ if 
+<br>
+
+* We **reject** $H_0$ at the significance level $0<\alpha<1$ if 
 $$
 \highlight{\mathrm{p}_{\mathrm{obs}} < \alpha}
 $$
@@ -507,7 +510,7 @@ $$
 $$
 
 
-#### **Test Decision (Marketing Campaign Data):** {-}
+#### Test Decision (Marketing Example) {-}
 
 Since 
 $$
@@ -515,11 +518,15 @@ $$
 $$
 we **fail to reject** $H_0\colon \mu =0$ at the significance level $\alpha=0.05.$ 
 
-That is, we have no statistical evidence that the marketing campaign showed a tendency toward *significantly* higher or lower sales. 
+> We also fail to reject $H_0$ at any other typically used significance level such as, for instance, $\alpha=0.1$ or $\alpha=0.01.$ 
+
+<!-- That is, we have no statistical evidence that the marketing campaign showed a tendency toward *significantly* higher or lower sales.  -->
 
 
-::: {.callout-caution appearance="minimal"}
-⚠️ **Failing to reject $H_0$ does not mean that $H_0$ is true.** It only means that a potential impact of the campaign is not large enough such that the observed effect $(\bar{X}_{\mathrm{obs}}-0)$ was not large enough to stand out from the random variation captured by the standard error $(S_{\mathrm{obs}}/\sqrt{n});$ see @sec-Interpretation.
+::: {.callout-caution icon="false" appearance="minimal"}
+## ⚠️ Failing to reject $H_0$ does not mean that $H_0$ is true.
+<br>
+Failing to reject $H_0$ only means that a potential impact of the marketing campaign is not large enough to stand out from the random variation captured by the standard error $(S_{\mathrm{obs}}/\sqrt{n});$ see @sec-Interpretation.
 :::
 
 
@@ -537,10 +544,11 @@ qht(1-0.05, nu = df)
 ``` 
 -->
 
+<br>
 
-### Equal Test Decisions: Critical Values and $\mathrm{p}$-Values
+### $\mathrm{p}$-Values versus Critical Values
 
-For a given significance level $0<\alpha<1$, critical values and $\mathrm{p}$-values yield equivalent test decisions:
+$\mathrm{p}$-values and critical values lead to exactly **equivalent test decisions:**
 
 :::: {.columns}
 
@@ -661,63 +669,102 @@ legend("topright", lty = 1, lwd=2,
 :::
 
 
-### Interpretation of the $\textrm{p}$-Value {#sec-Interpretation}
+## $\mathrm{p}$-Values: Challenges for Hypothesis Testing
 
-By its definition, the $\textrm{p}$-value, $\textrm{p}_{\mathrm{obs}},$ tells us the probability of observing a value of $|\mathrm{T}|$ as extreme as or more extreme than $|\mathrm{T}_{\mathrm{obs}}|$ if the null hypothesis were $H_0$.
+$\mathrm{p}$-values can be helpful tools, but they are often **misused and misunderstood**, leading to a large amount of published **“bad science.”**  
+This has sparked an ongoing debate about whether $\mathrm{p}$-values — and the idea of **statistical significance** — should be used at all.
 
+* [The problem with p Values: How significant are they, really?](https://sciencex.com/wire-news/145707973/the-problem-with-p-values-how-significant-are-they-really.html) [@Cumming_2013]
+* [Scientific method: Statistical errors](https://www.nature.com/articles/506150a) [@Nuzzo_2014]
+* [Scientists rise up against statistical significance](https://www.nature.com/articles/d41586-019-00857-9) [@Amrhein_2019]
 
-That is, $\textrm{p}_{\mathrm{obs}}$ measures how extreme $|\mathrm{T}_{\mathrm{obs}}|$ is if the null hypothesis $H_0$ were true. 
+To address this, the **American Statistical Association (ASA)** released two statements explaining **what $\mathrm{p}$-values and statistical significance can — and cannot — tell us.**
 
+* [The ASA statement on p-values: Context, process, and purpose](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#d1e167) [@Wasserstein2016asa]
+* [Moving to a world beyond "p< 0.05"](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) [@wasserstein2019asa]
 
-::: {.callout-tip appearance="minimal"}
+### Correct Interpretation of the $\textrm{p}$-Value {#sec-Interpretation}
+
+The $\textrm{p}$-value $\textrm{p}_{\mathrm{obs}}$ measures how extreme $|\mathrm{T}_{\mathrm{obs}}|$ is if the null hypothesis $H_0$ were true. 
+
+<!-- ::: {.callout-tip appearance="minimal"}
 
 ## 🤓 Small $\textrm{p}$-Values
+<br>
 
-* A very small $\textrm{p}_{\mathrm{obs}}$ suggests that $|\mathrm{T}_{\mathrm{obs}}|$ is incompatible with $H_0$, so we may decide that $H_0$ does not provide a plausible explanation for the data. 
+* A very small $\textrm{p}_{\mathrm{obs}}$ suggests that $|\mathrm{T}_{\mathrm{obs}}|$ is **incompatible** with $H_0.$ So we may decide that $H_0$ does not provide a plausible explanation for the data. 
 * If we reject $H_0$, since  $\textrm{p}_{\mathrm{obs}}<\alpha,$ we falsely reject $H_0$ (type-I-error) with probability $\alpha,$ which we may find acceptable for small $\alpha$-levels such as $\alpha=0.05$ or $\alpha = 0.01.$ 
+::: -->
+
+::: {.callout-tip appearance="minimal" collapse="true"}
+
+## 🤓 Small $\textrm{p}$-Values: $\;\textrm{p}_{\mathrm{obs}} < \alpha$<br>
+
+* A small $\textrm{p}_{\mathrm{obs}}$ suggests that the observed statistic $|\mathrm{T}_{\mathrm{obs}}|$ is **inconsistent with** the null hypothesis $H_0$.  
+  In that case, we may decide that $H_0$ **does not provide a plausible explanation** for the data.
+
+* When we reject $H_0$ (because $\textrm{p}_{\mathrm{obs}} < \alpha$), we accept a risk of making a **type I error** — that is, **falsely rejecting** a true $H_0$ — with probability $\alpha$.  
+  This risk is typically considered acceptable for small significance levels such as $\alpha = 0.05$ or $\alpha = 0.01$.
+
 :::
 
-
+<!-- 
 ::: {.callout-warning appearance="minimal"}
 
 ## 😑 Large $\textrm{p}$-Values
+<br>
 
-A large $\textrm{p}_{\mathrm{obs}}$ suggests that $|\mathrm{T}_{\mathrm{obs}}|$ is compatible with $H_0$, **but this does not allow** us to conclude that $H_0$ is confirmed--- even if $\textrm{p}_{\mathrm{obs}}\approx 1$.
-
-*  Even when $H_0$ is false, we may see very large values of $\textrm{p}_{\mathrm{obs}}$ if, for instance, 
+* A large $\textrm{p}_{\mathrm{obs}}$ suggests that $|\mathrm{T}_{\mathrm{obs}}|$ is **compatible** with $H_0.$ However, this does **not allow** us to conclude that $H_0$ is confirmed. Even very large $p$-values $\textrm{p}_{\mathrm{obs}}\approx 1$ occur simply because a given violation of $H_0$ is smaller than the involved estimation errors; namely if, for instance, 
     * the sample size $n$ is small or  
     * the variability $\operatorname{Var}(X)$ in the data is large. 
 
 * If we fail to reject $H_0$, since  $\textrm{p}_{\mathrm{obs}}\geq \alpha,$ we cannot simply accept $H_0$, since we do not know at which probability we falsely accept $H_0$ (type-II-error). 
 
+<center>
 📢 Statistical hypothesis tests are designed to **falsify** $H_0$ not to verify $H_0.$ 
+</center>
+:::
+ -->
+::: {.callout-warning appearance="minimal" collapse="true"}
+
+## ⚠️ Large $\textrm{p}$-Values: $\;\textrm{p}_{\mathrm{obs}} \geq \alpha$<br>
+
+* A large $\textrm{p}_{\mathrm{obs}}$ means that the observed test statistic $|\mathrm{T}_{\mathrm{obs}}|$ is **consistent with** the null hypothesis $H_0$.  
+  ❗️ However, this does **not** mean that $H_0$ is *true* or *confirmed*.  
+
+* Even very large $\textrm{p}$-values (e.g., $\textrm{p}_{\mathrm{obs}} \approx 1$) can occur simply because a given deviation from $H_0$ does not stand out from the random variation captured by the standard error, for example when  
+  * the sample size $n$ is small, or  
+  * the variability $\operatorname{Var}(X)$ in the data is large.  
+
+* When we fail to reject $H_0$ (because $\textrm{p}_{\mathrm{obs}} \geq \alpha$), we **cannot accept $H_0$** as we don’t know the probability of making a **type II error** (falsely accepting $H_0$).
+
+<!-- <center>
+📢 Statistical hypothesis tests are designed to **falsify** $H_0$ not to verify $H_0.$ 
+</center> -->
+<center>
+📢 Statistical tests are designed to **reject** $H_0$ when there is enough evidence — not to **prove** that $H_0$ is true.
+</center>
 :::
 
+### General Don't Do's and Do's 
 
+::: {.callout-warning appearance="minimal" collapse="true"}
 
-## $\mathrm{p}$-Values: Challenges for Hypothesis Testing
+## ⚠️ Don't Do's<br>
 
-* While the $\mathrm{p}$-value can be a useful statistical measure, it is commonly misused and misinterpreted. 
-
-::: {.callout-warning appearance="minimal"}
-
-**Don't Do's:**
-
-* $\mathrm{p}$-values do not measure the probability that $H_0$ is true
+* $\mathrm{p}$-values do not measure the probability that $H_0$ is true.
 
 * $\mathrm{p}$-values do not measure the probability that the data were produced by random chance alone.
 
 * $\mathrm{p}$-values do not measure the size of an effect or the importance of a result.
 
 * Scientific conclusions and business or policy decisions should not be based only on whether a $\mathrm{p}$-value passes a specific $\alpha$-threshold.
-
-See @Wasserstein2016asa
 :::
 
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-tip appearance="minimal" collapse="true"}
 
-**Do's:**
+## 🤓 Do's<br> 
 
 * **Be Thoughtful:** Statistically thoughtful researchers ...  
    * recognize when they are doing exploratory studies (for generating statistical hypothesis) or more rigidly pre-planned studies (for testing statistical hypothesis).
@@ -725,30 +772,20 @@ See @Wasserstein2016asa
 of the study.   
 
 * **Be Open:**
+   * Openness to transparency (share data, make results reproducible, etc.)
+   * Openness in communication (statistical significance does not mean scientific importance, one study is rarely enough, etc.) 
 
-* Be Modest
+* **Be Modest:**
+   * There is no true statistical/econometric model.
+   * Be modest about the role of statistical inference in scientific inference.
 
-* Scientific conclusions and business or policy decisions should not be based only on whether a $\mathrm{p}$-value passes a specific $\alpha$-threshold.
-
-See @wasserstein2019asa
+<center>
+📢 Accept that there will always be uncertainty, and be thoughtful, open, and modest.
+</center>
 :::
-
-* "Scientific method: Statistical errors." @nuzzo2014scientific
-
-* ScienceNews (Siegfried 2010): "It’s science's dirtiest secret: The 'scien-
-tific method' of testing hypotheses by statistical analysis stands on a flimsy foundation."
-
 
 ## References {-}
 
 ::: {#refs}
 :::
 
-<!-- 
-## 💡 Tips for Success
-
-<br>
-
-* Don’t just memorize formulas — focus on understanding *why* they work.
-* Discuss and collaborate
- -->
