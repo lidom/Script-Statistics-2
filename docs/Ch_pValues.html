@@ -205,19 +205,21 @@ window.Quarto = {
   <li>
 <a href="#the-two-sided-mathrmp-value-of-the-t-test" id="toc-the-two-sided-mathrmp-value-of-the-t-test" class="nav-link" data-scroll-target="#the-two-sided-mathrmp-value-of-the-t-test"><span class="header-section-number">1.2</span> The Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value of the <span class="math inline">\(t\)</span>-Test</a>
   <ul class="collapse">
-<li><a href="#definition-of-the-mathrmp-value" id="toc-definition-of-the-mathrmp-value" class="nav-link" data-scroll-target="#definition-of-the-mathrmp-value"><span class="header-section-number">1.2.1</span> Definition of the <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
-  <li><a href="#computing-the-mathrmp-value" id="toc-computing-the-mathrmp-value" class="nav-link" data-scroll-target="#computing-the-mathrmp-value"><span class="header-section-number">1.2.2</span> Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
-  <li><a href="#test-decision-based-on-the-mathrmp-value" id="toc-test-decision-based-on-the-mathrmp-value" class="nav-link" data-scroll-target="#test-decision-based-on-the-mathrmp-value"><span class="header-section-number">1.2.3</span> Test Decision based on the <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
-  <li><a href="#mathrmp-values-versus-critical-values" id="toc-mathrmp-values-versus-critical-values" class="nav-link" data-scroll-target="#mathrmp-values-versus-critical-values"><span class="header-section-number">1.2.4</span> <span class="math inline">\(\mathrm{p}\)</span>-Values versus Critical Values</a></li>
+<li><a href="#definition-of-the-mathrmp-value" id="toc-definition-of-the-mathrmp-value" class="nav-link" data-scroll-target="#definition-of-the-mathrmp-value">⚙️ Definition of the <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
+  <li><a href="#computing-the-mathrmp-value" id="toc-computing-the-mathrmp-value" class="nav-link" data-scroll-target="#computing-the-mathrmp-value">🧮 Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
+  <li><a href="#test-decision-based-on-the-mathrmp-value" id="toc-test-decision-based-on-the-mathrmp-value" class="nav-link" data-scroll-target="#test-decision-based-on-the-mathrmp-value">⚖️ Test Decision based on the <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
+  <li><a href="#mathrmp-values-vs-critical-values" id="toc-mathrmp-values-vs-critical-values" class="nav-link" data-scroll-target="#mathrmp-values-vs-critical-values">🟰 <span class="math inline">\(\mathrm{p}\)</span>-Values vs Critical Values</a></li>
   </ul>
 </li>
   <li>
-<a href="#mathrmp-values-challenges-for-hypothesis-testing" id="toc-mathrmp-values-challenges-for-hypothesis-testing" class="nav-link" data-scroll-target="#mathrmp-values-challenges-for-hypothesis-testing"><span class="header-section-number">1.3</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</a>
+<a href="#sec-MissUses" id="toc-sec-MissUses" class="nav-link" data-scroll-target="#sec-MissUses"><span class="header-section-number">1.3</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Misunderstood and Misused</a>
   <ul class="collapse">
-<li><a href="#sec-Interpretation" id="toc-sec-Interpretation" class="nav-link" data-scroll-target="#sec-Interpretation"><span class="header-section-number">1.3.1</span> Correct Interpretation of the <span class="math inline">\(\textrm{p}\)</span>-Value</a></li>
-  <li><a href="#general-dont-dos-and-dos" id="toc-general-dont-dos-and-dos" class="nav-link" data-scroll-target="#general-dont-dos-and-dos"><span class="header-section-number">1.3.2</span> General Don’t Do’s and Do’s</a></li>
+<li><a href="#what-mathrmp-values-tell-us-and-what-they-dont" id="toc-what-mathrmp-values-tell-us-and-what-they-dont" class="nav-link" data-scroll-target="#what-mathrmp-values-tell-us-and-what-they-dont">🧭 What <span class="math inline">\(\mathrm{p}\)</span>-Values Tell Us — and What They Don’t</a></li>
+  <li><a href="#correct-interpretation-of-the-textrmp-value" id="toc-correct-interpretation-of-the-textrmp-value" class="nav-link" data-scroll-target="#correct-interpretation-of-the-textrmp-value">✅ Correct Interpretation of the <span class="math inline">\(\textrm{p}\)</span>-Value</a></li>
+  <li><a href="#mathrmp-value-hacking" id="toc-mathrmp-value-hacking" class="nav-link" data-scroll-target="#mathrmp-value-hacking">🙁 <span class="math inline">\(\mathrm{p}\)</span>-Value Hacking</a></li>
   </ul>
 </li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">1.4</span> Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></nav>
     </div>
@@ -256,12 +258,12 @@ window.Quarto = {
 <li>
 <strong>How</strong> do <span class="math inline">\(\mathrm{p}\)</span>-values actually work?</li>
 <li>
-<strong>Why</strong> can <span class="math inline">\(\mathrm{p}\)</span>-values be tricky or even misleading in hypothesis testing?</li>
+<strong>What</strong> are the typically misinterpretations and misuses of <span class="math inline">\(\mathrm{p}\)</span>-values?</li>
 <li>
 <strong>What</strong> is good practice when working with <span class="math inline">\(\mathrm{p}\)</span>-values?</li>
 </ul>
 <p>We’ll explore these questions using the <strong>two-sided <span class="math inline">\(t\)</span>-test</strong> as our main example. Parallel arguments apply to one-sided testing and other hypothesis tests (F-test, etc.)</p>
-</section><section id="example-marketing-campaign" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="example-marketing-campaign">💻 Example: Marketing Campaign</h3>
+<hr></section><section id="example-marketing-campaign" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="example-marketing-campaign">💻 Example: Marketing Campaign</h3>
 <p>Imagine a company runs a marketing campaign in <span class="math inline">\(n = 5\)</span> stores and measures sales <em>before</em> and <em>after</em> the campaign.</p>
 <p><br></p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -348,10 +350,11 @@ Assumption
 <p>There are no systematic differences (mean-shifts) between sales before and after the marketing campaign, other than the potential impact of the campaign itself.</p>
 </div>
 </div>
+<hr>
 <section id="two-sided-t-test" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="two-sided-t-test"><strong>Two-Sided <span class="math inline">\(t\)</span>-Test</strong></h4>
 <p>We test</p>
 <center>
-<span class="math inline">\(\displaystyle H_0\colon \mu = 0\quad\)</span> versus <span class="math inline">\(\displaystyle \quad H_1\colon \mu \neq 0\)</span>
+<span class="math inline">\(\displaystyle H_0\colon \mu = 0 \quad\)</span> versus <span class="math inline">\(\displaystyle \quad H_1\colon \mu \neq 0\)</span>
 </center>
 <p><br></p>
 <p>The <span class="math inline">\(t\)</span>-statistic is <span class="math display">\[
@@ -386,8 +389,7 @@ Assumptions underlying the <span class="math inline">\(t\)</span>-test
 </div>
 </div>
 </div>
-<p><br></p>
-</section><section id="observed-obs-value-of-the-t-statistic-marketing-example" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="observed-obs-value-of-the-t-statistic-marketing-example">Observed (obs) Value of the <span class="math inline">\(t\)</span>-statistic<br>(Marketing Example)</h4>
+<hr></section><section id="observed-obs-value-of-the-t-statistic-marketing-example" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="observed-obs-value-of-the-t-statistic-marketing-example"><strong>Observed (obs) Value of the <span class="math inline">\(t\)</span>-Statistic (Marketing Example)</strong></h4>
 <p><span class="math display">\[
 \mathrm{T}_{\mathrm{obs}} = \frac{\bar{X}_{\mathrm{obs}} - 0}{S_{\mathrm{obs}}/\sqrt{5}} = 0.96
 \]</span></p>
@@ -395,7 +397,7 @@ Assumptions underlying the <span class="math inline">\(t\)</span>-test
 <li><span class="math inline">\(\bar{X}_{\mathrm{obs}}=\frac{1}{5}\sum_{i=1}^5 X_{i,\mathrm{obs}} = 0.33\)</span></li>
 <li><span class="math inline">\(S_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,\mathrm{obs}}-\bar{X}_{\mathrm{obs}})} = 0.77\)</span></li>
 </ul>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -425,33 +427,22 @@ Computing <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span> in <cod
 </div>
 </div>
 </div>
-<p><br></p>
-</section><section id="test-decision-using-critical-values-marketing-example" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="test-decision-using-critical-values-marketing-example">Test Decision using Critical Values<br>(Marketing Example)</h4>
-<p>Significance level <span class="math display">\[
-\alpha=0.05
-\]</span></p>
-<p><br></p>
-<p>Critical values of the <span class="math inline">\(t_{n-1}\)</span>-distribution</p>
+<hr></section><section id="test-decision-using-critical-values-marketing-example" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="test-decision-using-critical-values-marketing-example"><strong>Test Decision using Critical Values (Marketing Example)</strong></h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Test Decision</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Plot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>Critical values of the <span class="math inline">\(t_{n-1}\)</span>-distribution (significance level <span class="math inline">\(\alpha = 0.05\)</span>):</p>
 <center>
 <span class="math inline">\(\mathrm{q}_{\alpha/2} = -2.78\;\)</span> and <span class="math inline">\(\;\mathrm{q}_{1-\alpha/2} = 2.78\)</span>
 </center>
-<p><br></p>
-<p>Since <span class="math inline">\(\textrm{T}_{\textrm{obs}}\)</span> is not in the rejection regions (see <a href="#fig-CriticalValues" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>) <span class="math display">\[\begin{align*}
-\textrm{T}_{\textrm{obs}}=0.96 \;\highlight{\not\in}\;(-\infty, \mathrm{q}_{\alpha/2})\; \cup \;(\mathrm{q}_{1-\alpha/2},\infty\,)
+<p>Since <span class="math inline">\(\textrm{T}_{\textrm{obs}}\)</span> is <strong>not in the rejection region,</strong> <span class="math display">\[\begin{align*}
+\textrm{T}_{\textrm{obs}}=0.96 \;\not\in\;(-\infty, \mathrm{q}_{\alpha/2})\; \cup \;(\mathrm{q}_{1-\alpha/2},\infty\,),
 \end{align*}\]</span> we <span style="background-color: yellow; padding: 0.1em 0.1em;">fail to reject <span class="math inline">\(H_0\colon\mu = 0\)</span></span> at the significance level <span style="background-color: #F88379CC; padding: 0.1em 0.1em;"><span class="math inline">\(\alpha = 0.05.\)</span></span></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-CriticalValues" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CriticalValues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Ch_pValues_files/figure-html/fig-CriticalValues-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CriticalValues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.2: Density of the null-distribution <span class="math inline">\(t_{\operatorname{df}}\)</span> with <span class="math inline">\(\operatorname{df}=n-1=4\)</span> (marketing example). The rejection regions are defined by the quantiles (critical values) <span class="math inline">\(\mathrm{q}_{\alpha/2}\)</span> and <span class="math inline">\(\mathrm{q}_{1-\alpha/2}\)</span> of <span class="math inline">\(t_{\operatorname{df}}\)</span> for <span class="math inline">\(\alpha=0.05.\)</span>
-</figcaption></figure>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -473,10 +464,33 @@ Computing critical values in <code>R</code>
 </div>
 </div>
 </div>
-</section></section></section><section id="the-two-sided-mathrmp-value-of-the-t-test" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="the-two-sided-mathrmp-value-of-the-t-test">
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-CriticalValues" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CriticalValues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Ch_pValues_files/figure-html/fig-CriticalValues-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CriticalValues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: Density of the null-distribution <span class="math inline">\(t_{\operatorname{df}}\)</span> with <span class="math inline">\(\operatorname{df}=n-1=4\)</span> (marketing example). The rejection regions are defined by the quantiles (critical values) <span class="math inline">\(\mathrm{q}_{\alpha/2}\)</span> and <span class="math inline">\(\mathrm{q}_{1-\alpha/2}\)</span> of <span class="math inline">\(t_{\operatorname{df}}\)</span> for <span class="math inline">\(\alpha=0.05.\)</span>
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr></section></section></section><section id="the-two-sided-mathrmp-value-of-the-t-test" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="the-two-sided-mathrmp-value-of-the-t-test">
 <span class="header-section-number">1.2</span> The Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value of the <span class="math inline">\(t\)</span>-Test</h2>
-<section id="definition-of-the-mathrmp-value" class="level3" data-number="1.2.1"><h3 data-number="1.2.1" class="anchored" data-anchor-id="definition-of-the-mathrmp-value">
-<span class="header-section-number">1.2.1</span> Definition of the <span class="math inline">\(\mathrm{p}\)</span>-Value</h3>
+<section id="definition-of-the-mathrmp-value" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="definition-of-the-mathrmp-value">⚙️ Definition of the <span class="math inline">\(\mathrm{p}\)</span>-Value</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Definition</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Plot</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="callout callout-style-simple callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -487,11 +501,12 @@ Definition of the <span class="math inline">\(\mathrm{p}\)</span>-Value
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <span class="math inline">\(\mathrm{p}\)</span>-value, <span class="math inline">\(\textrm{p}_{\mathrm{obs}},\)</span> is the probability of observing a test statistic <span class="math inline">\(\mathrm{T}\)</span> as extreme as or more extreme than <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span> (in the direction(s) of the alternative hypothesis), given the null hypothesis (<span class="math inline">\(H_0\)</span>) is true.</p>
+<p>The <span class="math inline">\(\mathrm{p}\)</span>-value, <span class="math inline">\(\textrm{p}_{\mathrm{obs}},\)</span> is the probability, under the assumption that <span class="math inline">\(H_0\)</span> is true, of observing a test statistic <span class="math inline">\(\mathrm{T}\)</span> at least as extreme (in the direction(s) of the alternative hypothesis) as the one <span class="math inline">\((\mathrm{T}_{\mathrm{obs}})\)</span> computed from the sample data.</p>
 </div>
 </div>
 <p><strong>Two-sided <span class="math inline">\(\mathrm{p}\)</span>-value of the <span class="math inline">\(t\)</span>-test</strong> <span class="math display">\[\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)\]</span></p>
-<p><br></p>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <p>The light-red area in <a href="#fig-pValue" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> equals the observed <span class="math inline">\(\mathrm{p}\)</span>-value <span style="background-color: #F88379CC; padding: 0.2em 0.1em;"><span class="math inline">\(\mathrm{p}_{\mathrm{obs}}=0.39\)</span></span> corresponding to the observed value of the <span class="math inline">\(t\)</span>-statistic <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}=0.96.\)</span></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -505,18 +520,26 @@ Figure&nbsp;1.3: Density of the null-distribution <span class="math inline">\(t_
 </div>
 </div>
 </div>
-</section><section id="computing-the-mathrmp-value" class="level3" data-number="1.2.2"><h3 data-number="1.2.2" class="anchored" data-anchor-id="computing-the-mathrmp-value">
-<span class="header-section-number">1.2.2</span> Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value</h3>
+</div>
+</div>
+</div>
+<hr></section><section id="computing-the-mathrmp-value" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="computing-the-mathrmp-value">🧮 Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Null Distribution</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Density Function</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Distribution Function</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <p>Note that <span class="math display">\[
-% \mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}
 \mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}\phantom{Half}
 \]</span> implies that the <span style="background-color: yellow; padding: 0.1em 0.1em;"><strong>absolute value</strong> <span class="math inline">\(|\mathrm{T}|\)</span></span> of the random <span class="math inline">\(t\)</span>-statistic is Half-<span class="math inline">\(t_{n-1}\)</span> distributed, <span class="math display">\[
-% \mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}
 |\mathrm{T}|=\frac{|\bar{X}-0|}{S/\sqrt{n}}\overset{H_0}{\sim}\highlight{\textrm{Half-}t_{n-1}.}
 \]</span></p>
-<p><br></p>
-<p>The density function of the <span class="math inline">\(\textrm{Half-}t_{n-1}\)</span> distribution with <span class="math inline">\(\operatorname{df}=n-1\)</span> degrees of freedom is simply the <strong>folded version</strong> of the density function of the <span class="math inline">\(t_{n-1}\)</span> distribution (<a href="#fig-Halft" class="quarto-xref">Figure&nbsp;<span>1.4</span></a>).</p>
-<p><br></p>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<!-- # "Densities functions of the null-distribution $t_{\\operatorname{df}}$ of $\\mathrm{T}$ and $\\textrm{Half-}t_{\\operatorname{df}}$ of $|\\mathrm{T}|$ with $\\operatorname{df}=n-1=4$ (marketing example)." -->
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-Halft" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -524,8 +547,31 @@ Figure&nbsp;1.3: Density of the null-distribution <span class="math inline">\(t_
 <img src="Ch_pValues_files/figure-html/fig-Halft-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Halft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.4: Densities of the null-distributions <span class="math inline">\(t_{\operatorname{df}}\)</span> and <span class="math inline">\(\textrm{Half-}t_{\operatorname{df}}\)</span> with <span class="math inline">\(\operatorname{df}=n-1=4\)</span> (marketing example).
+Figure&nbsp;1.4: The density function of the Half-<span class="math inline">\(t_{n-1}\)</span> distribution is the folded version of the density function of the <span class="math inline">\(t_{n-1}\)</span> distribution.
 </figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<p><span class="math display">\[\begin{align*}
+\mathrm{F}_{\,\text{Half-}t_{n-1}}(x)&amp;=\mathrm{P}(|\textrm{T}|\leq x\mid H_0\;\text{is true}),\quad |\textrm{T}|\overset{H_0}{\sim} \textrm{Half-}t_{n-1}
+\end{align*}\]</span></p>
+<center>
+<span class="math inline">\(\mathrm{F}_{\,\text{Half-}t_{n-1}}(x) =\)</span> <code>extraDistr::pht(q = x, nu = n - 1)</code>
+</center>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-CDFHalft" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CDFHalft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Ch_pValues_files/figure-html/fig-CDFHalft-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CDFHalft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.5: Distribution function of the null-distribution <span class="math inline">\(\textrm{Half-}t_{\operatorname{df}}\)</span> with <span class="math inline">\(\operatorname{df}=n-1=4\)</span> (marketing example).
+</figcaption></figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -535,13 +581,11 @@ Figure&nbsp;1.4: Densities of the null-distributions <span class="math inline">\
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value
+Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value of the Two-Sided <span class="math inline">\(t\)</span>-Test
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><br> The cumulative distribution function of the Half-<span class="math inline">\(t\)</span> distribution, <span class="math display">\[
-\mathrm{F}_{\,\text{Half-}t,n-1}(x)=\mathrm{P}(|\textrm{T}|\leq x),\quad |\textrm{T}|\sim \textrm{Half-}t_{n-1}
-\]</span> allows us to compute the <span class="math inline">\(\mathrm{p}\)</span>-value, <span class="math inline">\(\mathrm{p}_{\mathrm{obs}},\)</span> for the two-sided <span class="math inline">\(t\)</span>-statistic <span class="math inline">\(|\mathrm{T}_{\mathrm{obs}}|\)</span>:</p>
+<p><br> The distribution function <span class="math inline">\(\mathrm{F}_{\,\text{Half-}t_{n-1}}(x)\)</span> of the Half-<span class="math inline">\(t\)</span> distribution allows us to compute the <span class="math inline">\(\mathrm{p}\)</span>-value, <span class="math inline">\(\mathrm{p}_{\mathrm{obs}},\)</span> for the two-sided <span class="math inline">\(t\)</span>-statistic <span class="math inline">\(|\mathrm{T}_{\mathrm{obs}}|\)</span>:</p>
 <p><span class="math display">\[\begin{align*}
 \mathrm{p}_{\mathrm{obs}}
 &amp; = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)\\[1ex]
@@ -550,32 +594,30 @@ Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value
 \end{align*}\]</span></p>
 </div>
 </div>
-<section id="computing-the-mathrmp-value-marketing-example" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="computing-the-mathrmp-value-marketing-example">Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value<br>(Marketing Example)</h4>
-<p><br></p>
+<section id="computing-the-mathrmp-value-marketing-example" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="computing-the-mathrmp-value-marketing-example"><strong>Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value (Marketing Example)</strong></h4>
 <p><span class="math display">\[\begin{align*}
 \mathrm{p}_{\mathrm{obs}}
 &amp;=1 - \mathrm{F}_{\,\text{Half-}t,n-1}\big(|\mathrm{T}_{\mathrm{obs}}|\big)\\
 &amp;=1 - \mathrm{F}_{\,\text{Half-}t,n-1}\big(\,0.96\,\big)=0.39
 \end{align*}\]</span></p>
-<p><br></p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Plot</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>R</code>-Codes</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Plot</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false"><code>R</code>-Codes</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <p>Computation of the observed <span class="math inline">\(\operatorname{p}\)</span>-value:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figure class="figure"><p><img src="Ch_pValues_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
 <p>Computation of the observed <span class="math inline">\(\operatorname{p}\)</span>-value:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/twolodzko/extraDistr">"extraDistr"</a></span><span class="op">)</span></span>
@@ -592,9 +634,7 @@ Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value
 </div>
 </div>
 </div>
-<p><br></p>
-</section></section><section id="test-decision-based-on-the-mathrmp-value" class="level3" data-number="1.2.3"><h3 data-number="1.2.3" class="anchored" data-anchor-id="test-decision-based-on-the-mathrmp-value">
-<span class="header-section-number">1.2.3</span> Test Decision based on the <span class="math inline">\(\mathrm{p}\)</span>-Value</h3>
+<hr></section></section><section id="test-decision-based-on-the-mathrmp-value" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="test-decision-based-on-the-mathrmp-value">⚖️ Test Decision based on the <span class="math inline">\(\mathrm{p}\)</span>-Value</h3>
 <p><br></p>
 <ul>
 <li><p>We <strong>reject</strong> <span class="math inline">\(H_0\)</span> at the significance level <span class="math inline">\(0&lt;\alpha&lt;1\)</span> if <span class="math display">\[
@@ -604,100 +644,64 @@ Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value
 \highlight{\mathrm{p}_{\mathrm{obs}} \geq \alpha}
 \]</span></p></li>
 </ul>
-<section id="test-decision-marketing-example" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="test-decision-marketing-example">Test Decision (Marketing Example)</h4>
+<hr>
+<section id="test-decision-marketing-example" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="test-decision-marketing-example"><strong>Test Decision (Marketing Example)</strong></h4>
 <p>Since <span class="math display">\[
 \mathrm{p}_{\mathrm{obs}}=0.39 \geq \alpha = 0.05
 \]</span> we <strong>fail to reject</strong> <span class="math inline">\(H_0\colon \mu =0\)</span> at the significance level <span class="math inline">\(\alpha=0.05.\)</span></p>
-<blockquote class="blockquote">
 <p>We also fail to reject <span class="math inline">\(H_0\)</span> at any other typically used significance level such as, for instance, <span class="math inline">\(\alpha=0.1\)</span> or <span class="math inline">\(\alpha=0.01.\)</span></p>
-</blockquote>
-<!-- That is, we have no statistical evidence that the marketing campaign showed a tendency toward *significantly* higher or lower sales.  -->
 <div class="callout callout-style-simple callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 ⚠️ Failing to reject <span class="math inline">\(H_0\)</span> does not mean that <span class="math inline">\(H_0\)</span> is true.
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><br> Failing to reject <span class="math inline">\(H_0\)</span> only means that a potential impact of the marketing campaign is not large enough to stand out from the random variation captured by the standard error <span class="math inline">\((S_{\mathrm{obs}}/\sqrt{n});\)</span> see <a href="#sec-Interpretation" class="quarto-xref"><span>Section 1.3.1</span></a>.</p>
+<p><br> Failing to reject <span class="math inline">\(H_0\)</span> only means that a potential impact of the marketing campaign is not large enough to stand out from the random variation captured by the standard error <span class="math inline">\((S_{\mathrm{obs}}/\sqrt{n});\)</span> see <a href="#sec-MissUses" class="quarto-xref"><span>Section 1.3</span></a>.</p>
+<ul>
+<li>“Absence of evidence is not evidence of absence.” <span class="citation" data-cites="Sagan_1997">(<a href="Ch_pValues.html#ref-Sagan_1997" role="doc-biblioref">Sagan 1997</a>)</span>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Argument_from_ignorance">Argument from ignorance</a></li>
+</ul>
 </div>
 </div>
-<!-- 
-
-
-
-
-
-
-
-::: {.cell layout-align="center"}
-
-```{.r .cell-code}
-library("extraDistr")
-n  <- 5
-df <- n-1
-
-## 1 minus the distribution function of the Half-t
-p_obs <- 1 - pht(q = abs(T_obs), nu = df)
-
-qht(1-0.05, nu = df)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] 2.776445
-```
-
-
-:::
-:::
-
-
-
-
-
-
-
--->
-<p><br></p>
-</section></section><section id="mathrmp-values-versus-critical-values" class="level3" data-number="1.2.4"><h3 data-number="1.2.4" class="anchored" data-anchor-id="mathrmp-values-versus-critical-values">
-<span class="header-section-number">1.2.4</span> <span class="math inline">\(\mathrm{p}\)</span>-Values versus Critical Values</h3>
+</div>
+<hr></section></section><section id="mathrmp-values-vs-critical-values" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="mathrmp-values-vs-critical-values">🟰 <span class="math inline">\(\mathrm{p}\)</span>-Values vs Critical Values</h3>
 <p><span class="math inline">\(\mathrm{p}\)</span>-values and critical values lead to exactly <strong>equivalent test decisions:</strong></p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Decision Rules</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Plot: Reject <span class="math inline">\(H_0\)</span></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false">Plot: Fail to Reject <span class="math inline">\(H_0\)</span></a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <div class="columns">
 <div class="column" style="width:50%;">
+<p><strong><span class="math inline">\(\mathrm{p}\)</span>-Values:</strong></p>
 <ul>
-<li>Reject <span class="math inline">\(H_0\)</span>
-<ul>
-<li>if <span class="math inline">\(|\mathrm{T}_{\mathrm{obs}}| &gt; \mathrm{q}_{1-\alpha}\;\)</span> or</li>
-<li>if <span class="math inline">\(\,\,\,\mathrm{p}_{\mathrm{obs}}\,&lt;\alpha\)</span>
+<li>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(\,\,\,\mathrm{p}_{\mathrm{obs}}\,&lt;\alpha\)</span>
 </li>
-</ul>
+<li>Fail to reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(\,\,\,\mathrm{p}_{\mathrm{obs}}\, \leq \alpha\)</span>
 </li>
 </ul>
 </div><div class="column" style="width:50%;">
+<p><strong>Critical Values:</strong></p>
 <ul>
-<li>Fail to reject <span class="math inline">\(H_0\)</span>
-<ul>
-<li>if <span class="math inline">\(|\mathrm{T}_{\mathrm{obs}}| \leq  \mathrm{q}_{1-\alpha}\;\)</span> or</li>
-<li>if <span class="math inline">\(\,\,\,\mathrm{p}_{\mathrm{obs}}\, \leq \alpha\)</span>
+<li>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(\,\,\,|\mathrm{T}_{\mathrm{obs}}| &gt; \mathrm{q}_{1-\alpha}\)</span>
+</li>
+<li>Fail to reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(\,\,\,|\mathrm{T}_{\mathrm{obs}}| \leq  \mathrm{q}_{1-\alpha}\)</span>
 </li>
 </ul>
-</li>
-</ul>
-</div>
 </div>
 <p>where <span class="math inline">\(\mathrm{q}_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span>-quantile of the Half-<span class="math inline">\(t_{n-1}\)</span> distribution.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Reject <span class="math inline">\(H_0\)</span></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Fail to Reject <span class="math inline">\(H_0\)</span></a></li>
-</ul>
-<div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -707,7 +711,7 @@ qht(1-0.05, nu = df)
 </div>
 </div>
 </div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -719,10 +723,11 @@ qht(1-0.05, nu = df)
 </div>
 </div>
 </div>
-</section></section><section id="mathrmp-values-challenges-for-hypothesis-testing" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="mathrmp-values-challenges-for-hypothesis-testing">
-<span class="header-section-number">1.3</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Challenges for Hypothesis Testing</h2>
-<p><span class="math inline">\(\mathrm{p}\)</span>-values can be helpful tools, but they are often <strong>misused and misunderstood</strong>, leading to a large amount of published <strong>“bad science.”</strong><br>
-This has sparked an ongoing debate about whether <span class="math inline">\(\mathrm{p}\)</span>-values — and the idea of <strong>statistical significance</strong> — should be used at all.</p>
+</section></section><section id="sec-MissUses" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="sec-MissUses">
+<span class="header-section-number">1.3</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Misunderstood and Misused</h2>
+<p><span class="math inline">\(\mathrm{p}\)</span>-values can be powerful tools — <strong>when used correctly.</strong> But in practice, they’re often <strong>misinterpreted or misused</strong>, leading to a surprising amount of published <strong>“bad science.”</strong></p>
+<p>This misuse has sparked an ongoing debate: Should we rely on <span class="math inline">\(\mathrm{p}\)</span>-values and the concept of <strong>statistical significance</strong> at all?</p>
+<p>📚 <strong>Further reading:</strong></p>
 <ul>
 <li>
 <a href="https://sciencex.com/wire-news/145707973/the-problem-with-p-values-how-significant-are-they-really.html">The problem with p Values: How significant are they, really?</a> <span class="citation" data-cites="Cumming_2013">(<a href="Ch_pValues.html#ref-Cumming_2013" role="doc-biblioref">Cumming 2013</a>)</span>
@@ -734,7 +739,8 @@ This has sparked an ongoing debate about whether <span class="math inline">\(\ma
 <a href="https://www.nature.com/articles/d41586-019-00857-9">Scientists rise up against statistical significance</a> <span class="citation" data-cites="Amrhein_2019">(<a href="Ch_pValues.html#ref-Amrhein_2019" role="doc-biblioref">Amrhein, Greenland, and McShane 2019</a>)</span>
 </li>
 </ul>
-<p>To address this, the <strong>American Statistical Association (ASA)</strong> released two statements explaining <strong>what <span class="math inline">\(\mathrm{p}\)</span>-values and statistical significance can — and cannot — tell us.</strong></p>
+<p>To clarify what <span class="math inline">\(\mathrm{p}\)</span>-values and <strong>statistical significance</strong> actually mean (and what they don’t), the American Statistical Association (ASA) published two landmark position papers:</p>
+<p>📄 <strong>ASA Statements:</strong></p>
 <ul>
 <li>
 <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#d1e167">The ASA statement on p-values: Context, process, and purpose</a> <span class="citation" data-cites="Wasserstein2016asa">(<a href="Ch_pValues.html#ref-Wasserstein2016asa" role="doc-biblioref">Wasserstein and Lazar 2016</a>)</span>
@@ -743,36 +749,59 @@ This has sparked an ongoing debate about whether <span class="math inline">\(\ma
 <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">Moving to a world beyond “p&lt; 0.05”</a> <span class="citation" data-cites="wasserstein2019asa">(<a href="Ch_pValues.html#ref-wasserstein2019asa" role="doc-biblioref">Wasserstein, Schirm, and Lazar 2019</a>)</span>
 </li>
 </ul>
-<section id="sec-Interpretation" class="level3" data-number="1.3.1"><h3 data-number="1.3.1" class="anchored" data-anchor-id="sec-Interpretation">
-<span class="header-section-number">1.3.1</span> Correct Interpretation of the <span class="math inline">\(\textrm{p}\)</span>-Value</h3>
-<p>The <span class="math inline">\(\textrm{p}\)</span>-value <span class="math inline">\(\textrm{p}_{\mathrm{obs}}\)</span> measures how extreme <span class="math inline">\(|\mathrm{T}_{\mathrm{obs}}|\)</span> is if the null hypothesis <span class="math inline">\(H_0\)</span> were true.</p>
-<!-- ::: {.callout-tip appearance="minimal"}
-
-## 🤓 Small $\textrm{p}$-Values
-<br>
-
-* A very small $\textrm{p}_{\mathrm{obs}}$ suggests that $|\mathrm{T}_{\mathrm{obs}}|$ is **incompatible** with $H_0.$ So we may decide that $H_0$ does not provide a plausible explanation for the data. 
-* If we reject $H_0$, since  $\textrm{p}_{\mathrm{obs}}<\alpha,$ we falsely reject $H_0$ (type-I-error) with probability $\alpha,$ which we may find acceptable for small $\alpha$-levels such as $\alpha=0.05$ or $\alpha = 0.01.$ 
-::: -->
+<section id="what-mathrmp-values-tell-us-and-what-they-dont" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="what-mathrmp-values-tell-us-and-what-they-dont">🧭 What <span class="math inline">\(\mathrm{p}\)</span>-Values Tell Us — and What They Don’t</h3>
 <div class="callout callout-style-simple callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-🤓 Small <span class="math inline">\(\textrm{p}\)</span>-Values: <span class="math inline">\(\;\textrm{p}_{\mathrm{obs}} &lt; \alpha\)</span><br>
+✅ What <span class="math inline">\(\mathrm{p}\)</span>-values do tell us
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p><br></p>
+<ul>
+<li><p>They measure how compatible the data (i.e., the test statistic) are with the null hypothesis <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>A small <span class="math inline">\(\mathrm{p}\)</span>-value means the observed data (i.e., the test statistic) would be unlikely if <span class="math inline">\(H_0\)</span> were true.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🚫 What <span class="math inline">\(\mathrm{p}\)</span>-values do not tell us
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><br></p>
+<ul>
+<li><p>They do not give the probability that <span class="math inline">\(H_0\)</span> is true or false.</p></li>
+<li><p>They do not tell us whether a result is practically important.</p></li>
+</ul>
+</div>
+</div>
+</section><section id="correct-interpretation-of-the-textrmp-value" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="correct-interpretation-of-the-textrmp-value">✅ Correct Interpretation of the <span class="math inline">\(\textrm{p}\)</span>-Value</h3>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤓 Interpreting small <span class="math inline">\(\textrm{p}\)</span>-values: <span class="math inline">\(\;\textrm{p}_{\mathrm{obs}} &lt; \alpha\)</span><br>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><br></p>
 <ul>
 <li><p>A small <span class="math inline">\(\textrm{p}_{\mathrm{obs}}\)</span> suggests that the observed statistic <span class="math inline">\(|\mathrm{T}_{\mathrm{obs}}|\)</span> is <strong>inconsistent with</strong> the null hypothesis <span class="math inline">\(H_0\)</span>.<br>
 In that case, we may decide that <span class="math inline">\(H_0\)</span> <strong>does not provide a plausible explanation</strong> for the data.</p></li>
-<li><p>When we reject <span class="math inline">\(H_0\)</span> (because <span class="math inline">\(\textrm{p}_{\mathrm{obs}} &lt; \alpha\)</span>), we accept a risk of making a <strong>type I error</strong> — that is, <strong>falsely rejecting</strong> a true <span class="math inline">\(H_0\)</span> — with probability <span class="math inline">\(\alpha\)</span>.<br>
-This risk is typically considered acceptable for small significance levels such as <span class="math inline">\(\alpha = 0.05\)</span> or <span class="math inline">\(\alpha = 0.01\)</span>.</p></li>
+<li><p>When we reject <span class="math inline">\(H_0\)</span> (because <span class="math inline">\(\textrm{p}_{\mathrm{obs}} &lt; \alpha\)</span>), we accept a risk of <strong>falsely rejecting</strong> a true <span class="math inline">\(H_0\)</span> (type I error) with probability <span class="math inline">\(\alpha\)</span>.<br>
+Therefore, choose a small <span class="math inline">\(\alpha\)</span>-level!</p></li>
 </ul>
-</div>
 </div>
 </div>
 <!-- 
@@ -793,103 +822,187 @@ This risk is typically considered acceptable for small significance levels such 
 :::
  -->
 <div class="callout callout-style-simple callout-warning no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-⚠️ Large <span class="math inline">\(\textrm{p}\)</span>-Values: <span class="math inline">\(\;\textrm{p}_{\mathrm{obs}} \geq \alpha\)</span><br>
+⚠️ Interpreting Large <span class="math inline">\(\mathrm{p}\)</span>-Values: <span class="math inline">\(\;\mathrm{p}_{\mathrm{obs}} \geq \alpha\)</span>
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p><br></p>
 <ul>
-<li><p>A large <span class="math inline">\(\textrm{p}_{\mathrm{obs}}\)</span> means that the observed test statistic <span class="math inline">\(|\mathrm{T}_{\mathrm{obs}}|\)</span> is <strong>consistent with</strong> the null hypothesis <span class="math inline">\(H_0\)</span>.<br>
-❗️ However, this does <strong>not</strong> mean that <span class="math inline">\(H_0\)</span> is <em>true</em> or <em>confirmed</em>.</p></li>
+<li><p>A large <span class="math inline">\(\mathrm{p}_{\mathrm{obs}}\)</span> means the observed test statistic <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span> is compatible with the null hypothesis <span class="math inline">\(H_0\)</span>. ❗️But this does not mean that <span class="math inline">\(H_0\)</span> is true or proven.</p></li>
 <li>
-<p>Even very large <span class="math inline">\(\textrm{p}\)</span>-values (e.g., <span class="math inline">\(\textrm{p}_{\mathrm{obs}} \approx 1\)</span>) can occur simply because a given deviation from <span class="math inline">\(H_0\)</span> does not stand out from the random variation captured by the standard error, for example when</p>
+<p>Even very large <span class="math inline">\(\mathrm{p}\)</span>-values (e.g., <span class="math inline">\(\mathrm{p}_{\mathrm{obs}} \approx 1\)</span>) can occur when the deviation from <span class="math inline">\(H_0\)</span> is too small to stand out from random variation — for example, if</p>
 <ul>
-<li>the sample size <span class="math inline">\(n\)</span> is small, or<br>
-</li>
-<li>the variability <span class="math inline">\(\operatorname{Var}(X)\)</span> in the data is large.</li>
+<li>the sample size <span class="math inline">\(n\)</span> is small, or</li>
+<li>the data have large variability <span class="math inline">\(\operatorname{Var}(X)\)</span>.</li>
 </ul>
 </li>
-<li><p>When we fail to reject <span class="math inline">\(H_0\)</span> (because <span class="math inline">\(\textrm{p}_{\mathrm{obs}} \geq \alpha\)</span>), we <strong>cannot accept <span class="math inline">\(H_0\)</span></strong> as we don’t know the probability of making a <strong>type II error</strong> (falsely accepting <span class="math inline">\(H_0\)</span>).</p></li>
+<li><p>When we fail to reject <span class="math inline">\(H_0\)</span> (because <span class="math inline">\(\mathrm{p}_{\mathrm{obs}} \geq \alpha\)</span>), we still cannot accept <span class="math inline">\(H_0\)</span>.<br>We simply lack enough evidence to reject it — and we don’t know how likely we are to make a type II error (falsely accepting <span class="math inline">\(H_0\)</span>).</p></li>
 </ul>
-<!-- <center>
-📢 Statistical hypothesis tests are designed to **falsify** $H_0$ not to verify $H_0.$ 
-</center> --><center>
-📢 Statistical tests are designed to <strong>reject</strong> <span class="math inline">\(H_0\)</span> when there is enough evidence — not to <strong>prove</strong> that <span class="math inline">\(H_0\)</span> is true.
+<center>
+📢 <strong>Statistical tests are built to falsify <span class="math inline">\(H_0\)</span>, not to verify it.</strong>
 </center>
 </div>
 </div>
-</div>
-</section><section id="general-dont-dos-and-dos" class="level3" data-number="1.3.2"><h3 data-number="1.3.2" class="anchored" data-anchor-id="general-dont-dos-and-dos">
-<span class="header-section-number">1.3.2</span> General Don’t Do’s and Do’s</h3>
+</section><section id="mathrmp-value-hacking" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="mathrmp-value-hacking">🙁 <span class="math inline">\(\mathrm{p}\)</span>-Value Hacking</h3>
+<p><span class="math inline">\(\mathrm{p}\)</span>-hacking is arguably the most common misuse of <span class="math inline">\(\mathrm{p}\)</span>-values. It happens when researchers keep adjusting their analysis until they find a statistically significant result <span class="math inline">\((\mathrm{p}_{\mathrm{obs}} &lt; \alpha)\)</span> — even if there’s no real effect.</p>
+<p>🧪 Typical tricks include:</p>
+<ul>
+<li><p>Running lots of tests until one happens to be “significant.”</p></li>
+<li><p>Changing the model setup (adding or removing variables) until an insignificant result turns “significant”.</p></li>
+<li><p>Selectively including or excluding data points to turn an insignificant result turns “significant”.</p></li>
+</ul>
+<p>This is called the <strong>multiple comparison problem</strong> — the more tests you run, the higher the chance of finding a false positive (falsely rejecting a correct <span class="math inline">\(H_0\)</span>).</p>
+<!-- 
+### $\mathrm{p}$-Value Hacking: Multiple Comparison Problem
+
+**$\mathrm{p}$-Hacking** refers to the process of manipulating data analysis until a statistically significant result $(\mathrm{p}_{\mathrm{obs}} < 0.05)$ is achieved. This can include:
+
+- Running multiple tests on the same dataset until one finds a significant effect.
+
+- Trying various model specifications (e.g., adding or removing control variables) until one finds a significant effect.
+
+
+- Do data picking (removing / adding data points) until one finds a significant effect.
+
+If researchers test many hypotheses or shift through a wide range of variables and subgroups, they can almost always find a "significant" result by chance alone (Multiple Comparison Problem). -->
+<section id="multiple-comparison-problem" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="multiple-comparison-problem">Multiple Comparison Problem</h4>
 <div class="callout callout-style-simple callout-warning no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-⚠️ Don’t Do’s<br>
+⚠️ Multiple Comparison Problem
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p><br> When multiple tests are conducted, the chance of finding at least one “significant” result purely by coincidence increases.</p>
+<p>For instance, with <span class="math inline">\(m=20\)</span> independent tests at the significance level <span class="math inline">\(\alpha = 0.05\)</span>, there is a <span class="math inline">\(64 \%\)</span> chance of incorrectly rejecting at least one null hypothesis: <span class="math display">\[\begin{align*}
+&amp; P(\text{rejecting at least one of the $m$ $H_0$'s}\mid \text{all }H_0\text{'s are true})\\[2ex]
+=&amp; 1-P(\text{not rejecting any of the $m$ $H_0$'s}\mid \text{all }H_0\text{'s are true})\\[2ex]
+=&amp; 1 - (1-\alpha)^m\\[2ex]
+=&amp; 1 - 0.95^{20} \;\approx \; 0.64
+\end{align*}\]</span></p>
+</div>
+</div>
+</section><section id="adjusting-for-multiple-comparisons" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="adjusting-for-multiple-comparisons">Adjusting for Multiple Comparisons</h4>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤓 The <strong>Bonferroni Correction</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><br> The <strong>Bonferroni Correction</strong> requires using a more stringent significance threshold when multiple tests are performed; namely <span class="math display">\[
+\alpha_{\textrm{Bonf}}=\frac{\alpha}{m}
+\]</span> for <span class="math inline">\(m\)</span> tests.</p>
+<p><span class="math display">\[\begin{align*}
+&amp; P(\text{rejecting at least one of the $m$ $H_0$'s}\mid \text{all }H_0\text{'s are true})\\[2ex]
+=&amp; 1-P(\text{not rejecting any of the $m$ $H_0$'s}\mid \text{all }H_0\text{'s are true})\\[2ex]
+=&amp; 1 - (1-\alpha_{\textrm{Bonf}})^m\\[2ex]
+=&amp; 1 - \left(1-\frac{\alpha}{m}\right)^m\leq \alpha
+\end{align*}\]</span> For <span class="math inline">\(\alpha = 0.05\)</span> and <span class="math inline">\(m=20\colon\)</span> <span class="math display">\[
+1 - \left(1-\frac{0.05}{20}\right)^{20} = 0.0488
+\]</span></p>
+</div>
+</div>
+<p>Alternatives to the Bonferroni correction</p>
 <ul>
-<li><p><span class="math inline">\(\mathrm{p}\)</span>-values do not measure the probability that <span class="math inline">\(H_0\)</span> is true.</p></li>
-<li><p><span class="math inline">\(\mathrm{p}\)</span>-values do not measure the probability that the data were produced by random chance alone.</p></li>
-<li><p><span class="math inline">\(\mathrm{p}\)</span>-values do not measure the size of an effect or the importance of a result.</p></li>
-<li><p>Scientific conclusions and business or policy decisions should not be based only on whether a <span class="math inline">\(\mathrm{p}\)</span>-value passes a specific <span class="math inline">\(\alpha\)</span>-threshold.</p></li>
+<li>Holm–Bonferroni method</li>
+<li>Hochberg’s step-up procedure</li>
+</ul></section><section id="mitigating-the-misuse-of-mathrmp-values" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="mitigating-the-misuse-of-mathrmp-values">Mitigating the Misuse of <span class="math inline">\(\mathrm{p}\)</span>-Values</h4>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🧠 Pre-Registration and 🔁 Replication
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><br></p>
+<ul>
+<li>
+<strong>Pre-registration:</strong><br> Researchers <strong>state their hypotheses and analysis plans <em>before</em> looking at the data.</strong><br> This reduces the temptation to <span class="math inline">\(\mathrm{p}\)</span>-hack and helps distinguish confirmatory from exploratory research.<br><ul>
+<li><a href="https://help.osf.io/article/330-welcome-to-registrations">The Open Science Framework</a></li>
+<li><a href="https://aspredicted.org/index.php">AsPredicted</a></li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li>
+<strong>Replication</strong>:<br> Independent replication studies test whether a finding is robust or simply a statistical fluke (a type I error).
+<ul>
+<li><a href="https://i4replication.org/">Institute for Replication</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-</div>
+<!-- 
+### Statistical vs. Practical Significance
+
+A result that is **statistically significant** is not necessarily also **practically relevant**. 
+
+::: {.callout-note appearance="minimal"}
+## Example 
+A result might show that a new trading algorithm yields positive returns that are statistically different from zero, but if that difference is $0.0001 \%$ on average, it might not be profitable after accounting for transaction fees, taxes, or other frictions---hence **lacking practical relevance**.
+::: 
+
+-->
+</section></section></section><section id="conclusion" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="conclusion">
+<span class="header-section-number">1.4</span> Conclusion</h2>
+<p>📢 Key Messages:</p>
+<ul>
+<li>Use <span class="math inline">\(\mathrm{p}\)</span>-values as one piece of evidence, not the final verdict. Always combine them with effect sizes, confidence intervals, and context.</li>
+</ul>
 <div class="callout callout-style-simple callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-🤓 Do’s<br>
+Accept that there will always be uncertainty, and be <strong>thoughtful, open, and modest:</strong>
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p><br></p>
 <ul>
 <li>
-<strong>Be Thoughtful:</strong> Statistically thoughtful researchers …
+<strong>Be Thoughtful:</strong>
 <ul>
-<li>recognize when they are doing exploratory studies (for generating statistical hypothesis) or more rigidly pre-planned studies (for testing statistical hypothesis).</li>
-<li>prioritize sound data production by putting energy into the careful planning, design, and execution of the study.</li>
+<li>Know whether you’re doing an exploratory study (to generate hypotheses) or a more rigidly pre-planned study (to test hypotheses).</li>
+<li>Invest time and care in sound data collection — good study design and careful execution matter more than fancy statistics.</li>
 </ul>
 </li>
 <li>
 <strong>Be Open:</strong>
 <ul>
-<li>Openness to transparency (share data, make results reproducible, etc.)</li>
-<li>Openness in communication (statistical significance does not mean scientific importance, one study is rarely enough, etc.)</li>
+<li>Practice transparency — share your data, methods, and results so others can reproduce your findings.</li>
+<li>Be honest in communication — “statistical significance” ≠ “scientific importance,” and one study alone rarely proves anything.</li>
 </ul>
 </li>
 <li>
 <strong>Be Modest:</strong>
 <ul>
-<li>There is no true statistical/econometric model.</li>
-<li>Be modest about the role of statistical inference in scientific inference.</li>
+<li>Remember: there is no single ‘true’ model — every model is an approximation.</li>
+<li>Stay humble about what statistical inference can (and cannot) tell us about the real world.</li>
 </ul>
 </li>
 </ul>
-<center>
-📢 Accept that there will always be uncertainty, and be thoughtful, open, and modest.
-</center>
 </div>
 </div>
-</div>
-</section></section><section id="references" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+</section><section id="references" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-Amrhein_2019" class="csl-entry" role="listitem">
 Amrhein, Valentin, Sander Greenland, and Blake McShane. 2019.
@@ -902,6 +1015,10 @@ Are They, Really?”</span> <a href="http://phys.org/wire-news/145707973/the-pro
 <div id="ref-Nuzzo_2014" class="csl-entry" role="listitem">
 Nuzzo, Regina. 2014. <span>“Scientific Method: <span>S</span>tatistical
 Errors.”</span> <em>Nature</em> 506 (7487).
+</div>
+<div id="ref-Sagan_1997" class="csl-entry" role="listitem">
+Sagan, Carl. 1997. <em>The Demon-Haunted World: Science as a Candle in
+the Dark</em>. Headline Book Publishing.
 </div>
 <div id="ref-Wasserstein2016asa" class="csl-entry" role="listitem">
 Wasserstein, Ronald L, and Nicole A Lazar. 2016. <span>“The ASA

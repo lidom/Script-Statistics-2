@@ -31,7 +31,7 @@ $$
 In this lecture, we’ll tackle three key questions:
 
 * **How** do $\mathrm{p}$-values actually work?
-* **Why** can $\mathrm{p}$-values be tricky or even misleading in hypothesis testing?
+* **What** are the typically misinterpretations and misuses of $\mathrm{p}$-values?
 * **What** is good practice when working with $\mathrm{p}$-values?
 
 We’ll explore these questions using the **two-sided $t$-test** as our main example. Parallel arguments apply to one-sided testing and other hypothesis tests (F-test, etc.)
@@ -53,6 +53,7 @@ s     <- round(sd(X),   2)
 T_obs <- round((sqrt(n) * X_bar)/s, 2)
 ```
 
+-------------------------------------------------
 
 ### 💻 Example: Marketing Campaign {-}
 
@@ -112,12 +113,13 @@ Is the mean, $\mu,$ of $X_1,\dots,X_n$ different from zero?
 There are no systematic differences (mean-shifts) between sales before and after the marketing campaign, other than the potential impact of the campaign itself.
 :::
 
+-------------------------------------------------
 
 #### **Two-Sided $t$-Test** {-}
 We test
 
 <center>
-$\displaystyle H_0\colon \mu = 0\quad$ versus $\displaystyle \quad H_1\colon \mu \neq 0$
+$\displaystyle H_0\colon \mu = 0 \quad$ versus $\displaystyle \quad H_1\colon \mu \neq 0$
 </center>
 
 <br>
@@ -140,9 +142,13 @@ $X\sim\mathcal{N}(\mu, \sigma^2)$
 * For large $n$: we just need finite mean $E(X)=\mu$ and variance $\operatorname{Var}(X)=\sigma^2$ (Central Limit Theorem helps).
 :::
 
-<br>
 
-#### Observed (obs) Value of the $t$-statistic<br>(Marketing Example) {-}
+-------------------------------------------------
+
+
+
+#### **Observed (obs) Value of the $t$-Statistic (Marketing Example)** {-}
+
 $$
 \mathrm{T}_{\mathrm{obs}} = \frac{\bar{X}_{\mathrm{obs}} - 0}{S_{\mathrm{obs}}/\sqrt{5}} = `r format(T_obs, nsmall=2)`
 $$ 
@@ -150,7 +156,7 @@ $$
 * $\bar{X}_{\mathrm{obs}}=\frac{1}{5}\sum_{i=1}^5 X_{i,\mathrm{obs}} = `r format(X_bar,nsmall=2)`$ 
 * $S_{\mathrm{obs}} = \sqrt{\frac{1}{5-1}\sum_{i=1}^5(X_{i,\mathrm{obs}}-\bar{X}_{\mathrm{obs}})} = `r format(s,nsmall=2)`$ 
 
-::: {.callout-note appearance="minimal" collapse="true"}
+::: {.callout-tip appearance="minimal" collapse="true"}
 ## Computing $\mathrm{T}_{\mathrm{obs}}$ in `R`
 
 ```{r}
@@ -172,36 +178,46 @@ T_obs  <- result$statistic
 ```
 :::
 
-<br>
+-------------------------------------------------
 
-#### Test Decision using Critical Values<br>(Marketing Example) {-}
+#### **Test Decision using Critical Values (Marketing Example)** {-}
 
-Significance level
-$$
-\alpha=0.05
-$$
 
-<br>
+::: {.panel-tabset}
 
-Critical values of the $t_{n-1}$-distribution 
+## Test Decision
+
+Critical values of the $t_{n-1}$-distribution (significance level $\alpha = 0.05$):
 
 <center>
 $\mathrm{q}_{\alpha/2} = `r round(qt(p = 0.05/2, df=4), 2)`\;$ and $\;\mathrm{q}_{1-\alpha/2} = `r round(qt(p = 1-0.05/2, df=4), 2)`$
 </center>
 
-<br>
-
-Since $\textrm{T}_{\textrm{obs}}$ is not in the rejection regions (see @fig-CriticalValues)
+Since $\textrm{T}_{\textrm{obs}}$ is **not in the rejection region,**
 \begin{align*}
-\textrm{T}_{\textrm{obs}}=`r T_obs` \;\highlight{\not\in}\;(-\infty, \mathrm{q}_{\alpha/2})\; \cup \;(\mathrm{q}_{1-\alpha/2},\infty\,)
+\textrm{T}_{\textrm{obs}}=`r T_obs` \;\not\in\;(-\infty, \mathrm{q}_{\alpha/2})\; \cup \;(\mathrm{q}_{1-\alpha/2},\infty\,),
 \end{align*}
 we [fail to reject $H_0\colon\mu = 0$]{style="background-color: yellow; padding: 0.1em 0.1em;"}  at the significance level [$\alpha = 0.05.$]{style="background-color: #F88379CC; padding: 0.1em 0.1em;"}
 
+::: {.callout-tip appearance="minimal" collapse="true"}
+## Computing critical values in `R`
 
+```{r}
+#| echo: true
+#| eval: false
+## Critical values
+n     <- 5
+alpha <- 0.05
+qt(p =     alpha/2, df = n-1)
+qt(p = 1 - alpha/2, df = n-1)
+```
+:::
+
+## Plot 
 ```{r}
 #| echo: false
 #| fig.width: 8
-#| fig.height: 4
+#| fig.height: 3
 #| out.width: "1\\textwidth"
 #| fig-align: center
 #| label: fig-CriticalValues
@@ -244,36 +260,27 @@ legend("topright", pch=c(22), cex=1.5,
        bty="n", pt.bg = myRed, title = "")
 ```
 
-::: {.callout-note appearance="minimal" collapse="true"}
-## Computing critical values in `R`
-
-```{r}
-#| echo: true
-#| eval: false
-## Critical values
-n     <- 5
-alpha <- 0.05
-qt(p =     alpha/2, df = n-1)
-qt(p = 1 - alpha/2, df = n-1)
-```
 :::
 
-
+-------------------------------------------------
 
 ## The Two-Sided $\mathrm{p}$-Value of the $t$-Test 
 
-### Definition of the $\mathrm{p}$-Value
 
+### ⚙️ Definition of the $\mathrm{p}$-Value {-}
+
+::: {.panel-tabset}
+## Definition
 ::: {.callout-tip appearance="minimal"}
 ## Definition of the $\mathrm{p}$-Value 
-The $\mathrm{p}$-value, $\textrm{p}_{\mathrm{obs}},$ is the probability of observing a test statistic $\mathrm{T}$ as extreme as or more extreme than $\mathrm{T}_{\mathrm{obs}}$ (in the direction(s) of the alternative hypothesis), given the null hypothesis ($H_0$) is true.
+The $\mathrm{p}$-value, $\textrm{p}_{\mathrm{obs}},$ is the probability, under the assumption that $H_0$ is true, of observing a test statistic $\mathrm{T}$ at least as extreme (in the direction(s) of the alternative hypothesis) as the one $(\mathrm{T}_{\mathrm{obs}})$ computed from the sample data.
 :::
 
 **Two-sided $\mathrm{p}$-value of the $t$-test** 
 $$\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)$$
 
 
-<br>
+## Plot
 
 ```{r}
 #| echo: false
@@ -289,7 +296,7 @@ The light-red area in @fig-pValue equals the observed $\mathrm{p}$-value [$\math
 ```{r}
 #| echo: false
 #| fig.width: 8
-#| fig.height: 4
+#| fig.height: 3
 #| out.width: "1\\textwidth"
 #| fig-align: center
 #| label: fig-pValue
@@ -320,35 +327,38 @@ legend("topright", pch=c(22), cex=1.5,
        legend=bquote(p[obs]==.(p_obs)), 
        bty="n", pt.bg = myRed, title = "")
 ```
+:::
 
 
-### Computing the $\mathrm{p}$-Value
+--------------------------------------------------
 
+
+### 🧮 Computing the $\mathrm{p}$-Value {-}
+
+::: {.panel-tabset}
+## Null Distribution
 Note that 
 $$
-% \mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}
 \mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}\phantom{Half}
 $$
 implies that the [**absolute value** $|\mathrm{T}|$]{style="background-color: yellow; padding: 0.1em 0.1em;"} of the random $t$-statistic is Half-$t_{n-1}$ distributed,
 $$
-% \mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}
 |\mathrm{T}|=\frac{|\bar{X}-0|}{S/\sqrt{n}}\overset{H_0}{\sim}\highlight{\textrm{Half-}t_{n-1}.}
 $$
 
-<br>
+## Density Function
 
-The density function of the $\textrm{Half-}t_{n-1}$ distribution with $\operatorname{df}=n-1$ degrees of freedom is simply the **folded version** of the density function of the $t_{n-1}$ distribution (@fig-Halft).
+<!-- # "Densities functions of the null-distribution $t_{\\operatorname{df}}$ of $\\mathrm{T}$ and $\\textrm{Half-}t_{\\operatorname{df}}$ of $|\\mathrm{T}|$ with $\\operatorname{df}=n-1=4$ (marketing example)." -->
 
-<br>
 
 ```{r}
 #| echo: false
 #| fig.width: 8
-#| fig.height: 4
+#| fig.height: 3
 #| out.width: "1\\textwidth"
 #| fig-align: center
 #| label: fig-Halft
-#| fig-cap: "Densities of the null-distributions $t_{\\operatorname{df}}$ and $\\textrm{Half-}t_{\\operatorname{df}}$ with $\\operatorname{df}=n-1=4$ (marketing example)."
+#| fig-cap: The density function of the Half-$t_{n-1}$ distribution is the folded version of the density function of the $t_{n-1}$ distribution.
 
 library("extraDistr")
 
@@ -392,18 +402,53 @@ legend("topright", pch=22, cex=1.5,
        bty="n", pt.bg = myRed, title = "")
 
 legend("topleft", lty = 1, lwd=2, col=c(1, gray(.75)),
-        legend=c(expression(paste("Half-",italic(t)[n-1])), expression(italic(t)[n-1])), 
-        bty="n", cex = 1.5, title = "Density")       
+        legend=c(expression(f[paste("Half-",italic(t)["n-1"])]),expression(f[paste(italic(t)["n-1"])])),#c(expression(paste("Half-",italic(t)[n-1])), expression(italic(t)[n-1])), 
+        bty="n", cex = 1.5, title = "Density Functions")       
 ```
 
+
+## Distribution Function
+\begin{align*}
+\mathrm{F}_{\,\text{Half-}t_{n-1}}(x)&=\mathrm{P}(|\textrm{T}|\leq x\mid H_0\;\text{is true}),\quad |\textrm{T}|\overset{H_0}{\sim} \textrm{Half-}t_{n-1}
+\end{align*}
+
+<center> 
+$\mathrm{F}_{\,\text{Half-}t_{n-1}}(x) =$ `extraDistr::pht(q = x, nu = n - 1)`
+</center>
+
+```{r}
+#| echo: false
+#| fig.width: 8
+#| fig.height: 3
+#| out.width: "1\\textwidth"
+#| fig-align: center
+#| label: fig-CDFHalft
+#| fig-cap: "Distribution function of the null-distribution $\\textrm{Half-}t_{\\operatorname{df}}$ with $\\operatorname{df}=n-1=4$ (marketing example)."
+
+library("extraDistr")
+
+alpha  <- 0.05
+df     <- 5-1
+
+par(mar = c(2.5, 2.5, .5, .1), family = "serif")
+plot(y = pht(q = xx0, nu = df), x = xx0,
+      xlab = "", ylab = "", main = "",
+      lwd = 2, col = 1, xlim = c(0, 4.125), ylim = c(0, 1.25),
+      xaxs="i",yaxs="i", axes = FALSE, type="l")
+abline(h=1, lty=3)
+axis(1, cex.axis = 1.5, family = "serif", at = seq(0,4.5,by=1))
+axis(2, cex.axis = 1.5, family = "serif", at = seq(0,1,by=0.5))
+legend("right", lty = 1, lwd=2, col=1,
+        legend=expression(F[paste("Half-",italic(t)["n-1"])]), 
+        bty="n", cex = 1.5, title = "Distribution Function")
+```
+
+:::
+
 ::: {.callout-tip appearance="minimal"}
-## Computing the $\mathrm{p}$-Value
+## Computing the $\mathrm{p}$-Value of the Two-Sided $t$-Test
 <br>
-The cumulative distribution function of the Half-$t$ distribution, 
-$$
-\mathrm{F}_{\,\text{Half-}t,n-1}(x)=\mathrm{P}(|\textrm{T}|\leq x),\quad |\textrm{T}|\sim \textrm{Half-}t_{n-1}
-$$ 
-allows us to compute the $\mathrm{p}$-value, $\mathrm{p}_{\mathrm{obs}},$ for the two-sided $t$-statistic $|\mathrm{T}_{\mathrm{obs}}|$:
+The distribution function $\mathrm{F}_{\,\text{Half-}t_{n-1}}(x)$ of the Half-$t$ distribution allows us to compute the $\mathrm{p}$-value, $\mathrm{p}_{\mathrm{obs}},$ for the two-sided $t$-statistic $|\mathrm{T}_{\mathrm{obs}}|$:
 
 \begin{align*}
 \mathrm{p}_{\mathrm{obs}} 
@@ -413,17 +458,13 @@ allows us to compute the $\mathrm{p}$-value, $\mathrm{p}_{\mathrm{obs}},$ for th
 \end{align*}
 :::
 
-#### Computing the $\mathrm{p}$-Value<br>(Marketing Example) {-}
-
-<br>
+#### **Computing the $\mathrm{p}$-Value (Marketing Example)** {-}
 
 \begin{align*}
 \mathrm{p}_{\mathrm{obs}}
 &=1 - \mathrm{F}_{\,\text{Half-}t,n-1}\big(|\mathrm{T}_{\mathrm{obs}}|\big)\\
 &=1 - \mathrm{F}_{\,\text{Half-}t,n-1}\big(\,`r abs(T_obs)`\,\big)=`r p_obs`
 \end{align*}
-
-<br>
 
 ::: {.panel-tabset}
 
@@ -434,7 +475,7 @@ Computation of the observed $\operatorname{p}$-value:
 ```{r}
 #| echo: false
 #| fig.width: 8
-#| fig.height: 4
+#| fig.height: 2.5
 #| out.width: "1\\textwidth"
 #| fig-align: center
 
@@ -469,7 +510,7 @@ par(xpd = TRUE) #Draw outside plot area
 text(x = corners[1]-.75, y = mean(myfun(T_obs)), bquote(p[obs]==.(round(myfun(T_obs), 2))), srt = 0, cex = 1.5, family = "serif")
 
 legend("top", lty = 1, lwd=2,
-       legend=expression(1-F[paste("Half-",italic(t),",n-1")]), 
+       legend=expression(1-F[paste("Half-",italic(t)["n-1"])]),
        bty="n", cex = 1.5)
 ```
 
@@ -493,9 +534,9 @@ p_obs  <- result$p.value
 ```
 :::
 
-<br>
+-------------------------------------------------
 
-### Test Decision based on the $\mathrm{p}$-Value
+### ⚖️ Test Decision based on the $\mathrm{p}$-Value {-}
 
 <br>
 
@@ -509,8 +550,9 @@ $$
 \highlight{\mathrm{p}_{\mathrm{obs}} \geq \alpha}
 $$
 
+-------------------------------------------------
 
-#### Test Decision (Marketing Example) {-}
+#### **Test Decision (Marketing Example)** {-}
 
 Since 
 $$
@@ -518,68 +560,56 @@ $$
 $$
 we **fail to reject** $H_0\colon \mu =0$ at the significance level $\alpha=0.05.$ 
 
-> We also fail to reject $H_0$ at any other typically used significance level such as, for instance, $\alpha=0.1$ or $\alpha=0.01.$ 
-
-<!-- That is, we have no statistical evidence that the marketing campaign showed a tendency toward *significantly* higher or lower sales.  -->
+We also fail to reject $H_0$ at any other typically used significance level such as, for instance, $\alpha=0.1$ or $\alpha=0.01.$ 
 
 
-::: {.callout-caution icon="false" appearance="minimal"}
+::: {.callout-caution icon="false" appearance="minimal" collapse="true"}
 ## ⚠️ Failing to reject $H_0$ does not mean that $H_0$ is true.
 <br>
-Failing to reject $H_0$ only means that a potential impact of the marketing campaign is not large enough to stand out from the random variation captured by the standard error $(S_{\mathrm{obs}}/\sqrt{n});$ see @sec-Interpretation.
+Failing to reject $H_0$ only means that a potential impact of the marketing campaign is not large enough to stand out from the random variation captured by the standard error $(S_{\mathrm{obs}}/\sqrt{n});$ see @sec-MissUses.
+
+* "Absence of evidence is not evidence of absence." [@Sagan_1997].
+* [Argument from ignorance](https://en.wikipedia.org/wiki/Argument_from_ignorance)
 :::
 
+-------------------------------------------------
 
-<!-- 
-```{r}
-#| echo: true
-library("extraDistr")
-n  <- 5
-df <- n-1
-
-## 1 minus the distribution function of the Half-t
-p_obs <- 1 - pht(q = abs(T_obs), nu = df)
-
-qht(1-0.05, nu = df)
-``` 
--->
-
-<br>
-
-### $\mathrm{p}$-Values versus Critical Values
+### 🟰 $\mathrm{p}$-Values vs Critical Values {-}
 
 $\mathrm{p}$-values and critical values lead to exactly **equivalent test decisions:**
 
+
+::: {.panel-tabset}
+
+## Decision Rules
 :::: {.columns}
 
 ::: {.column width="50%"}
 
-* Reject $H_0$ 
-  * if $|\mathrm{T}_{\mathrm{obs}}| > \mathrm{q}_{1-\alpha}\;$ or
-  * if $\,\,\,\mathrm{p}_{\mathrm{obs}}\,<\alpha$
+**$\mathrm{p}$-Values:**
+
+* Reject $H_0$ if $\,\,\,\mathrm{p}_{\mathrm{obs}}\,<\alpha$
+* Fail to reject $H_0$ if $\,\,\,\mathrm{p}_{\mathrm{obs}}\, \leq \alpha$ 
 
 :::
 
 ::: {.column width="50%"}
 
-* Fail to reject $H_0$ 
-  * if $|\mathrm{T}_{\mathrm{obs}}| \leq  \mathrm{q}_{1-\alpha}\;$ or
-  * if $\,\,\,\mathrm{p}_{\mathrm{obs}}\, \leq \alpha$
+**Critical Values:**
+
+* Reject $H_0$ if $\,\,\,|\mathrm{T}_{\mathrm{obs}}| > \mathrm{q}_{1-\alpha}$
+* Fail to reject $H_0$ if $\,\,\,|\mathrm{T}_{\mathrm{obs}}| \leq  \mathrm{q}_{1-\alpha}$
 
 :::
-
+where $\mathrm{q}_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the Half-$t_{n-1}$ distribution.
 ::::
 
-where $\mathrm{q}_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the Half-$t_{n-1}$ distribution.
-
-::: {.panel-tabset}
-
-## Reject $H_0$
+## Plot: Reject $H_0$
 
 ```{r}
 #| echo: false
 #| fig.width: 8
-#| fig.height: 4
+#| fig.height: 3
 #| out.width: "1\\textwidth"
 #| fig-align: center
 
@@ -621,12 +651,12 @@ legend("topright", lty = 1, lwd=2,
 ```
 
 
-## Fail to Reject $H_0$
+## Plot: Fail to Reject $H_0$
 
 ```{r}
 #| echo: false
 #| fig.width: 8
-#| fig.height: 4
+#| fig.height: 3
 #| out.width: "1\\textwidth"
 #| fig-align: center
 
@@ -669,43 +699,64 @@ legend("topright", lty = 1, lwd=2,
 :::
 
 
-## $\mathrm{p}$-Values: Challenges for Hypothesis Testing
+## $\mathrm{p}$-Values: Misunderstood and Misused {#sec-MissUses}
 
-$\mathrm{p}$-values can be helpful tools, but they are often **misused and misunderstood**, leading to a large amount of published **“bad science.”**  
-This has sparked an ongoing debate about whether $\mathrm{p}$-values — and the idea of **statistical significance** — should be used at all.
+$\mathrm{p}$-values can be powerful tools — **when used correctly.**
+But in practice, they’re often **misinterpreted or misused**, leading to a surprising amount of published **“bad science.”**
+
+This misuse has sparked an ongoing debate:
+Should we rely on $\mathrm{p}$-values and the concept of **statistical significance** at all?
+
+📚 **Further reading:**
 
 * [The problem with p Values: How significant are they, really?](https://sciencex.com/wire-news/145707973/the-problem-with-p-values-how-significant-are-they-really.html) [@Cumming_2013]
 * [Scientific method: Statistical errors](https://www.nature.com/articles/506150a) [@Nuzzo_2014]
-* [Scientists rise up against statistical significance](https://www.nature.com/articles/d41586-019-00857-9) [@Amrhein_2019]
+* [Scientists rise up against statistical significance](https://www.nature.com/articles/d41586-019-00857-9) [@Amrhein_2019] 
 
-To address this, the **American Statistical Association (ASA)** released two statements explaining **what $\mathrm{p}$-values and statistical significance can — and cannot — tell us.**
+
+To clarify what $\mathrm{p}$-values and **statistical significance** actually mean (and what they don’t), the American Statistical Association (ASA) published two landmark position papers:
+
+📄 **ASA Statements:**
 
 * [The ASA statement on p-values: Context, process, and purpose](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#d1e167) [@Wasserstein2016asa]
 * [Moving to a world beyond "p< 0.05"](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) [@wasserstein2019asa]
 
-### Correct Interpretation of the $\textrm{p}$-Value {#sec-Interpretation}
 
-The $\textrm{p}$-value $\textrm{p}_{\mathrm{obs}}$ measures how extreme $|\mathrm{T}_{\mathrm{obs}}|$ is if the null hypothesis $H_0$ were true. 
+### 🧭 What $\mathrm{p}$-Values Tell Us — and What They Don’t {-}
 
-<!-- ::: {.callout-tip appearance="minimal"}
-
-## 🤓 Small $\textrm{p}$-Values
+::: {.callout-tip appearance="minimal"}
+## ✅ What $\mathrm{p}$-values do tell us
 <br>
 
-* A very small $\textrm{p}_{\mathrm{obs}}$ suggests that $|\mathrm{T}_{\mathrm{obs}}|$ is **incompatible** with $H_0.$ So we may decide that $H_0$ does not provide a plausible explanation for the data. 
-* If we reject $H_0$, since  $\textrm{p}_{\mathrm{obs}}<\alpha,$ we falsely reject $H_0$ (type-I-error) with probability $\alpha,$ which we may find acceptable for small $\alpha$-levels such as $\alpha=0.05$ or $\alpha = 0.01.$ 
-::: -->
+* They measure how compatible the data (i.e., the test statistic) are with the null hypothesis $H_0$.
 
-::: {.callout-tip appearance="minimal" collapse="true"}
+* A small $\mathrm{p}$-value means the observed data (i.e., the test statistic) would be unlikely if $H_0$ were true.
 
-## 🤓 Small $\textrm{p}$-Values: $\;\textrm{p}_{\mathrm{obs}} < \alpha$<br>
+:::
+
+::: {.callout-caution appearance="minimal"}
+
+## 🚫 What $\mathrm{p}$-values do not tell us
+<br>
+
+* They do not give the probability that $H_0$ is true or false.
+
+* They do not tell us whether a result is practically important.
+:::
+
+
+### ✅ Correct Interpretation of the $\textrm{p}$-Value {-}
+
+::: {.callout-tip appearance="minimal"}
+
+## 🤓 Interpreting small $\textrm{p}$-values: $\;\textrm{p}_{\mathrm{obs}} < \alpha$<br>
+<br>
 
 * A small $\textrm{p}_{\mathrm{obs}}$ suggests that the observed statistic $|\mathrm{T}_{\mathrm{obs}}|$ is **inconsistent with** the null hypothesis $H_0$.  
   In that case, we may decide that $H_0$ **does not provide a plausible explanation** for the data.
 
-* When we reject $H_0$ (because $\textrm{p}_{\mathrm{obs}} < \alpha$), we accept a risk of making a **type I error** — that is, **falsely rejecting** a true $H_0$ — with probability $\alpha$.  
-  This risk is typically considered acceptable for small significance levels such as $\alpha = 0.05$ or $\alpha = 0.01$.
-
+* When we reject $H_0$ (because $\textrm{p}_{\mathrm{obs}} < \alpha$), we accept a risk of **falsely rejecting** a true $H_0$ (type I error) with probability $\alpha$.  
+  Therefore, choose a small $\alpha$-level!
 :::
 
 <!-- 
@@ -725,64 +776,158 @@ The $\textrm{p}$-value $\textrm{p}_{\mathrm{obs}}$ measures how extreme $|\mathr
 </center>
 :::
  -->
-::: {.callout-warning appearance="minimal" collapse="true"}
+::: {.callout-warning appearance="minimal"}
+## ⚠️ Interpreting Large $\mathrm{p}$-Values: $\;\mathrm{p}_{\mathrm{obs}} \geq \alpha$
+<br>
 
-## ⚠️ Large $\textrm{p}$-Values: $\;\textrm{p}_{\mathrm{obs}} \geq \alpha$<br>
+* A large $\mathrm{p}_{\mathrm{obs}}$ means the observed test statistic $\mathrm{T}_{\mathrm{obs}}$ is compatible with the null hypothesis $H_0$.
+❗️But this does not mean that $H_0$ is true or proven.
 
-* A large $\textrm{p}_{\mathrm{obs}}$ means that the observed test statistic $|\mathrm{T}_{\mathrm{obs}}|$ is **consistent with** the null hypothesis $H_0$.  
-  ❗️ However, this does **not** mean that $H_0$ is *true* or *confirmed*.  
+* Even very large $\mathrm{p}$-values (e.g., $\mathrm{p}_{\mathrm{obs}} \approx 1$) can occur when the deviation from $H_0$ is too small to stand out from random variation — for example, if
+   * the sample size $n$ is small, or
+   * the data have large variability $\operatorname{Var}(X)$.
 
-* Even very large $\textrm{p}$-values (e.g., $\textrm{p}_{\mathrm{obs}} \approx 1$) can occur simply because a given deviation from $H_0$ does not stand out from the random variation captured by the standard error, for example when  
-  * the sample size $n$ is small, or  
-  * the variability $\operatorname{Var}(X)$ in the data is large.  
+* When we fail to reject $H_0$ (because $\mathrm{p}_{\mathrm{obs}} \geq \alpha$), we still cannot accept $H_0$.<br>We simply lack enough evidence to reject it — and we don’t know how likely we are to make a type II error (falsely accepting $H_0$).
 
-* When we fail to reject $H_0$ (because $\textrm{p}_{\mathrm{obs}} \geq \alpha$), we **cannot accept $H_0$** as we don’t know the probability of making a **type II error** (falsely accepting $H_0$).
+<center> 📢 **Statistical tests are built to falsify $H_0$, not to verify it.** </center>
 
-<!-- <center>
-📢 Statistical hypothesis tests are designed to **falsify** $H_0$ not to verify $H_0.$ 
-</center> -->
-<center>
-📢 Statistical tests are designed to **reject** $H_0$ when there is enough evidence — not to **prove** that $H_0$ is true.
-</center>
-:::
-
-### General Don't Do's and Do's 
-
-::: {.callout-warning appearance="minimal" collapse="true"}
-
-## ⚠️ Don't Do's<br>
-
-* $\mathrm{p}$-values do not measure the probability that $H_0$ is true.
-
-* $\mathrm{p}$-values do not measure the probability that the data were produced by random chance alone.
-
-* $\mathrm{p}$-values do not measure the size of an effect or the importance of a result.
-
-* Scientific conclusions and business or policy decisions should not be based only on whether a $\mathrm{p}$-value passes a specific $\alpha$-threshold.
 :::
 
 
-::: {.callout-tip appearance="minimal" collapse="true"}
+### 🙁 $\mathrm{p}$-Value Hacking {-}
 
-## 🤓 Do's<br> 
+$\mathrm{p}$-hacking is arguably the most common misuse of $\mathrm{p}$-values. It happens when researchers keep adjusting their analysis until they find a statistically significant result $(\mathrm{p}_{\mathrm{obs}} < \alpha)$ — even if there’s no real effect.
 
-* **Be Thoughtful:** Statistically thoughtful researchers ...  
-   * recognize when they are doing exploratory studies (for generating statistical hypothesis) or more rigidly pre-planned studies (for testing statistical hypothesis).
-   * prioritize sound data production by putting energy into the careful planning, design, and execution
-of the study.   
+🧪 Typical tricks include:
+
+* Running lots of tests until one happens to be “significant.”
+
+* Changing the model setup (adding or removing variables) until an insignificant result turns “significant”.
+
+* Selectively including or excluding data points to turn an insignificant result turns “significant”.
+
+This is called the **multiple comparison problem** — the more tests you run, the higher the chance of finding a false positive (falsely rejecting a correct $H_0$).
+
+<!-- 
+### $\mathrm{p}$-Value Hacking: Multiple Comparison Problem
+
+**$\mathrm{p}$-Hacking** refers to the process of manipulating data analysis until a statistically significant result $(\mathrm{p}_{\mathrm{obs}} < 0.05)$ is achieved. This can include:
+
+- Running multiple tests on the same dataset until one finds a significant effect.
+
+- Trying various model specifications (e.g., adding or removing control variables) until one finds a significant effect.
+
+
+- Do data picking (removing / adding data points) until one finds a significant effect.
+
+If researchers test many hypotheses or shift through a wide range of variables and subgroups, they can almost always find a "significant" result by chance alone (Multiple Comparison Problem). -->
+
+
+#### Multiple Comparison Problem {-}
+
+::: {.callout-warning  appearance="minimal"}
+## ⚠️ Multiple Comparison Problem
+<br>
+When multiple tests are conducted, the chance of finding at least one “significant” result purely by coincidence increases.
+
+For instance, with $m=20$ independent tests at the significance level $\alpha = 0.05$, there is a $64 \%$ chance of incorrectly rejecting at least one null hypothesis:
+\begin{align*}
+ & P(\text{rejecting at least one of the $m$ $H_0$'s}\mid \text{all }H_0\text{'s are true})\\[2ex]
+=& 1-P(\text{not rejecting any of the $m$ $H_0$'s}\mid \text{all }H_0\text{'s are true})\\[2ex]
+=& 1 - (1-\alpha)^m\\[2ex]
+=& 1 - 0.95^{20} \;\approx \; `r round(1 - 0.95^(20), 2)`
+\end{align*}
+:::
+
+#### Adjusting for Multiple Comparisons {-}
+
+::: {.callout-tip appearance="minimal"}
+
+## 🤓 The **Bonferroni Correction** 
+<br>
+The **Bonferroni Correction** requires using a more stringent significance threshold when multiple tests are performed; namely
+$$
+\alpha_{\textrm{Bonf}}=\frac{\alpha}{m}
+$$ 
+for $m$ tests.
+
+
+\begin{align*}
+ & P(\text{rejecting at least one of the $m$ $H_0$'s}\mid \text{all }H_0\text{'s are true})\\[2ex]
+=& 1-P(\text{not rejecting any of the $m$ $H_0$'s}\mid \text{all }H_0\text{'s are true})\\[2ex]
+=& 1 - (1-\alpha_{\textrm{Bonf}})^m\\[2ex]
+=& 1 - \left(1-\frac{\alpha}{m}\right)^m\leq \alpha
+\end{align*}
+For $\alpha = 0.05$ and $m=20\colon$
+$$
+1 - \left(1-\frac{0.05}{20}\right)^{20} = `r round(1 - (1-0.05/20)^(20), 4)`
+$$
+:::
+
+Alternatives to the Bonferroni correction
+
+* Holm–Bonferroni method
+* Hochberg's step-up procedure
+
+#### Mitigating the Misuse of $\mathrm{p}$-Values {-}
+
+::: {.callout-tip appearance="minimal"}
+## 🧠 Pre-Registration and 🔁 Replication
+<br>
+
+* **Pre-registration:**<br>
+Researchers **state their hypotheses and analysis plans *before* looking at the data.**<br>
+This reduces the temptation to $\mathrm{p}$-hack and helps distinguish confirmatory from exploratory research.<br>
+   * [The Open Science Framework](https://help.osf.io/article/330-welcome-to-registrations)
+   * [AsPredicted](https://aspredicted.org/index.php)
+
+<br>
+
+*  **Replication**:<br>
+Independent replication studies test whether a finding is robust or simply a statistical fluke (a type I error).
+    * [Institute for Replication](https://i4replication.org/)
+:::
+
+
+
+
+<!-- 
+### Statistical vs. Practical Significance
+
+A result that is **statistically significant** is not necessarily also **practically relevant**. 
+
+::: {.callout-note appearance="minimal"}
+## Example 
+A result might show that a new trading algorithm yields positive returns that are statistically different from zero, but if that difference is $0.0001 \%$ on average, it might not be profitable after accounting for transaction fees, taxes, or other frictions---hence **lacking practical relevance**.
+::: 
+
+-->
+
+## Conclusion
+
+
+📢 Key Messages:
+
+* Use $\mathrm{p}$-values as one piece of evidence, not the final verdict. Always combine them with effect sizes, confidence intervals, and context.
+
+::: {.callout-tip appearance="minimal"}
+
+## Accept that there will always be uncertainty, and be **thoughtful, open, and modest:**
+<br>
+
+* **Be Thoughtful:**
+    * Know whether you’re doing an exploratory study (to generate hypotheses) or a more rigidly pre-planned study (to test hypotheses).
+    * Invest time and care in sound data collection — good study design and careful execution matter more than fancy statistics.
 
 * **Be Open:**
-   * Openness to transparency (share data, make results reproducible, etc.)
-   * Openness in communication (statistical significance does not mean scientific importance, one study is rarely enough, etc.) 
+     * Practice transparency — share your data, methods, and results so others can reproduce your findings.
+     * Be honest in communication — “statistical significance” ≠ “scientific importance,” and one study alone rarely proves anything.
 
 * **Be Modest:**
-   * There is no true statistical/econometric model.
-   * Be modest about the role of statistical inference in scientific inference.
-
-<center>
-📢 Accept that there will always be uncertainty, and be thoughtful, open, and modest.
-</center>
+     * Remember: there is no single ‘true’ model — every model is an approximation.
+     * Stay humble about what statistical inference can (and cannot) tell us about the real world.
 :::
+
 
 ## References {-}
 
