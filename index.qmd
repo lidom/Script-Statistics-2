@@ -15,7 +15,7 @@ timetable %>% kbl() %>%  kable_styling()
 ```
 
 
-### Link to this Lecture
+### Link to this Lecture:
 
 ![](images/lecture_page_linke.png){width=35% fig-align="center"}
 
