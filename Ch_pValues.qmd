@@ -458,8 +458,11 @@ legend("right", lty = 1, lwd=2, col=1,
 
 ::: {.callout-tip appearance="minimal"}
 ## Computing the $\mathrm{p}$-Value of the Two-Sided $t$-Test
+
+<!-- 
 <br>
-The distribution function $\mathrm{F}_{\,\text{Half-}t_{n-1}}(x)$ of the Half-$t_{n-1}$ distribution allows us to compute the $\mathrm{p}$-value, $\mathrm{p}_{\mathrm{obs}},$ for the two-sided $t$-statistic $|\mathrm{T}_{\mathrm{obs}}|$:
+The distribution function $\mathrm{F}_{\,\text{Half-}t_{n-1}}(x)$ of the Half-$t_{n-1}$ distribution allows us to compute the $\mathrm{p}$-value, $\mathrm{p}_{\mathrm{obs}},$ for the two-sided $t$-statistic $|\mathrm{T}_{\mathrm{obs}}|$: 
+-->
 
 \begin{align*}
 \mathrm{p}_{\mathrm{obs}} 
