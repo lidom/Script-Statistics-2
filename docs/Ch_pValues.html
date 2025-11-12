@@ -216,9 +216,10 @@ window.Quarto = {
 <li><a href="#mathrmp-hacking" id="toc-mathrmp-hacking" class="nav-link" data-scroll-target="#mathrmp-hacking">🙁 <span class="math inline">\(\mathrm{p}\)</span>-Hacking</a></li>
   <li><a href="#correct-interpretation-of-the-textrmp-value" id="toc-correct-interpretation-of-the-textrmp-value" class="nav-link" data-scroll-target="#correct-interpretation-of-the-textrmp-value">✅ Correct Interpretation of the <span class="math inline">\(\textrm{p}\)</span>-Value</a></li>
   <li><a href="#good-practice" id="toc-good-practice" class="nav-link" data-scroll-target="#good-practice">📄 Good Practice</a></li>
+  <li><a href="#the-scientific-debate-about-mathrmp-values" id="toc-the-scientific-debate-about-mathrmp-values" class="nav-link" data-scroll-target="#the-scientific-debate-about-mathrmp-values">📚 The Scientific Debate about <span class="math inline">\(\mathrm{p}\)</span>-Values</a></li>
   </ul>
 </li>
-  <li><a href="#overview-mathrmp-values-of-other-test-statistics" id="toc-overview-mathrmp-values-of-other-test-statistics" class="nav-link" data-scroll-target="#overview-mathrmp-values-of-other-test-statistics"><span class="header-section-number">1.4</span> Overview: <span class="math inline">\(\mathrm{p}\)</span>-Values of other Test Statistics</a></li>
+  <li><a href="#sec-OtherTests" id="toc-sec-OtherTests" class="nav-link" data-scroll-target="#sec-OtherTests"><span class="header-section-number">1.4</span> Overview: <span class="math inline">\(\mathrm{p}\)</span>-Values of other Test Statistics</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></nav>
     </div>
@@ -261,7 +262,7 @@ window.Quarto = {
 <li>
 <strong>What</strong> is good practice when working with <span class="math inline">\(\mathrm{p}\)</span>-values?</li>
 </ul>
-<p>We’ll explore these questions using the <strong>two-sided <span class="math inline">\(t\)</span>-test</strong> as our main example. Parallel arguments apply to one-sided testing and other hypothesis tests (F-test, etc.)</p>
+<p>We’ll explore these questions using the <strong>two-sided <span class="math inline">\(t\)</span>-test</strong> as our main example. Parallel arguments apply to one-sided testing and other hypothesis tests (F-test, etc.); see <a href="#sec-OtherTests" class="quarto-xref"><span>Section 1.4</span></a>.</p>
 <hr></section><section id="example-marketing-campaign" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="example-marketing-campaign">💻 Example: Marketing Campaign</h3>
 <p>Imagine a company runs a marketing campaign in <span class="math inline">\(n = 5\)</span> stores and measures sales <em>before</em> and <em>after</em> the campaign.</p>
 <p><br></p>
@@ -804,30 +805,6 @@ where $\mathrm{q}_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the Half-$t_{
 
 --></section></section></section><section id="sec-MissUses" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="sec-MissUses">
 <span class="header-section-number">1.3</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Misused and Misunderstood</h2>
-<p><span class="math inline">\(\mathrm{p}\)</span>-values can be powerful tools — <strong>when used correctly.</strong> But in practice, they’re often <strong>misused and misinterpreted</strong>, leading to a surprising amount of published <strong>“bad science.”</strong></p>
-<p>This misuse has sparked an ongoing debate: Should we rely on <span class="math inline">\(\mathrm{p}\)</span>-values and the concept of <strong>statistical significance</strong> at all?</p>
-<p>📚 <strong>Further reading:</strong></p>
-<ul>
-<li>
-<a href="https://sciencex.com/wire-news/145707973/the-problem-with-p-values-how-significant-are-they-really.html">The problem with p Values: How significant are they, really?</a> <span class="citation" data-cites="Cumming_2013">(<a href="Ch_pValues.html#ref-Cumming_2013" role="doc-biblioref">Cumming 2013</a>)</span>
-</li>
-<li>
-<a href="https://www.nature.com/articles/506150a">Scientific method: Statistical errors</a> <span class="citation" data-cites="Nuzzo_2014">(<a href="Ch_pValues.html#ref-Nuzzo_2014" role="doc-biblioref">Nuzzo 2014</a>)</span>
-</li>
-<li>
-<a href="https://www.nature.com/articles/d41586-019-00857-9">Scientists rise up against statistical significance</a> <span class="citation" data-cites="Amrhein_2019">(<a href="Ch_pValues.html#ref-Amrhein_2019" role="doc-biblioref">Amrhein, Greenland, and McShane 2019</a>)</span>
-</li>
-</ul>
-<p>To clarify what <span class="math inline">\(\mathrm{p}\)</span>-values and <strong>statistical significance</strong> actually mean (and what they don’t), the American Statistical Association (ASA) published two landmark position papers:</p>
-<p>📄 <strong>ASA Statements:</strong></p>
-<ul>
-<li>
-<a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#d1e167">The ASA statement on p-values: Context, process, and purpose</a> <span class="citation" data-cites="Wasserstein2016asa">(<a href="Ch_pValues.html#ref-Wasserstein2016asa" role="doc-biblioref">Wasserstein and Lazar 2016</a>)</span>
-</li>
-<li>
-<a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">Moving to a world beyond “p&lt; 0.05”</a> <span class="citation" data-cites="wasserstein2019asa">(<a href="Ch_pValues.html#ref-wasserstein2019asa" role="doc-biblioref">Wasserstein, Schirm, and Lazar 2019</a>)</span>
-</li>
-</ul>
 <!-- ### 🧭 What $\mathrm{p}$-Values Tell Us — and What They Don’t {-}
 
 ::: {.callout-tip appearance="minimal"}
@@ -848,7 +825,8 @@ where $\mathrm{q}_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the Half-$t_{
 * They do not give the probability that $H_0$ is true or false.
 
 * They do not tell us whether a result is practically important.
-::: --><section id="mathrmp-hacking" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="mathrmp-hacking">🙁 <span class="math inline">\(\mathrm{p}\)</span>-Hacking</h3>
+::: -->
+<section id="mathrmp-hacking" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="mathrmp-hacking">🙁 <span class="math inline">\(\mathrm{p}\)</span>-Hacking</h3>
 <p><span class="math inline">\(\mathrm{p}\)</span>-hacking is arguably the most common misuse of <span class="math inline">\(\mathrm{p}\)</span>-values. It happens when researchers keep adjusting their analysis until they find a statistically significant result <span class="math inline">\((\mathrm{p}_{\mathrm{obs}} &lt; \alpha)\)</span> — even if there’s no real effect.</p>
 <p>🧪 Typical “tricks” include:</p>
 <ul>
@@ -1043,7 +1021,31 @@ where $\mathrm{q}_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the Half-$t_{
 </div>
 </div>
 </div>
-</section></section><section id="overview-mathrmp-values-of-other-test-statistics" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="overview-mathrmp-values-of-other-test-statistics">
+<hr></section><section id="the-scientific-debate-about-mathrmp-values" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="the-scientific-debate-about-mathrmp-values">📚 The Scientific Debate about <span class="math inline">\(\mathrm{p}\)</span>-Values</h3>
+<p><span class="math inline">\(\mathrm{p}\)</span>-values can be powerful tools — <strong>when used correctly.</strong> But in practice, they’re often <strong>misused and misinterpreted</strong>, leading to a surprising amount of published <strong>“bad science.”</strong></p>
+<p>This misuse has sparked an ongoing debate: Should we rely on <span class="math inline">\(\mathrm{p}\)</span>-values and the concept of <strong>statistical significance</strong> at all?</p>
+<p>📚 <strong>Further reading:</strong></p>
+<ul>
+<li>
+<a href="https://sciencex.com/wire-news/145707973/the-problem-with-p-values-how-significant-are-they-really.html">The problem with p Values: How significant are they, really?</a> <span class="citation" data-cites="Cumming_2013">(<a href="Ch_pValues.html#ref-Cumming_2013" role="doc-biblioref">Cumming 2013</a>)</span>
+</li>
+<li>
+<a href="https://www.nature.com/articles/506150a">Scientific method: Statistical errors</a> <span class="citation" data-cites="Nuzzo_2014">(<a href="Ch_pValues.html#ref-Nuzzo_2014" role="doc-biblioref">Nuzzo 2014</a>)</span>
+</li>
+<li>
+<a href="https://www.nature.com/articles/d41586-019-00857-9">Scientists rise up against statistical significance</a> <span class="citation" data-cites="Amrhein_2019">(<a href="Ch_pValues.html#ref-Amrhein_2019" role="doc-biblioref">Amrhein, Greenland, and McShane 2019</a>)</span>
+</li>
+</ul>
+<p>To clarify what <span class="math inline">\(\mathrm{p}\)</span>-values and <strong>statistical significance</strong> actually mean (and what they don’t), the American Statistical Association (ASA) published two landmark position papers:</p>
+<p>📄 <strong>ASA Statements:</strong></p>
+<ul>
+<li>
+<a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#d1e167">The ASA statement on p-values: Context, process, and purpose</a> <span class="citation" data-cites="Wasserstein2016asa">(<a href="Ch_pValues.html#ref-Wasserstein2016asa" role="doc-biblioref">Wasserstein and Lazar 2016</a>)</span>
+</li>
+<li>
+<a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">Moving to a world beyond “p&lt; 0.05”</a> <span class="citation" data-cites="wasserstein2019asa">(<a href="Ch_pValues.html#ref-wasserstein2019asa" role="doc-biblioref">Wasserstein, Schirm, and Lazar 2019</a>)</span>
+</li>
+</ul></section></section><section id="sec-OtherTests" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="sec-OtherTests">
 <span class="header-section-number">1.4</span> Overview: <span class="math inline">\(\mathrm{p}\)</span>-Values of other Test Statistics</h2>
 <p>Here you’ll find more great things about the <span class="math inline">\(p\)</span>-value!</p>
 <p><img src="images/cute-happy-excited-cat.gif" class="img-fluid"></p>

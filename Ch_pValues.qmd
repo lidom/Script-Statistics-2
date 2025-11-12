@@ -34,7 +34,7 @@ In this lecture, we’ll tackle three key questions:
 * **What** are the typical misuses and misinterpretations of $\mathrm{p}$-values?
 * **What** is good practice when working with $\mathrm{p}$-values?
 
-We’ll explore these questions using the **two-sided $t$-test** as our main example. Parallel arguments apply to one-sided testing and other hypothesis tests (F-test, etc.)
+We’ll explore these questions using the **two-sided $t$-test** as our main example. Parallel arguments apply to one-sided testing and other hypothesis tests (F-test, etc.); see @sec-OtherTests.
 
 ```{r}
 #| echo: false
@@ -730,25 +730,6 @@ legend("topright", lty = 1, lwd=2,
 
 ## $\mathrm{p}$-Values: Misused and Misunderstood {#sec-MissUses}
 
-$\mathrm{p}$-values can be powerful tools — **when used correctly.**
-But in practice, they’re often **misused and misinterpreted**, leading to a surprising amount of published **“bad science.”**
-
-This misuse has sparked an ongoing debate:
-Should we rely on $\mathrm{p}$-values and the concept of **statistical significance** at all?
-
-📚 **Further reading:**
-
-* [The problem with p Values: How significant are they, really?](https://sciencex.com/wire-news/145707973/the-problem-with-p-values-how-significant-are-they-really.html) [@Cumming_2013]
-* [Scientific method: Statistical errors](https://www.nature.com/articles/506150a) [@Nuzzo_2014]
-* [Scientists rise up against statistical significance](https://www.nature.com/articles/d41586-019-00857-9) [@Amrhein_2019] 
-
-
-To clarify what $\mathrm{p}$-values and **statistical significance** actually mean (and what they don’t), the American Statistical Association (ASA) published two landmark position papers:
-
-📄 **ASA Statements:**
-
-* [The ASA statement on p-values: Context, process, and purpose](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#d1e167) [@Wasserstein2016asa]
-* [Moving to a world beyond "p< 0.05"](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) [@wasserstein2019asa]
 
 
 <!-- ### 🧭 What $\mathrm{p}$-Values Tell Us — and What They Don’t {-}
@@ -957,7 +938,33 @@ Accept that there will always be uncertainty, and be **thoughtful, open, and mod
 :::
 
 
-## Overview: $\mathrm{p}$-Values of other Test Statistics
+---------------------------------------------------------------
+
+### 📚 The Scientific Debate about $\mathrm{p}$-Values {-}
+
+$\mathrm{p}$-values can be powerful tools — **when used correctly.**
+But in practice, they’re often **misused and misinterpreted**, leading to a surprising amount of published **“bad science.”**
+
+This misuse has sparked an ongoing debate:
+Should we rely on $\mathrm{p}$-values and the concept of **statistical significance** at all?
+
+📚 **Further reading:**
+
+* [The problem with p Values: How significant are they, really?](https://sciencex.com/wire-news/145707973/the-problem-with-p-values-how-significant-are-they-really.html) [@Cumming_2013]
+* [Scientific method: Statistical errors](https://www.nature.com/articles/506150a) [@Nuzzo_2014]
+* [Scientists rise up against statistical significance](https://www.nature.com/articles/d41586-019-00857-9) [@Amrhein_2019] 
+
+
+To clarify what $\mathrm{p}$-values and **statistical significance** actually mean (and what they don’t), the American Statistical Association (ASA) published two landmark position papers:
+
+📄 **ASA Statements:**
+
+* [The ASA statement on p-values: Context, process, and purpose](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#d1e167) [@Wasserstein2016asa]
+* [Moving to a world beyond "p< 0.05"](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913) [@wasserstein2019asa]
+
+
+
+## Overview: $\mathrm{p}$-Values of other Test Statistics {#sec-OtherTests}
 
 Here you'll find more great things about the $p$-value! 
 
