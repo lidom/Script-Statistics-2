@@ -208,10 +208,16 @@ window.Quarto = {
 <li><a href="#definition-of-the-mathrmp-value" id="toc-definition-of-the-mathrmp-value" class="nav-link" data-scroll-target="#definition-of-the-mathrmp-value">⚙️ Definition of the <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
   <li><a href="#computing-the-mathrmp-value" id="toc-computing-the-mathrmp-value" class="nav-link" data-scroll-target="#computing-the-mathrmp-value">🧮 Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
   <li><a href="#test-decision-based-on-the-mathrmp-value" id="toc-test-decision-based-on-the-mathrmp-value" class="nav-link" data-scroll-target="#test-decision-based-on-the-mathrmp-value">⚖️ Test Decision based on the <span class="math inline">\(\mathrm{p}\)</span>-Value</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-MissUses" id="toc-sec-MissUses" class="nav-link" data-scroll-target="#sec-MissUses"><span class="header-section-number">1.3</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Misused and Misunderstood</a>
+  <ul class="collapse">
+<li><a href="#mathrmp-hacking" id="toc-mathrmp-hacking" class="nav-link" data-scroll-target="#mathrmp-hacking">🙁 <span class="math inline">\(\mathrm{p}\)</span>-Hacking</a></li>
   <li><a href="#correct-interpretation-of-the-textrmp-value" id="toc-correct-interpretation-of-the-textrmp-value" class="nav-link" data-scroll-target="#correct-interpretation-of-the-textrmp-value">✅ Correct Interpretation of the <span class="math inline">\(\textrm{p}\)</span>-Value</a></li>
   </ul>
 </li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">1.3</span> Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">1.4</span> Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></nav>
     </div>
@@ -250,7 +256,7 @@ window.Quarto = {
 <li>
 <strong>How</strong> do <span class="math inline">\(\mathrm{p}\)</span>-values actually work?</li>
 <li>
-<strong>What</strong> are the typically misinterpretations and misuses of <span class="math inline">\(\mathrm{p}\)</span>-values?</li>
+<strong>What</strong> are the typical misuses and misinterpretations of <span class="math inline">\(\mathrm{p}\)</span>-values?</li>
 <li>
 <strong>What</strong> is good practice when working with <span class="math inline">\(\mathrm{p}\)</span>-values?</li>
 </ul>
@@ -514,7 +520,7 @@ Definition of the <span class="math inline">\(\mathrm{p}\)</span>-Value
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <span class="math inline">\(\mathrm{p}\)</span>-value, <span class="math inline">\(\textrm{p}_{\mathrm{obs}},\)</span> is the probability of obtaining a test statistic <span class="math inline">\(\mathrm{T}\)</span> at least as extreme (in the direction(s) of the alternative hypothesis) as the one observed <span class="math inline">\((\mathrm{T}_{\mathrm{obs}})\)</span> — assuming that <span class="math inline">\(H_0\)</span> is true.</p>
+<p>The <span class="math inline">\(\mathrm{p}\)</span>-value, <span class="math inline">\(\textrm{p}_{\mathrm{obs}},\)</span> is the probability of obtaining realizations of the test statistic <span class="math inline">\(\mathrm{T}\)</span> at least as extreme (in the direction(s) of the alternative hypothesis) as the one realization computed from the data <span class="math inline">\((\mathrm{T}_{\mathrm{obs}})\)</span> — assuming that <span class="math inline">\(H_0\)</span> is true.</p>
 </div>
 </div>
 <p><strong>Two-sided <span class="math inline">\(\mathrm{p}\)</span>-value of the <span class="math inline">\(t\)</span>-test</strong> <span class="math display">\[\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)\]</span></p>
@@ -598,12 +604,12 @@ Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value of the Two-S
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><br> The distribution function <span class="math inline">\(\mathrm{F}_{\,\text{Half-}t_{n-1}}(x)\)</span> of the Half-<span class="math inline">\(t\)</span> distribution allows us to compute the <span class="math inline">\(\mathrm{p}\)</span>-value, <span class="math inline">\(\mathrm{p}_{\mathrm{obs}},\)</span> for the two-sided <span class="math inline">\(t\)</span>-statistic <span class="math inline">\(|\mathrm{T}_{\mathrm{obs}}|\)</span>:</p>
+<p><br> The distribution function <span class="math inline">\(\mathrm{F}_{\,\text{Half-}t_{n-1}}(x)\)</span> of the Half-<span class="math inline">\(t_{n-1}\)</span> distribution allows us to compute the <span class="math inline">\(\mathrm{p}\)</span>-value, <span class="math inline">\(\mathrm{p}_{\mathrm{obs}},\)</span> for the two-sided <span class="math inline">\(t\)</span>-statistic <span class="math inline">\(|\mathrm{T}_{\mathrm{obs}}|\)</span>:</p>
 <p><span class="math display">\[\begin{align*}
 \mathrm{p}_{\mathrm{obs}}
 &amp; = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)\\[1ex]
 &amp; = 1 - \mathrm{P}\big(\highlight{|\mathrm{T}|}\leq |\mathrm{T}_{\mathrm{obs}}|\;\big|\highlight{H_0\;\text{is true}}\big)\\[1ex]
-&amp; = 1 - \highlight{\mathrm{F}_{\,\text{Half-}t,n-1}}\big(|\mathrm{T}_{\mathrm{obs}}|\big)
+&amp; = 1 - \highlight{\mathrm{F}_{\,\text{Half-}t_{n-1}}}\big(|\mathrm{T}_{\mathrm{obs}}|\big)
 \end{align*}\]</span></p>
 </div>
 </div>
@@ -611,8 +617,8 @@ Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value of the Two-S
 <section id="computing-the-mathrmp-value-marketing-example" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="computing-the-mathrmp-value-marketing-example"><strong>Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value (Marketing Example)</strong></h4>
 <p><span class="math display">\[\begin{align*}
 \mathrm{p}_{\mathrm{obs}}
-&amp;=1 - \mathrm{F}_{\,\text{Half-}t,n-1}\big(|\mathrm{T}_{\mathrm{obs}}|\big)\\
-&amp;=1 - \mathrm{F}_{\,\text{Half-}t,n-1}\big(\,0.96\,\big)=0.39
+&amp;=1 - \mathrm{F}_{\,\text{Half-}t_{n-1}}\big(|\mathrm{T}_{\mathrm{obs}}|\big)\\
+&amp;=1 - \mathrm{F}_{\,\text{Half-}t_{n-1}}\big(\,0.96\,\big)=0.39
 \end{align*}\]</span></p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -676,7 +682,7 @@ Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value of the Two-S
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><br> Failing to reject <span class="math inline">\(H_0\)</span> only means that a potential impact of the marketing campaign is not large enough to stand out from the random variation captured by the standard error <span class="math inline">\((S_{\mathrm{obs}}/\sqrt{n});\)</span> see <span class="quarto-unresolved-ref">?sec-MissUses</span>.</p>
+<p><br> Failing to reject <span class="math inline">\(H_0\)</span> only means that a potential impact of the marketing campaign is not large enough to stand out from the random variation captured by the standard error <span class="math inline">\((S_{\mathrm{obs}}/\sqrt{n});\)</span> see <a href="#sec-MissUses" class="quarto-xref"><span>Section 1.3</span></a>.</p>
 <ul>
 <li>“Absence of evidence is not evidence of absence.” <span class="citation" data-cites="Sagan_1997">(<a href="Ch_pValues.html#ref-Sagan_1997" role="doc-biblioref">Sagan 1997</a>)</span>.</li>
 <li><a href="https://en.wikipedia.org/wiki/Argument_from_ignorance">Argument from ignorance</a></li>
@@ -684,158 +690,147 @@ Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value of the Two-S
 </div>
 </div>
 </div>
-<table class="caption-top table"><tbody>
-<tr class="odd">
-<td style="text-align: left;">&lt;!– ### 🤝 <span class="math inline">\(\mathrm{p}\)</span>-Values vs Critical Values {-}</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">
-<span class="math inline">\(\mathrm{p}\)</span>-values and critical values lead to exactly <strong>equivalent test decisions:</strong>
-</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">| | Reject <span class="math inline">\(H_0\)</span> | Fail to Reject <span class="math inline">\(H_0\)</span>| |————————-|————————————-|————————| |<strong><span class="math inline">\(\mathrm{p}\)</span>-Values:</strong> |<span class="math inline">\(\mathrm{p}_{\mathrm{obs}}\,&lt;\alpha\)</span> |<span class="math inline">\(\mathrm{p}_{\mathrm{obs}}\, \geq \alpha\)</span>| |<strong>Critical Values:</strong> |<span class="math inline">\(|\mathrm{T}_{\mathrm{obs}}| &gt; \mathrm{q}_{1-\alpha}\)</span> |<span class="math inline">\(|\mathrm{T}_{\mathrm{obs}}| \leq  \mathrm{q}_{1-\alpha}\)</span>|</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">&gt; With <span class="math inline">\(\mathrm{q}_{1-\alpha}\)</span> denoting the <span class="math inline">\((1-\alpha)\)</span>-quantile of the Half-<span class="math inline">\(t_{n-1}\)</span> distribution.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">–&gt;</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">&lt;!– :::: {.columns}</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">::: {.column width=“50%”}</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong><span class="math inline">\(\mathrm{p}\)</span>-Values:</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">* Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(\,\,\,\mathrm{p}_{\mathrm{obs}}\,&lt;\alpha\)</span> * Fail to reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(\,\,\,\mathrm{p}_{\mathrm{obs}}\, \geq \alpha\)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">:::</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">::: {.column width=“50%”}</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Critical Values:</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">* Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(\,\,\,|\mathrm{T}_{\mathrm{obs}}| &gt; \mathrm{q}_{1-\alpha}\)</span> * Fail to reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(\,\,\,|\mathrm{T}_{\mathrm{obs}}| \leq  \mathrm{q}_{1-\alpha},\)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">::: where <span class="math inline">\(\mathrm{q}_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span>-quantile of the Half-<span class="math inline">\(t_{n-1}\)</span> distribution. :::: –&gt;</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">&lt;!– ::: {.panel-tabset}</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">## Plot: Reject <span class="math inline">\(H_0\)</span>
-</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">::: {.cell layout-align=“center”} ::: {.cell-output-display} <img src="Ch_pValues_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center"> ::: :::</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">## Plot: Fail to Reject <span class="math inline">\(H_0\)</span>
-</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">::: {.cell layout-align=“center”} ::: {.cell-output-display} <img src="Ch_pValues_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center"> ::: :::</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">:::</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">–&gt;</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">## <span class="math inline">\(\mathrm{p}\)</span>-Values: Misused and Misunderstood {#sec-MissUses}</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">
-<span class="math inline">\(\mathrm{p}\)</span>-values can be powerful tools — <strong>when used correctly.</strong> But in practice, they’re often <strong>misused and misinterpreted</strong>, leading to a surprising amount of published <strong>“bad science.”</strong>
-</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">This misuse has sparked an ongoing debate: Should we rely on <span class="math inline">\(\mathrm{p}\)</span>-values and the concept of <strong>statistical significance</strong> at all?</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">📚 <strong>Further reading:</strong>
-</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">* <a href="https://sciencex.com/wire-news/145707973/the-problem-with-p-values-how-significant-are-they-really.html">The problem with p Values: How significant are they, really?</a> <span class="citation" data-cites="Cumming_2013">(<a href="Ch_pValues.html#ref-Cumming_2013" role="doc-biblioref">Cumming 2013</a>)</span> * <a href="https://www.nature.com/articles/506150a">Scientific method: Statistical errors</a> <span class="citation" data-cites="Nuzzo_2014">(<a href="Ch_pValues.html#ref-Nuzzo_2014" role="doc-biblioref">Nuzzo 2014</a>)</span> * <a href="https://www.nature.com/articles/d41586-019-00857-9">Scientists rise up against statistical significance</a> <span class="citation" data-cites="Amrhein_2019">(<a href="Ch_pValues.html#ref-Amrhein_2019" role="doc-biblioref">Amrhein, Greenland, and McShane 2019</a>)</span>
-</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">To clarify what <span class="math inline">\(\mathrm{p}\)</span>-values and <strong>statistical significance</strong> actually mean (and what they don’t), the American Statistical Association (ASA) published two landmark position papers:</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">📄 <strong>ASA Statements:</strong>
-</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">* <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#d1e167">The ASA statement on p-values: Context, process, and purpose</a> <span class="citation" data-cites="Wasserstein2016asa">(<a href="Ch_pValues.html#ref-Wasserstein2016asa" role="doc-biblioref">Wasserstein and Lazar 2016</a>)</span> * <a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">Moving to a world beyond “p&lt; 0.05”</a> <span class="citation" data-cites="wasserstein2019asa">(<a href="Ch_pValues.html#ref-wasserstein2019asa" role="doc-biblioref">Wasserstein, Schirm, and Lazar 2019</a>)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">&lt;!– ### 🧭 What <span class="math inline">\(\mathrm{p}\)</span>-Values Tell Us — and What They Don’t {-}</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">::: {.callout-tip appearance=“minimal”} ## ✅ What <span class="math inline">\(\mathrm{p}\)</span>-values do tell us <br>
-</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">* They measure how compatible the data (i.e., the test statistic) are with the null hypothesis <span class="math inline">\(H_0\)</span>.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">* A small <span class="math inline">\(\mathrm{p}\)</span>-value means the observed data (i.e., the test statistic) would be unlikely if <span class="math inline">\(H_0\)</span> were true.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">:::</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">::: {.callout-caution appearance=“minimal”}</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">## 🚫 What <span class="math inline">\(\mathrm{p}\)</span>-values do not tell us <br>
-</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">* They do not give the probability that <span class="math inline">\(H_0\)</span> is true or false.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">* They do not tell us whether a result is practically important. ::: –&gt;</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">### 🙁 <span class="math inline">\(\mathrm{p}\)</span>-Hacking {-}</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">
-<span class="math inline">\(\mathrm{p}\)</span>-hacking is arguably the most common misuse of <span class="math inline">\(\mathrm{p}\)</span>-values. It happens when researchers keep adjusting their analysis until they find a statistically significant result <span class="math inline">\((\mathrm{p}_{\mathrm{obs}} &lt; \alpha)\)</span> — even if there’s no real effect.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">🧪 Typical “tricks” include:</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">* Running lots of tests until one happens to be “significant.”</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">* Changing the model setup (adding or removing variables) until an insignificant result turns “significant”.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">* Selectively including or excluding data points to turn an insignificant result into a “significant” one.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">This is called the <strong>multiple comparison problem</strong> — the more tests you run, the higher the chance of finding a false positive (falsely rejecting a correct <span class="math inline">\(H_0\)</span>).</td>
-</tr>
-</tbody></table></section><section id="multiple-comparison-problem" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="multiple-comparison-problem"><strong>Multiple Comparison Problem</strong></h4>
+<hr>
+<!-- 
+### 🤝 $\mathrm{p}$-Values vs Critical Values {-}
+
+$\mathrm{p}$-values and critical values lead to exactly **equivalent test decisions:**
+
+
+|                         | Reject $H_0$                        | Fail to Reject $H_0$|
+|-------------------------|-------------------------------------|------------------------|
+|**$\mathrm{p}$-Values:** |$\mathrm{p}_{\mathrm{obs}}\,<\alpha$ |$\mathrm{p}_{\mathrm{obs}}\, \geq \alpha$|
+|**Critical Values:**  |$|\mathrm{T}_{\mathrm{obs}}| > \mathrm{q}_{1-\alpha}$ |$|\mathrm{T}_{\mathrm{obs}}| \leq  \mathrm{q}_{1-\alpha}$|
+
+> With $\mathrm{q}_{1-\alpha}$ denoting the $(1-\alpha)$-quantile of the Half-$t_{n-1}$ distribution. 
+
+--><!-- 
+:::: {.columns}
+
+::: {.column width="50%"}
+
+**$\mathrm{p}$-Values:**
+
+* Reject $H_0$ if $\,\,\,\mathrm{p}_{\mathrm{obs}}\,<\alpha$
+* Fail to reject $H_0$ if $\,\,\,\mathrm{p}_{\mathrm{obs}}\, \geq \alpha$ 
+
+:::
+
+::: {.column width="50%"}
+
+**Critical Values:**
+
+* Reject $H_0$ if $\,\,\,|\mathrm{T}_{\mathrm{obs}}| > \mathrm{q}_{1-\alpha}$
+* Fail to reject $H_0$ if $\,\,\,|\mathrm{T}_{\mathrm{obs}}| \leq  \mathrm{q}_{1-\alpha},$
+
+:::
+where $\mathrm{q}_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the Half-$t_{n-1}$ distribution.
+:::: --><!--
+::: {.panel-tabset}
+
+## Plot: Reject $H_0$
+
+
+
+
+
+
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](Ch_pValues_files/figure-html/unnamed-chunk-12-1.png){fig-align='center' width=1\textwidth}
+:::
+:::
+
+
+
+
+
+
+
+
+
+## Plot: Fail to Reject $H_0$
+
+
+
+
+
+
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](Ch_pValues_files/figure-html/unnamed-chunk-13-1.png){fig-align='center' width=1\textwidth}
+:::
+:::
+
+
+
+
+
+
+
+:::
+
+--></section></section></section><section id="sec-MissUses" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="sec-MissUses">
+<span class="header-section-number">1.3</span> <span class="math inline">\(\mathrm{p}\)</span>-Values: Misused and Misunderstood</h2>
+<p><span class="math inline">\(\mathrm{p}\)</span>-values can be powerful tools — <strong>when used correctly.</strong> But in practice, they’re often <strong>misused and misinterpreted</strong>, leading to a surprising amount of published <strong>“bad science.”</strong></p>
+<p>This misuse has sparked an ongoing debate: Should we rely on <span class="math inline">\(\mathrm{p}\)</span>-values and the concept of <strong>statistical significance</strong> at all?</p>
+<p>📚 <strong>Further reading:</strong></p>
+<ul>
+<li>
+<a href="https://sciencex.com/wire-news/145707973/the-problem-with-p-values-how-significant-are-they-really.html">The problem with p Values: How significant are they, really?</a> <span class="citation" data-cites="Cumming_2013">(<a href="Ch_pValues.html#ref-Cumming_2013" role="doc-biblioref">Cumming 2013</a>)</span>
+</li>
+<li>
+<a href="https://www.nature.com/articles/506150a">Scientific method: Statistical errors</a> <span class="citation" data-cites="Nuzzo_2014">(<a href="Ch_pValues.html#ref-Nuzzo_2014" role="doc-biblioref">Nuzzo 2014</a>)</span>
+</li>
+<li>
+<a href="https://www.nature.com/articles/d41586-019-00857-9">Scientists rise up against statistical significance</a> <span class="citation" data-cites="Amrhein_2019">(<a href="Ch_pValues.html#ref-Amrhein_2019" role="doc-biblioref">Amrhein, Greenland, and McShane 2019</a>)</span>
+</li>
+</ul>
+<p>To clarify what <span class="math inline">\(\mathrm{p}\)</span>-values and <strong>statistical significance</strong> actually mean (and what they don’t), the American Statistical Association (ASA) published two landmark position papers:</p>
+<p>📄 <strong>ASA Statements:</strong></p>
+<ul>
+<li>
+<a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#d1e167">The ASA statement on p-values: Context, process, and purpose</a> <span class="citation" data-cites="Wasserstein2016asa">(<a href="Ch_pValues.html#ref-Wasserstein2016asa" role="doc-biblioref">Wasserstein and Lazar 2016</a>)</span>
+</li>
+<li>
+<a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">Moving to a world beyond “p&lt; 0.05”</a> <span class="citation" data-cites="wasserstein2019asa">(<a href="Ch_pValues.html#ref-wasserstein2019asa" role="doc-biblioref">Wasserstein, Schirm, and Lazar 2019</a>)</span>
+</li>
+</ul>
+<!-- ### 🧭 What $\mathrm{p}$-Values Tell Us — and What They Don’t {-}
+
+::: {.callout-tip appearance="minimal"}
+## ✅ What $\mathrm{p}$-values do tell us
+<br>
+
+* They measure how compatible the data (i.e., the test statistic) are with the null hypothesis $H_0$.
+
+* A small $\mathrm{p}$-value means the observed data (i.e., the test statistic) would be unlikely if $H_0$ were true.
+
+:::
+
+::: {.callout-caution appearance="minimal"}
+
+## 🚫 What $\mathrm{p}$-values do not tell us
+<br>
+
+* They do not give the probability that $H_0$ is true or false.
+
+* They do not tell us whether a result is practically important.
+::: --><section id="mathrmp-hacking" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="mathrmp-hacking">🙁 <span class="math inline">\(\mathrm{p}\)</span>-Hacking</h3>
+<p><span class="math inline">\(\mathrm{p}\)</span>-hacking is arguably the most common misuse of <span class="math inline">\(\mathrm{p}\)</span>-values. It happens when researchers keep adjusting their analysis until they find a statistically significant result <span class="math inline">\((\mathrm{p}_{\mathrm{obs}} &lt; \alpha)\)</span> — even if there’s no real effect.</p>
+<p>🧪 Typical “tricks” include:</p>
+<ul>
+<li><p>Running lots of tests until one happens to be “significant.”</p></li>
+<li><p>Changing the model setup (adding or removing variables) until an insignificant result turns “significant”.</p></li>
+<li><p>Selectively including or excluding data points to turn an insignificant result into a “significant” one.</p></li>
+</ul>
+<p>This is called the <strong>multiple comparison problem</strong> — the more tests you run, the higher the chance of finding a false positive (falsely rejecting a correct <span class="math inline">\(H_0\)</span>).</p>
+<hr>
+<section id="multiple-comparison-problem" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="multiple-comparison-problem"><strong>Multiple Comparison Problem</strong></h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="https://imgs.xkcd.com/comics/significant.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Source: <a href="https://xkcd.com/882/">https://xkcd.com/882/</a></figcaption></figure>
@@ -971,25 +966,30 @@ Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value of the Two-S
 </center>
 </div>
 </div>
-<hr></section></section><section id="conclusion" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="conclusion">
-<span class="header-section-number">1.3</span> Conclusion</h2>
-<p>📢 Key Message: Use <span class="math inline">\(\mathrm{p}\)</span>-values as one piece of evidence, not the final verdict. Always combine them with</p>
+<p><strong>Last but not least:</strong></p>
+<center>
+📢 The <span class="math inline">\(\mathrm{p}\)</span>-value is <strong>not the probability that the null hypothesis is true.</strong>
+</center>
+<p><br> The p-value is calculated assuming the null hypothesis is true. Therefore, it cannot be the probability of that same hypothesis being true.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/terminator.jpeg" class="img-fluid figure-img"></p>
+<figcaption>The Terminator knows stats.</figcaption></figure>
+</div>
+<hr></section></section><section id="conclusion" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="conclusion">
+<span class="header-section-number">1.4</span> Conclusion</h2>
+<p>Use <span class="math inline">\(\mathrm{p}\)</span>-values as one piece of evidence, not the final verdict. Always combine them with</p>
 <ul>
 <li>effect sizes,</li>
 <li>confidence intervals, and</li>
 <li>context.</li>
 </ul>
-<div class="callout callout-style-simple callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<p>Accept that there will always be uncertainty, and be <strong>thoughtful, open, and modest.</strong></p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Accept that there will always be uncertainty, and be <strong>thoughtful, open, and modest:</strong>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><br></p>
+<div class="callout-body-container">
 <ul>
 <li>
 <strong>Be Thoughtful:</strong>
@@ -1008,11 +1008,12 @@ Accept that there will always be uncertainty, and be <strong>thoughtful, open, a
 <li>
 <strong>Be Modest:</strong>
 <ul>
-<li>Remember: there is no single ‘true’ model — every model is an approximation.</li>
+<li>Remember: there is no single “true” model — every model is an approximation.</li>
 <li>Stay humble about what statistical inference can (and cannot) tell us about the real world.</li>
 </ul>
 </li>
 </ul>
+</div>
 </div>
 </div>
 </section><section id="references" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="references">References</h2>

@@ -31,7 +31,7 @@ $$
 In this lecture, we’ll tackle three key questions:
 
 * **How** do $\mathrm{p}$-values actually work?
-* **What** are the typically misinterpretations and misuses of $\mathrm{p}$-values?
+* **What** are the typical misuses and misinterpretations of $\mathrm{p}$-values?
 * **What** is good practice when working with $\mathrm{p}$-values?
 
 We’ll explore these questions using the **two-sided $t$-test** as our main example. Parallel arguments apply to one-sided testing and other hypothesis tests (F-test, etc.)
@@ -276,7 +276,7 @@ legend("topright", pch=c(22), cex=1.5,
 ## Definition
 ::: {.callout-tip appearance="minimal"}
 ## Definition of the $\mathrm{p}$-Value 
-The $\mathrm{p}$-value, $\textrm{p}_{\mathrm{obs}},$ is the probability of obtaining a test statistic $\mathrm{T}$ at least as extreme (in the direction(s) of the alternative hypothesis) as the one observed $(\mathrm{T}_{\mathrm{obs}})$ — assuming that $H_0$ is true.
+The $\mathrm{p}$-value, $\textrm{p}_{\mathrm{obs}},$ is the probability of obtaining realizations of the test statistic $\mathrm{T}$ at least as extreme (in the direction(s) of the alternative hypothesis) as the one realization computed from the data $(\mathrm{T}_{\mathrm{obs}})$ — assuming that $H_0$ is true.
 :::
 
 **Two-sided $\mathrm{p}$-value of the $t$-test** 
@@ -452,13 +452,13 @@ legend("right", lty = 1, lwd=2, col=1,
 ::: {.callout-tip appearance="minimal"}
 ## Computing the $\mathrm{p}$-Value of the Two-Sided $t$-Test
 <br>
-The distribution function $\mathrm{F}_{\,\text{Half-}t_{n-1}}(x)$ of the Half-$t$ distribution allows us to compute the $\mathrm{p}$-value, $\mathrm{p}_{\mathrm{obs}},$ for the two-sided $t$-statistic $|\mathrm{T}_{\mathrm{obs}}|$:
+The distribution function $\mathrm{F}_{\,\text{Half-}t_{n-1}}(x)$ of the Half-$t_{n-1}$ distribution allows us to compute the $\mathrm{p}$-value, $\mathrm{p}_{\mathrm{obs}},$ for the two-sided $t$-statistic $|\mathrm{T}_{\mathrm{obs}}|$:
 
 \begin{align*}
 \mathrm{p}_{\mathrm{obs}} 
 & = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)\\[1ex]
 & = 1 - \mathrm{P}\big(\highlight{|\mathrm{T}|}\leq |\mathrm{T}_{\mathrm{obs}}|\;\big|\highlight{H_0\;\text{is true}}\big)\\[1ex]
-& = 1 - \highlight{\mathrm{F}_{\,\text{Half-}t,n-1}}\big(|\mathrm{T}_{\mathrm{obs}}|\big)
+& = 1 - \highlight{\mathrm{F}_{\,\text{Half-}t_{n-1}}}\big(|\mathrm{T}_{\mathrm{obs}}|\big)
 \end{align*}
 :::
 
@@ -468,8 +468,8 @@ The distribution function $\mathrm{F}_{\,\text{Half-}t_{n-1}}(x)$ of the Half-$t
 
 \begin{align*}
 \mathrm{p}_{\mathrm{obs}}
-&=1 - \mathrm{F}_{\,\text{Half-}t,n-1}\big(|\mathrm{T}_{\mathrm{obs}}|\big)\\
-&=1 - \mathrm{F}_{\,\text{Half-}t,n-1}\big(\,`r abs(T_obs)`\,\big)=`r p_obs`
+&=1 - \mathrm{F}_{\,\text{Half-}t_{n-1}}\big(|\mathrm{T}_{\mathrm{obs}}|\big)\\
+&=1 - \mathrm{F}_{\,\text{Half-}t_{n-1}}\big(\,`r abs(T_obs)`\,\big)=`r p_obs`
 \end{align*}
 
 ::: {.panel-tabset}
@@ -579,6 +579,8 @@ Failing to reject $H_0$ only means that a potential impact of the marketing camp
 :::
 
 -------------------------------------------------
+
+
 <!-- 
 ### 🤝 $\mathrm{p}$-Values vs Critical Values {-}
 
@@ -905,21 +907,31 @@ When we **fail to reject** $H_0$ (because $\mathrm{p}_{\mathrm{obs}} \geq \alpha
 
 :::
 
+**Last but not least:** 
+
+<center> 
+📢 The $\mathrm{p}$-value is **not the probability that the null hypothesis is true.** 
+</center>
+<br>
+The p-value is calculated assuming the null hypothesis is true. Therefore, it cannot be the probability of that same hypothesis being true.
+
+
+![The Terminator knows stats.](images/terminator.jpeg)
+
 
 ---------------------------------------------------------------
 
 ## Conclusion
 
-📢 Key Message: Use $\mathrm{p}$-values as one piece of evidence, not the final verdict. Always combine them with 
+Use $\mathrm{p}$-values as one piece of evidence, not the final verdict. Always combine them with 
 
 * effect sizes, 
 * confidence intervals, and 
 * context.
 
-::: {.callout-tip appearance="minimal"}
+Accept that there will always be uncertainty, and be **thoughtful, open, and modest.**
 
-## Accept that there will always be uncertainty, and be **thoughtful, open, and modest:**
-<br>
+::: {.callout-tip appearance="minimal"}
 
 * **Be Thoughtful:**
     * Know whether you’re doing an exploratory study (to generate hypotheses) or a more rigidly pre-planned study (to test hypotheses).
@@ -930,7 +942,7 @@ When we **fail to reject** $H_0$ (because $\mathrm{p}_{\mathrm{obs}} \geq \alpha
      * Be honest in communication — “statistical significance” ≠ “scientific importance,” and one study alone rarely proves anything.
 
 * **Be Modest:**
-     * Remember: there is no single ‘true’ model — every model is an approximation.
+     * Remember: there is no single "true" model — every model is an approximation.
      * Stay humble about what statistical inference can (and cannot) tell us about the real world.
 :::
 
