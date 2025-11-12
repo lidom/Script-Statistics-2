@@ -503,61 +503,85 @@ qt(p = 1 - alpha/2, df = n-1)
 <hr></section></section></section><section id="the-two-sided-mathrmp-value-of-the-t-test" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="the-two-sided-mathrmp-value-of-the-t-test">
 <span class="header-section-number">1.2</span> The Two-Sided <span class="math inline">\(\mathrm{p}\)</span>-Value of the <span class="math inline">\(t\)</span>-Test</h2>
 <section id="definition-of-the-mathrmp-value" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="definition-of-the-mathrmp-value">⚙️ Definition of the <span class="math inline">\(\mathrm{p}\)</span>-Value</h3>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Definition</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Plot</a></li>
-</ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<!-- 
+::: {.panel-tabset}
+## Definition 
+-->
 <div class="callout callout-style-simple callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Definition of the <span class="math inline">\(\mathrm{p}\)</span>-Value
+General Definition of the <span class="math inline">\(\mathrm{p}\)</span>-Value
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <span class="math inline">\(\mathrm{p}\)</span>-value, <span class="math inline">\(\textrm{p}_{\mathrm{obs}},\)</span> is the probability of obtaining realizations of the test statistic <span class="math inline">\(\mathrm{T}\)</span> at least as extreme (in the direction(s) of the alternative hypothesis) as the one realization computed from the data <span class="math inline">\((\mathrm{T}_{\mathrm{obs}})\)</span> — assuming that <span class="math inline">\(H_0\)</span> is true.</p>
+<p>The <span class="math inline">\(\mathrm{p}\)</span>-value, <span class="math inline">\(\textrm{p}_{\mathrm{obs}},\)</span> is the probability of obtaining realizations of the test statistic <span class="math inline">\(\mathrm{T}\)</span> <strong>at least as extreme as</strong> the one realization computed from the data <span class="math inline">\((\mathrm{T}_{\mathrm{obs}})\)</span> — assuming that <span class="math inline">\(H_0\)</span> is true.</p>
+<p>By <strong>extreme,</strong> we mean extreme in the direction(s) of the alternative hypothesis.</p>
 </div>
 </div>
 <p><strong>Two-sided <span class="math inline">\(\mathrm{p}\)</span>-value of the <span class="math inline">\(t\)</span>-test</strong> <span class="math display">\[\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)\]</span></p>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<p>The light-red area in <a href="#fig-pValue" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> equals the observed <span class="math inline">\(\mathrm{p}\)</span>-value <span style="background-color: #F88379CC; padding: 0.2em 0.1em;"><span class="math inline">\(\mathrm{p}_{\mathrm{obs}}=0.39\)</span></span> corresponding to the observed value of the <span class="math inline">\(t\)</span>-statistic <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}=0.96.\)</span></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-pValue" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pValue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Ch_pValues_files/figure-html/fig-pValue-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pValue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.2: Density of the null-distribution <span class="math inline">\(t_{\operatorname{df}}\)</span> with <span class="math inline">\(\operatorname{df}=n-1=4\)</span> (marketing example).
-</figcaption></figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<!-- 
+## Plot
+
+
+
+
+
+
+
+
+::: {.cell layout-align="center"}
+
+:::
+
+
+
+
+
+
+
+
+The light-red area in @fig-pValue equals the observed $\mathrm{p}$-value [$\mathrm{p}_{\mathrm{obs}}=0.39$]{style="background-color: #F88379CC; padding: 0.2em 0.1em;"} corresponding to the observed value of the $t$-statistic $\mathrm{T}_{\mathrm{obs}}=0.96.$
+
+
+
+
+
+
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![Density of the null-distribution $t_{\operatorname{df}}$ with $\operatorname{df}=n-1=4$ (marketing example).](Ch_pValues_files/figure-html/fig-pValue-1.png){#fig-pValue fig-align='center' width=1\textwidth}
+:::
+:::
+
+
+
+
+
+
+
+:::
+ -->
 <hr></section><section id="computing-the-mathrmp-value" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="computing-the-mathrmp-value">🧮 Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Null Distribution</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Density Function</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Distribution Function</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Null Distribution</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Density Function</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Distribution Function</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>Note that <span class="math display">\[
 \mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}\phantom{Half}
 \]</span> implies that <!-- the [**absolute value** $|\mathrm{T}|$]{style="background-color: yellow; padding: 0.1em 0.1em;"} of the random $t$-statistic is Half-$t_{n-1}$ distributed, --> <span class="math display">\[
 \highlight{|\mathrm{T}|}=\frac{|\bar{X}-0|}{S/\sqrt{n}}\overset{H_0}{\sim}\highlight{\textrm{Half-}t_{n-1}.}
 \]</span></p>
 </div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <!-- # "Densities functions of the null-distribution $t_{\\operatorname{df}}$ of $\\mathrm{T}$ and $\\textrm{Half-}t_{\\operatorname{df}}$ of $|\\mathrm{T}|$ with $\\operatorname{df}=n-1=4$ (marketing example)." -->
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -566,13 +590,13 @@ Figure&nbsp;1.2: Density of the null-distribution <span class="math inline">\(t_
 <img src="Ch_pValues_files/figure-html/fig-Halft-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Halft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.3: The density function of the Half-<span class="math inline">\(t_{n-1}\)</span> distribution is the folded version of the density function of the <span class="math inline">\(t_{n-1}\)</span> distribution.
+Figure&nbsp;1.2: The density function of the Half-<span class="math inline">\(t_{n-1}\)</span> distribution is the folded version of the density function of the <span class="math inline">\(t_{n-1}\)</span> distribution.
 </figcaption></figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p><span class="math display">\[\begin{align*}
 \mathrm{F}_{\,\text{Half-}t_{n-1}}(x)&amp;=\mathrm{P}(|\textrm{T}|\leq x\mid H_0\;\text{is true}),\quad |\textrm{T}|\overset{H_0}{\sim} \textrm{Half-}t_{n-1}
 \end{align*}\]</span></p>
@@ -586,7 +610,7 @@ Figure&nbsp;1.3: The density function of the Half-<span class="math inline">\(t_
 <img src="Ch_pValues_files/figure-html/fig-CDFHalft-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CDFHalft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.4: Distribution function of the null-distribution <span class="math inline">\(\textrm{Half-}t_{\operatorname{df}}\)</span> with <span class="math inline">\(\operatorname{df}=n-1=4\)</span> (marketing example).
+Figure&nbsp;1.3: Distribution function of the null-distribution <span class="math inline">\(\textrm{Half-}t_{\operatorname{df}}\)</span> with <span class="math inline">\(\operatorname{df}=n-1=4\)</span> (marketing example).
 </figcaption></figure>
 </div>
 </div>
@@ -622,11 +646,11 @@ Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value of the Two-S
 \end{align*}\]</span></p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Plot</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><code>R</code>-Codes</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Plot</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><code>R</code>-Codes</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <p>Computation of the observed <span class="math inline">\(\operatorname{p}\)</span>-value:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -637,7 +661,7 @@ Computing the <span class="math inline">\(\mathrm{p}\)</span>-Value of the Two-S
 </div>
 </div>
 </div>
-<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <p>Computation of the observed <span class="math inline">\(\operatorname{p}\)</span>-value:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/twolodzko/extraDistr">"extraDistr"</a></span><span class="op">)</span></span>

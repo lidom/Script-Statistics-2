@@ -272,17 +272,24 @@ legend("topright", pch=c(22), cex=1.5,
 
 ### ⚙️ Definition of the $\mathrm{p}$-Value {-}
 
+<!-- 
 ::: {.panel-tabset}
-## Definition
+## Definition 
+-->
+
+
 ::: {.callout-tip appearance="minimal"}
-## Definition of the $\mathrm{p}$-Value 
-The $\mathrm{p}$-value, $\textrm{p}_{\mathrm{obs}},$ is the probability of obtaining realizations of the test statistic $\mathrm{T}$ at least as extreme (in the direction(s) of the alternative hypothesis) as the one realization computed from the data $(\mathrm{T}_{\mathrm{obs}})$ — assuming that $H_0$ is true.
+## General Definition of the $\mathrm{p}$-Value 
+The $\mathrm{p}$-value, $\textrm{p}_{\mathrm{obs}},$ is the probability of obtaining realizations of the test statistic $\mathrm{T}$ **at least as extreme as** the one realization computed from the data $(\mathrm{T}_{\mathrm{obs}})$ — assuming that $H_0$ is true.
+
+
+By **extreme,** we mean extreme in the direction(s) of the alternative hypothesis.
 :::
 
 **Two-sided $\mathrm{p}$-value of the $t$-test** 
 $$\displaystyle\mathrm{p}_{\mathrm{obs}} = \mathrm{P}\big(\,|\mathrm{T}|\,\geq |\mathrm{T}_{\mathrm{obs}}|\;\big|\;H_0\;\text{is true}\big)$$
 
-
+<!-- 
 ## Plot
 
 ```{r}
@@ -331,7 +338,7 @@ legend("topright", pch=c(22), cex=1.5,
        bty="n", pt.bg = myRed, title = "")
 ```
 :::
-
+ -->
 
 --------------------------------------------------
 
