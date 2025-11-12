@@ -182,8 +182,6 @@ T_obs  <- result$statistic
 
 
 <!-- 
--------------------------------------------------
-
 #### **Test Decision using Critical Values (Marketing Example)** {-}
 
 
@@ -264,7 +262,8 @@ legend("topright", pch=c(22), cex=1.5,
        bty="n", pt.bg = myRed, title = "")
 ```
 
-::: -->
+::: 
+-->
 
 -------------------------------------------------
 
@@ -345,9 +344,10 @@ Note that
 $$
 \mathrm{T}=\frac{\bar{X}-0}{S/\sqrt{n}}\overset{H_0}{\sim}t_{n-1}\phantom{Half}
 $$
-implies that the [**absolute value** $|\mathrm{T}|$]{style="background-color: yellow; padding: 0.1em 0.1em;"} of the random $t$-statistic is Half-$t_{n-1}$ distributed,
+implies that 
+<!-- the [**absolute value** $|\mathrm{T}|$]{style="background-color: yellow; padding: 0.1em 0.1em;"} of the random $t$-statistic is Half-$t_{n-1}$ distributed, -->
 $$
-|\mathrm{T}|=\frac{|\bar{X}-0|}{S/\sqrt{n}}\overset{H_0}{\sim}\highlight{\textrm{Half-}t_{n-1}.}
+\highlight{|\mathrm{T}|}=\frac{|\bar{X}-0|}{S/\sqrt{n}}\overset{H_0}{\sim}\highlight{\textrm{Half-}t_{n-1}.}
 $$
 
 ## Density Function
@@ -580,10 +580,19 @@ Failing to reject $H_0$ only means that a potential impact of the marketing camp
 
 -------------------------------------------------
 
-### 🟰 $\mathrm{p}$-Values vs Critical Values {-}
+### 🤝 $\mathrm{p}$-Values vs Critical Values {-}
 
 $\mathrm{p}$-values and critical values lead to exactly **equivalent test decisions:**
 
+
+|                         | Reject $H_0$                        | Fail to Reject $H_0$|
+|-------------------------|-------------------------------------|------------------------|
+|**$\mathrm{p}$-Values:** |$\mathrm{p}_{\mathrm{obs}}\,<\alpha$ |$\mathrm{p}_{\mathrm{obs}}\, \geq \alpha$|
+|**Critical Values:**  |$|\mathrm{T}_{\mathrm{obs}}| > \mathrm{q}_{1-\alpha}$ |$|\mathrm{T}_{\mathrm{obs}}| \leq  \mathrm{q}_{1-\alpha}$|
+
+> With $\mathrm{q}_{1-\alpha}$ denoting the $(1-\alpha)$-quantile of the Half-$t_{n-1}$ distribution.
+
+<!-- 
 :::: {.columns}
 
 ::: {.column width="50%"}
@@ -591,7 +600,7 @@ $\mathrm{p}$-values and critical values lead to exactly **equivalent test decisi
 **$\mathrm{p}$-Values:**
 
 * Reject $H_0$ if $\,\,\,\mathrm{p}_{\mathrm{obs}}\,<\alpha$
-* Fail to reject $H_0$ if $\,\,\,\mathrm{p}_{\mathrm{obs}}\, \leq \alpha$ 
+* Fail to reject $H_0$ if $\,\,\,\mathrm{p}_{\mathrm{obs}}\, \geq \alpha$ 
 
 :::
 
@@ -600,11 +609,11 @@ $\mathrm{p}$-values and critical values lead to exactly **equivalent test decisi
 **Critical Values:**
 
 * Reject $H_0$ if $\,\,\,|\mathrm{T}_{\mathrm{obs}}| > \mathrm{q}_{1-\alpha}$
-* Fail to reject $H_0$ if $\,\,\,|\mathrm{T}_{\mathrm{obs}}| \leq  \mathrm{q}_{1-\alpha}$
+* Fail to reject $H_0$ if $\,\,\,|\mathrm{T}_{\mathrm{obs}}| \leq  \mathrm{q}_{1-\alpha},$
 
 :::
 where $\mathrm{q}_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the Half-$t_{n-1}$ distribution.
-::::
+:::: -->
 
 ::: {.panel-tabset}
 
@@ -703,10 +712,10 @@ legend("topright", lty = 1, lwd=2,
 :::
 
 
-## $\mathrm{p}$-Values: Misunderstood and Misused {#sec-MissUses}
+## $\mathrm{p}$-Values: Misused and Misunderstood {#sec-MissUses}
 
 $\mathrm{p}$-values can be powerful tools — **when used correctly.**
-But in practice, they’re often **misinterpreted or misused**, leading to a surprising amount of published **“bad science.”**
+But in practice, they’re often **misused and misinterpreted**, leading to a surprising amount of published **“bad science.”**
 
 This misuse has sparked an ongoing debate:
 Should we rely on $\mathrm{p}$-values and the concept of **statistical significance** at all?
@@ -749,6 +758,102 @@ To clarify what $\mathrm{p}$-values and **statistical significance** actually me
 ::: -->
 
 
+
+### 🙁 $\mathrm{p}$-Hacking {-}
+
+$\mathrm{p}$-hacking is arguably the most common misuse of $\mathrm{p}$-values. It happens when researchers keep adjusting their analysis until they find a statistically significant result $(\mathrm{p}_{\mathrm{obs}} < \alpha)$ — even if there’s no real effect.
+
+🧪 Typical "tricks" include:
+
+* Running lots of tests until one happens to be “significant.”
+
+* Changing the model setup (adding or removing variables) until an insignificant result turns “significant”.
+
+* Selectively including or excluding data points to turn an insignificant result into a “significant” one.
+
+This is called the **multiple comparison problem** — the more tests you run, the higher the chance of finding a false positive (falsely rejecting a correct $H_0$).
+
+---------------------------------------------------------------------
+
+#### **Multiple Comparison Problem** {-}
+
+![Source: [https://xkcd.com/882/](https://xkcd.com/882/)](https://imgs.xkcd.com/comics/significant.png){width=70% fig-align="center"}
+
+
+::: {.callout-warning  appearance="minimal"}
+## ⚠️ Multiple Comparison Problem
+<br>
+When multiple tests are conducted, the chance of finding at least one “significant” result purely by coincidence increases.
+
+For instance, with $m=20$ **independent** tests at the significance level $\alpha = 0.05$, there is a $64 \%$ chance of incorrectly rejecting at least one null hypothesis:
+\begin{align*}
+ & P(\text{rejecting $H_0$ in at least one of the $m$ tests}\mid \text{all }H_0\text{'s are true})\\[2ex]
+=& 1-P(\text{not rejecting $H_0$ in each of the $m$ tests}\mid \text{all }H_0\text{'s are true})\\[2ex]
+=& 1-\left(P(\text{not rejecting $H_0$ in one single test}\mid H_0 \text{ is true})\right)^m\\[2ex]
+=& 1-\left(1-P(\text{rejecting $H_0$ in one single test}\mid H_0 \text{ is true})\right)^m\\[2ex]
+=& 1-\left(1-P(\text{type I error})\right)^m\\[2ex]
+=& 1 - (1-\alpha)^m\\[2ex]
+=& 1 - 0.95^{20} \;\approx \; `r round(1 - 0.95^(20), 2)`
+\end{align*}
+:::
+
+---------------------------------------------------------------------
+
+#### **Adjusting for Multiple Comparisons** {-}
+
+::: {.callout-tip appearance="minimal"}
+
+## 🤓 The **Bonferroni Correction** 
+<br>
+The **Bonferroni Correction** requires using a more stringent significance threshold when multiple tests are performed; namely
+$$
+\alpha_{\textrm{Bonf}}=\frac{\alpha}{m}
+$$ 
+for $m$ tests.
+
+
+\begin{align*}
+ & P(\text{rejecting $H_0$ in at least one of the $m$ tests}\mid \text{all }H_0\text{'s are true})\\[2ex]
+=& 1 - (1-\alpha_{\textrm{Bonf}})^m\\[2ex]
+=& 1 - \left(1-\frac{\alpha}{m}\right)^m\leq \alpha
+\end{align*}
+For $\alpha = 0.05$ and $m=20\colon$
+\begin{align*}
+1 - \left(1-\frac{0.05}{20}\right)^{20} &=
+1 - \left(1-0.0025\right)^{20} = `r round(1 - (1-0.05/20)^(20), 3)` < 0.05
+\end{align*}
+:::
+
+Alternatives to the Bonferroni correction:
+
+* Holm–Bonferroni method
+* Hochberg's step-up procedure
+
+---------------------------------------------------------------------
+
+#### **Mitigating the Misuse of $\mathrm{p}$-Values** {-}
+
+::: {.callout-tip appearance="minimal"}
+## 🧠 Pre-Registration and 🔁 Replication
+<br>
+
+* **Pre-registration:**<br>
+Researchers **state their hypotheses and analysis plans *before* looking at the data.**<br>
+This reduces the temptation to $\mathrm{p}$-hack and helps distinguish confirmatory from exploratory research.<br>
+   * [The Open Science Framework](https://help.osf.io/article/330-welcome-to-registrations)
+   * [AsPredicted](https://aspredicted.org/index.php)
+
+<br>
+
+*  **Replication**:<br>
+Independent replication studies test whether a finding is robust or simply a statistical fluke (a type I error).
+    * [Institute for Replication](https://i4replication.org/)
+:::
+
+
+---------------------------------------------------------------------
+
+
 ### ✅ Correct Interpretation of the $\textrm{p}$-Value {-}
 
 ::: {.callout-tip appearance="minimal"}
@@ -765,7 +870,7 @@ When we reject $H_0$ (because $\textrm{p}_{\mathrm{obs}} < \alpha$), we **falsel
 
 * **Statistical Significance ≠ Practical Significance:** <br>
 A small $\mathrm{p}$-value does not mean the effect is large or meaningful in practice.<br>
-With a very large sample or low data variability ($\operatorname{Var}(X)$ small), even tiny and unimportant effects can yield very small $\mathrm{p}$-values.
+With a very large sample ($n$ large) or low data variability ($\operatorname{Var}(X)$ small), even tiny and unimportant effects will yield very small $\mathrm{p}$-values.
 
 
 <center> 
@@ -797,96 +902,7 @@ When we **fail to reject** $H_0$ (because $\mathrm{p}_{\mathrm{obs}} \geq \alpha
 :::
 
 
-### 🙁 $\mathrm{p}$-Hacking {-}
-
-$\mathrm{p}$-hacking is arguably the most common misuse of $\mathrm{p}$-values. It happens when researchers keep adjusting their analysis until they find a statistically significant result $(\mathrm{p}_{\mathrm{obs}} < \alpha)$ — even if there’s no real effect.
-
-🧪 Typical tricks include:
-
-* Running lots of tests until one happens to be “significant.”
-
-* Changing the model setup (adding or removing variables) until an insignificant result turns “significant”.
-
-* Selectively including or excluding data points to turn an insignificant result into a “significant” one.
-
-This is called the **multiple comparison problem** — the more tests you run, the higher the chance of finding a false positive (falsely rejecting a correct $H_0$).
-
----------------------------------------------------------------------
-
-#### **Multiple Comparison Problem** {-}
-
-![Source: [https://xkcd.com/882/](https://xkcd.com/882/)](https://imgs.xkcd.com/comics/significant.png){width=70% fig-align="center"}
-
-
-::: {.callout-warning  appearance="minimal"}
-## ⚠️ Multiple Comparison Problem
-<br>
-When multiple tests are conducted, the chance of finding at least one “significant” result purely by coincidence increases.
-
-For instance, with $m=20$ independent tests at the significance level $\alpha = 0.05$, there is a $64 \%$ chance of incorrectly rejecting at least one null hypothesis:
-\begin{align*}
- & P(\text{rejecting at least one of the $m$ $H_0$'s}\mid \text{all }H_0\text{'s are true})\\[2ex]
-=& 1-P(\text{not rejecting any of the $m$ $H_0$'s}\mid \text{all }H_0\text{'s are true})\\[2ex]
-=& 1 - (1-\alpha)^m\\[2ex]
-=& 1 - 0.95^{20} \;\approx \; `r round(1 - 0.95^(20), 2)`
-\end{align*}
-:::
-
----------------------------------------------------------------------
-
-#### **Adjusting for Multiple Comparisons** {-}
-
-::: {.callout-tip appearance="minimal"}
-
-## 🤓 The **Bonferroni Correction** 
-<br>
-The **Bonferroni Correction** requires using a more stringent significance threshold when multiple tests are performed; namely
-$$
-\alpha_{\textrm{Bonf}}=\frac{\alpha}{m}
-$$ 
-for $m$ tests.
-
-
-\begin{align*}
- & P(\text{rejecting at least one of the $m$ $H_0$'s}\mid \text{all }H_0\text{'s are true})\\[2ex]
-=& 1-P(\text{not rejecting any of the $m$ $H_0$'s}\mid \text{all }H_0\text{'s are true})\\[2ex]
-=& 1 - (1-\alpha_{\textrm{Bonf}})^m\\[2ex]
-=& 1 - \left(1-\frac{\alpha}{m}\right)^m\leq \alpha
-\end{align*}
-For $\alpha = 0.05$ and $m=20\colon$
-$$
-1 - \left(1-\frac{0.05}{20}\right)^{20} = `r round(1 - (1-0.05/20)^(20), 4)`
-$$
-:::
-
-Alternatives to the Bonferroni correction:
-
-* Holm–Bonferroni method
-* Hochberg's step-up procedure
-
----------------------------------------------------------------------
-
-#### **Mitigating the Misuse of $\mathrm{p}$-Values** {-}
-
-::: {.callout-tip appearance="minimal"}
-## 🧠 Pre-Registration and 🔁 Replication
-<br>
-
-* **Pre-registration:**<br>
-Researchers **state their hypotheses and analysis plans *before* looking at the data.**<br>
-This reduces the temptation to $\mathrm{p}$-hack and helps distinguish confirmatory from exploratory research.<br>
-   * [The Open Science Framework](https://help.osf.io/article/330-welcome-to-registrations)
-   * [AsPredicted](https://aspredicted.org/index.php)
-
-<br>
-
-*  **Replication**:<br>
-Independent replication studies test whether a finding is robust or simply a statistical fluke (a type I error).
-    * [Institute for Replication](https://i4replication.org/)
-:::
-
-
----------------------------------------------------------------------
+---------------------------------------------------------------
 
 ## Conclusion
 
