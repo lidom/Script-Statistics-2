@@ -928,7 +928,7 @@ The p-value is calculated assuming the null hypothesis is true. Therefore, it ca
 
 ---------------------------------------------------------------
 
-## Conclusion
+### 📄 Good Practice {-}
 
 Use $\mathrm{p}$-values as one piece of evidence, not the final verdict. Always combine them with 
 
@@ -953,6 +953,12 @@ Accept that there will always be uncertainty, and be **thoughtful, open, and mod
      * Stay humble about what statistical inference can (and cannot) tell us about the real world.
 :::
 
+
+## Overview: $\mathrm{p}$-Values of other Test Statistics
+
+Here you'll find more great things about the $p$-value! 
+
+![](images/cute-happy-excited-cat.gif)
 
 ## References {-}
 
