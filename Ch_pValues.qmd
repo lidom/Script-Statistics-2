@@ -283,7 +283,7 @@ legend("topright", pch=c(22), cex=1.5,
 The $\mathrm{p}$-value, $\textrm{p}_{\mathrm{obs}},$ is the probability of obtaining realizations of the test statistic $\mathrm{T}$ **at least as extreme as** the one realization computed from the data $(\mathrm{T}_{\mathrm{obs}})$ — assuming that $H_0$ is true.
 
 
-By **extreme,** we mean *extreme in the direction(s) of the alternative hypothesis.*
+By **extreme,** we mean extreme *in the direction(s) of the alternative hypothesis.*
 :::
 
 **Two-sided $\mathrm{p}$-value of the $t$-test** 
