@@ -579,7 +579,7 @@ Failing to reject $H_0$ only means that a potential impact of the marketing camp
 :::
 
 -------------------------------------------------
-
+<!-- 
 ### 🤝 $\mathrm{p}$-Values vs Critical Values {-}
 
 $\mathrm{p}$-values and critical values lead to exactly **equivalent test decisions:**
@@ -590,7 +590,9 @@ $\mathrm{p}$-values and critical values lead to exactly **equivalent test decisi
 |**$\mathrm{p}$-Values:** |$\mathrm{p}_{\mathrm{obs}}\,<\alpha$ |$\mathrm{p}_{\mathrm{obs}}\, \geq \alpha$|
 |**Critical Values:**  |$|\mathrm{T}_{\mathrm{obs}}| > \mathrm{q}_{1-\alpha}$ |$|\mathrm{T}_{\mathrm{obs}}| \leq  \mathrm{q}_{1-\alpha}$|
 
-> With $\mathrm{q}_{1-\alpha}$ denoting the $(1-\alpha)$-quantile of the Half-$t_{n-1}$ distribution.
+> With $\mathrm{q}_{1-\alpha}$ denoting the $(1-\alpha)$-quantile of the Half-$t_{n-1}$ distribution. 
+
+-->
 
 <!-- 
 :::: {.columns}
@@ -615,6 +617,7 @@ $\mathrm{p}$-values and critical values lead to exactly **equivalent test decisi
 where $\mathrm{q}_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the Half-$t_{n-1}$ distribution.
 :::: -->
 
+<!--
 ::: {.panel-tabset}
 
 ## Plot: Reject $H_0$
@@ -711,6 +714,7 @@ legend("topright", lty = 1, lwd=2,
 ```
 :::
 
+-->
 
 ## $\mathrm{p}$-Values: Misused and Misunderstood {#sec-MissUses}
 
