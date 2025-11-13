@@ -854,6 +854,23 @@ where $\mathrm{q}_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the Half-$t_{
 <p><br> When multiple tests are conducted, the chance of finding at least one “significant” result purely by coincidence increases.</p>
 <p>For instance, with <span class="math inline">\(m=20\)</span> <strong>independent</strong> tests at the significance level <span class="math inline">\(\alpha = 0.05\)</span>, there is a <span class="math inline">\(64 \%\)</span> chance of incorrectly rejecting at least one null hypothesis: <span class="math display">\[\begin{align*}
 &amp; P(\text{rejecting $H_0$ in at least one of the $m$ tests}\mid \text{all }H_0\text{'s are true})\\[2ex]
+=&amp; 1 - (1-\alpha)^m\\[2ex]
+=&amp; 1 - 0.95^{20} \;\approx \; 0.64
+\end{align*}\]</span></p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Derivation of the <span class="math inline">\(1 - (1-\alpha)^m\)</span> formula.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\begin{align*}
+&amp; P(\text{rejecting $H_0$ in at least one of the $m$ tests}\mid \text{all }H_0\text{'s are true})\\[2ex]
 =&amp; 1-P(\text{not rejecting $H_0$ in each of the $m$ tests}\mid \text{all }H_0\text{'s are true})\\[2ex]
 =&amp; 1-\left(P(\text{not rejecting $H_0$ in one single test}\mid H_0 \text{ is true})\right)^m\\[2ex]
 =&amp; 1-\left(1-P(\text{rejecting $H_0$ in one single test}\mid H_0 \text{ is true})\right)^m\\[2ex]
@@ -861,6 +878,9 @@ where $\mathrm{q}_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the Half-$t_{
 =&amp; 1 - (1-\alpha)^m\\[2ex]
 =&amp; 1 - 0.95^{20} \;\approx \; 0.64
 \end{align*}\]</span></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <hr></section><section id="adjusting-for-multiple-comparisons" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="adjusting-for-multiple-comparisons"><strong>Adjusting for Multiple Comparisons</strong></h4>

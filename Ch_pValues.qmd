@@ -792,6 +792,14 @@ When multiple tests are conducted, the chance of finding at least one “signifi
 For instance, with $m=20$ **independent** tests at the significance level $\alpha = 0.05$, there is a $64 \%$ chance of incorrectly rejecting at least one null hypothesis:
 \begin{align*}
  & P(\text{rejecting $H_0$ in at least one of the $m$ tests}\mid \text{all }H_0\text{'s are true})\\[2ex]
+=& 1 - (1-\alpha)^m\\[2ex]
+=& 1 - 0.95^{20} \;\approx \; `r round(1 - 0.95^(20), 2)`
+\end{align*}
+
+::: {.callout-tip  appearance="minimal" collapse="true"}
+## Derivation of the $1 - (1-\alpha)^m$ formula. 
+\begin{align*}
+ & P(\text{rejecting $H_0$ in at least one of the $m$ tests}\mid \text{all }H_0\text{'s are true})\\[2ex]
 =& 1-P(\text{not rejecting $H_0$ in each of the $m$ tests}\mid \text{all }H_0\text{'s are true})\\[2ex]
 =& 1-\left(P(\text{not rejecting $H_0$ in one single test}\mid H_0 \text{ is true})\right)^m\\[2ex]
 =& 1-\left(1-P(\text{rejecting $H_0$ in one single test}\mid H_0 \text{ is true})\right)^m\\[2ex]
@@ -799,6 +807,7 @@ For instance, with $m=20$ **independent** tests at the significance level $\alph
 =& 1 - (1-\alpha)^m\\[2ex]
 =& 1 - 0.95^{20} \;\approx \; `r round(1 - 0.95^(20), 2)`
 \end{align*}
+:::
 :::
 
 ---------------------------------------------------------------------
