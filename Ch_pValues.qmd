@@ -566,6 +566,9 @@ $$
 \highlight{\mathrm{p}_{\mathrm{obs}} \geq \alpha}
 $$
 
+
+Usual significance levels: $\alpha=0.05$ or $\alpha=0.01.$
+
 -------------------------------------------------
 
 #### **Test Decision (Marketing Example)** {-}
