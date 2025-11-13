@@ -700,23 +700,22 @@ The distribution function $\mathrm{F}_{\,\text{Half-}t_{n-1}}(x)$ of the Half-$t
 \]</span> we <strong>fail to reject</strong> <span class="math inline">\(H_0\colon \mu =0\)</span> at the significance level <span class="math inline">\(\alpha=0.05.\)</span></p>
 <!-- We also fail to reject $H_0$ at any other typically used significance level such as, for instance, $\alpha=0.1$ or $\alpha=0.01.$  -->
 <div class="callout callout-style-simple callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-⚠️ Failing to reject <span class="math inline">\(H_0\)</span> does not mean that <span class="math inline">\(H_0\)</span> is true.
+⚠️ Failing to reject <span class="math inline">\(H_0\)</span> does not mean that <span class="math inline">\(H_0\)</span> is true! (See <a href="#sec-MissUses" class="quarto-xref"><span>Section 1.3</span></a>.)
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><br> Failing to reject <span class="math inline">\(H_0\)</span> only means that a potential impact of the marketing campaign is not large enough to stand out from the random variation captured by the standard error <span class="math inline">\((S_{\mathrm{obs}}/\sqrt{n});\)</span> see <a href="#sec-MissUses" class="quarto-xref"><span>Section 1.3</span></a>.</p>
-<ul>
-<li>“Absence of evidence is not evidence of absence.” <span class="citation" data-cites="Sagan_1997">(<a href="Ch_pValues.html#ref-Sagan_1997" role="doc-biblioref">Sagan 1997</a>)</span>.</li>
-<li><a href="https://en.wikipedia.org/wiki/Argument_from_ignorance">Argument from ignorance</a></li>
-</ul>
-</div>
+<!-- 
+<br>
+Failing to reject $H_0$ only means that a potential impact of the marketing campaign is not large enough to stand out from the random variation captured by the standard error $(S_{\mathrm{obs}}/\sqrt{n});$ see @sec-MissUses.
+
+* "Absence of evidence is not evidence of absence." [@Sagan_1997].
+* [Argument from ignorance](https://en.wikipedia.org/wiki/Argument_from_ignorance) 
+-->
 </div>
 </div>
 <hr>
@@ -957,15 +956,22 @@ where $\mathrm{q}_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the Half-$t_{
 <div class="callout-body-container callout-body">
 <p><br></p>
 <ul>
-<li><p><strong>Consistency with <span class="math inline">\(H_0\)</span>:</strong><br> A large <span class="math inline">\(\mathrm{p}_{\mathrm{obs}}\)</span> means the observed test statistic <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span> is consistent with the null hypothesis <span class="math inline">\(H_0\)</span>.<br> ❗️However, this does <strong>not</strong> mean that <span class="math inline">\(H_0\)</span> is true or confirmed.</p></li>
 <li>
-<p><strong>Possible Reasons for Large <span class="math inline">\(\mathrm{p}\)</span>-Values:</strong><br> Large <span class="math inline">\(\mathrm{p}\)</span>-values (even <span class="math inline">\(\mathrm{p}_{\mathrm{obs}} \approx 1\)</span>) can occur when a real effect is simply too small to detect, for example if</p>
+<strong>Consistency with <span class="math inline">\(H_0\)</span>:</strong><br> A large <span class="math inline">\(\mathrm{p}_{\mathrm{obs}}\)</span> means the observed test statistic <span class="math inline">\(\mathrm{T}_{\mathrm{obs}}\)</span> is consistent with the null hypothesis <span class="math inline">\(H_0\)</span>.<br> ❗️However, this does <strong>not</strong> mean that <span class="math inline">\(H_0\)</span> is true or confirmed.
+<ul>
+<li>“Absence of evidence is not evidence of absence.” <span class="citation" data-cites="Sagan_1997">(<a href="Ch_pValues.html#ref-Sagan_1997" role="doc-biblioref">Sagan 1997</a>)</span>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Argument_from_ignorance">Argument from ignorance.</a></li>
+</ul>
+</li>
+<li>
+<strong>Possible Reasons for Large <span class="math inline">\(\mathrm{p}\)</span>-Values:</strong><br> Large <span class="math inline">\(\mathrm{p}\)</span>-values (even <span class="math inline">\(\mathrm{p}_{\mathrm{obs}} \approx 1\)</span>) can occur when a real effect is simply too small to detect, for example if
 <ul>
 <li>the <strong>sample size</strong> <span class="math inline">\(n\)</span> is small, or</li>
 <li>the <strong>data variability</strong> <span class="math inline">\(\operatorname{Var}(X)\)</span> is large.</li>
 </ul>
 </li>
-<li><p><strong>Decision Theory:</strong><br> When we <strong>fail to reject</strong> <span class="math inline">\(H_0\)</span> (because <span class="math inline">\(\mathrm{p}_{\mathrm{obs}} \geq \alpha\)</span>), we cannot conclude that <span class="math inline">\(H_0\)</span> is true — only that we do not have enough evidence to reject it. We also do not know the probability of a <strong>type II error</strong> (falsely accepting <span class="math inline">\(H_0\)</span>).</p></li>
+<li>
+<strong>Decision Theory:</strong><br> When we <strong>fail to reject</strong> <span class="math inline">\(H_0\)</span> (because <span class="math inline">\(\mathrm{p}_{\mathrm{obs}} \geq \alpha\)</span>), we cannot conclude that <span class="math inline">\(H_0\)</span> is true — only that we do not have enough evidence to reject it. We also do not know the probability of a <strong>type II error</strong> (falsely accepting <span class="math inline">\(H_0\)</span>).</li>
 </ul>
 <center>
 📢 Statistical tests are designed to <strong>reject</strong> <span class="math inline">\(H_0\)</span> when evidence is strong — not to <strong>prove</strong> that <span class="math inline">\(H_0\)</span> is true.

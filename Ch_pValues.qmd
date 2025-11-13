@@ -579,13 +579,17 @@ we **fail to reject** $H_0\colon \mu =0$ at the significance level $\alpha=0.05.
 <!-- We also fail to reject $H_0$ at any other typically used significance level such as, for instance, $\alpha=0.1$ or $\alpha=0.01.$  -->
 
 
-::: {.callout-caution icon="false" appearance="minimal" collapse="true"}
-## ⚠️ Failing to reject $H_0$ does not mean that $H_0$ is true.
+::: {.callout-caution icon="false" appearance="minimal"}
+## ⚠️ Failing to reject $H_0$ does not mean that $H_0$ is true! (See @sec-MissUses.)
+
+<!-- 
 <br>
 Failing to reject $H_0$ only means that a potential impact of the marketing campaign is not large enough to stand out from the random variation captured by the standard error $(S_{\mathrm{obs}}/\sqrt{n});$ see @sec-MissUses.
 
 * "Absence of evidence is not evidence of absence." [@Sagan_1997].
-* [Argument from ignorance](https://en.wikipedia.org/wiki/Argument_from_ignorance)
+* [Argument from ignorance](https://en.wikipedia.org/wiki/Argument_from_ignorance) 
+-->
+
 :::
 
 -------------------------------------------------
@@ -883,6 +887,8 @@ With a very large sample ($n$ large) or low data variability ($\operatorname{Var
 * **Consistency with $H_0$:**<br>
 A large $\mathrm{p}_{\mathrm{obs}}$ means the observed test statistic $\mathrm{T}_{\mathrm{obs}}$ is consistent with the null hypothesis $H_0$.<br>
 ❗️However, this does **not** mean that $H_0$ is true or confirmed.
+    * "Absence of evidence is not evidence of absence." [@Sagan_1997].
+    * [Argument from ignorance.](https://en.wikipedia.org/wiki/Argument_from_ignorance)
 
 * **Possible Reasons for Large $\mathrm{p}$-Values:**<br>
 Large $\mathrm{p}$-values (even $\mathrm{p}_{\mathrm{obs}} \approx 1$) can occur when a real effect is simply too small to detect, for example if
