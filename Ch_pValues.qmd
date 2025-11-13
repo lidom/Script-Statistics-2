@@ -862,8 +862,8 @@ Independent replication studies test whether a finding is robust or simply a sta
 ## 🤓 Interpreting Small $\textrm{p}$-Values: $\;\textrm{p}_{\mathrm{obs}} < \alpha$
 <br>
 
-* **Consistency with $H_0$:**<br>
-A small $\textrm{p}_{\mathrm{obs}}$ suggests that the observed statistic $|\mathrm{T}_{\mathrm{obs}}|$ is **inconsistent with** the null hypothesis $H_0$. In that case, we may decide that $H_0$ **does not provide a plausible explanation** for the data.
+* **Compatibility with $H_0$:**<br>
+A small $\textrm{p}_{\mathrm{obs}}$ suggests that the observed statistic $|\mathrm{T}_{\mathrm{obs}}|$ is **incompatible** with the null hypothesis $H_0.$ In that case, we may decide that $H_0$ **does not provide a plausible explanation** for the data.
 
 * **Decision Theory:**<br>
 When we reject $H_0$ (because $\textrm{p}_{\mathrm{obs}} < \alpha$), we **falsely reject** a true $H_0$ (type I error) with probability $\alpha$.<br>
@@ -884,8 +884,8 @@ With a very large sample ($n$ large) or low data variability ($\operatorname{Var
 ## ⚠️ Interpreting Large $\mathrm{p}$-Values: $\;\mathrm{p}_{\mathrm{obs}} \geq \alpha$
 <br>
 
-* **Consistency with $H_0$:**<br>
-A large $\mathrm{p}_{\mathrm{obs}}$ means the observed test statistic $\mathrm{T}_{\mathrm{obs}}$ is consistent with the null hypothesis $H_0$.<br>
+* **Compatibility with $H_0$:**<br>
+A large $\mathrm{p}_{\mathrm{obs}}$ means the observed test statistic $\mathrm{T}_{\mathrm{obs}}$ is **compatible** with the null hypothesis $H_0$.<br>
 ❗️However, this does **not** mean that $H_0$ is true or confirmed.
     * "Absence of evidence is not evidence of absence." [@Sagan_1997].
     * [Argument from ignorance.](https://en.wikipedia.org/wiki/Argument_from_ignorance)
